@@ -13,7 +13,7 @@ namespace SistemaToque.Services
     public class ServiceCSV
     {
         public static List<ToqueModel> ReadCSVFileToque(string location)
-        {
+        { //TESTE
             try
             {
                 using (var reader = new StreamReader(location, Encoding.Default))
