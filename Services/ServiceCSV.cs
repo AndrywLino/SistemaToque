@@ -13,7 +13,7 @@ namespace SistemaToque.Services
     public class ServiceCSV
     {
         public static List<ToqueModel> ReadCSVFileToque(string location)
-        { //TESTE
+        {
             try
             {
                 using (var reader = new StreamReader(location, Encoding.Default))
@@ -29,6 +29,30 @@ namespace SistemaToque.Services
             {
                 throw new Exception(e.Message);
             }
+        }
+
+        public static int WriteCSVFileToque(string path, List<ToqueModel> toque)
+        {
+            try
+            {
+                using (StreamWriter sw = new StreamWriter(path, false, new UTF8Encoding(true)))
+                using (CsvWriter cw = new CsvWriter(sw))
+                {
+                    cw.WriteHeader<ToqueModel>();
+                    cw.NextRecord();
+                foreach (ToqueModel toq in toque)
+                    {
+                        cw.WriteRecord<ToqueModel>(toq);
+                        cw.NextRecord();
+                    }
+                }
+                return 1;
+            }
+            catch (Exception e)
+            {
+                return 0;
+            }
+
         }
     }
 }
