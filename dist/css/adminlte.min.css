@@ -23467,12 +23467,8 @@ a.disabled.mailbox-attachment-close {
     justify-content: center
 }
 
-.login-box {
+.login-box, .register-box {
     width: 360px
-}
-
-.register-box {
-    width: 720px
 }
 
 @media (max-width:576px) {
