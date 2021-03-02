@@ -11,7 +11,7 @@ namespace SistemaToque.Controllers
     {
         public ActionResult Index()
         {
-            ServiceCSV.ReadCSVFileToque("C:/Users/andrywafonso/Desktop/Raspberry toque/toque.csv");
+            //ServiceCSV.ReadCSVFileToque("C:/Users/andrywafonso/Desktop/Raspberry toque/toque.csv");
             return View();
         }
 
@@ -25,6 +25,13 @@ namespace SistemaToque.Controllers
         public ActionResult Contact()
         {
             ViewBag.Message = "Your contact page.";
+
+            return View();
+        }
+
+        public ActionResult Login()
+        {
+            ViewBag.Message = "Your application description page.";
 
             return View();
         }
