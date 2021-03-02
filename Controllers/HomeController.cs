@@ -47,5 +47,12 @@ namespace SistemaToque.Controllers
 
             return View();
         }
+
+        public ActionResult Toque()
+        {
+            ViewBag.Message = "Your contact page.";
+
+            return View();
+        }
     }
 }
