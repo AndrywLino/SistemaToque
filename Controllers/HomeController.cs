@@ -30,13 +30,17 @@ namespace SistemaToque.Controllers
         [HttpPost]
         public ActionResult UserLogin(UserModel user)
         {
+            bool logado = false;
             string userName = user.UserName.ToUpper();
             string password = user.Password;
 
             if (userName == "SUPERVISOR")
             {
                 if (password == "ceinet123")
-                    return View("Toque");
+                {
+                    logado = true;
+                    return View("Toque", logado);
+                }
                 else
                 {
                     return View("Login");
@@ -49,18 +53,25 @@ namespace SistemaToque.Controllers
             }
         }
 
-        public ActionResult Login()
+        public ActionResult Login(bool logado = false)
         {
+
             ViewBag.Message = "Your contact page.";
 
             return View();
+
         }
 
-        public ActionResult Toque()
+        public ActionResult Toque(bool logado = false)
         {
-            ViewBag.Message = "Your contact page.";
+            if (logado)
+            {
+                ViewBag.Message = "Your contact page.";
 
-            return View();
+                return View();
+            }
+            else
+                return View("Login");
         }
 
         public ActionResult Teste()
