@@ -23453,6 +23453,18 @@ a.disabled.mailbox-attachment-close {
         color: #495057
     }
 
+.backgroud-body {
+    -ms-flex-align: center;
+    align-items: center;
+    background-image: url('../../img/login.png');
+    display: -ms-flexbox;
+    display: flex;
+    -ms-flex-direction: column;
+    flex-direction: column;
+    -ms-flex-pack: center;
+    justify-content: center
+}
+
 .login-page,
 .register-page {
     -ms-flex-align: center;
