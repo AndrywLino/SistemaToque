@@ -24,6 +24,7 @@
         <div class="col-md-4">
         </div>
         <div class="col-md-4">
+
             <div class="login-box">
                 <!-- /.login-logo -->
                 <div class="card card-outline card-primary">
@@ -33,16 +34,20 @@
                         <h5>Sistema de Toque</h5>
                     </div>
                     <div class="card-body">
+
                         <p class="login-box-msg">Faça login para iniciar sua sessão</p>
                         @using (Html.BeginForm("UserLogin", "Home", FormMethod.Post, new { enctype = "multipart/form-data" }))
                         {
-                            <form action="~/index3.html" method="post">
+                            <form class="needs-validation" action="~/index3.html" method="post" novalidate>
                                 <div class="input-group mb-3">
                                     <input type="text" class="form-control" id="UserName" name="UserName" placeholder="Usuário" autofocus required>
                                     <div class="input-group-append">
                                         <div class="input-group-text">
                                             <span class="fas fa-user"></span>
                                         </div>
+                                    </div>
+                                    <div class="invalid-feedback">
+                                        Usuário Incorreto!
                                     </div>
                                 </div>
                                 <div class="input-group mb-3">
@@ -52,19 +57,22 @@
                                             <span class="fas fa-lock"></span>
                                         </div>
                                     </div>
+                                    <div class="invalid-feedback">
+                                        Senha Incorreta!
+                                    </div>
                                 </div>
                                 <div class="row">
                                     <div class="col-8">
                                     </div>
                                     <!-- /.col -->
                                     <div class="col-4">
-                                        <button type="submit" class="btn btn-primary btn-block">Entrar</button>
+                                        <button class="btn btn-primary btn-block" type="submit">Entrar</button>
                                     </div>
                                     <!-- /.col -->
                                 </div>
                             </form>
                         }
-                        </div>
+                    </div>
                     <!-- /.card-body -->
                 </div>
                 <!-- /.card -->
@@ -81,5 +89,27 @@
     <script src="~/plugins/bootstrap/js/bootstrap.bundle.min.js"></script>
     <!-- AdminLTE App -->
     <script src="~/dist/js/adminlte.min.js"></script>
+
+    <script>
+        // Example starter JavaScript for disabling form submissions if there are invalid fields
+        (function () {
+            'use strict';
+            window.addEventListener('load', function () {
+                // Fetch all the forms we want to apply custom Bootstrap validation styles to
+                var forms = document.getElementsByClassName('needs-validation');
+                // Loop over them and prevent submission
+                var validation = Array.prototype.filter.call(forms, function (form) {
+                    form.addEventListener('submit', function (event) {
+                        if (form.checkValidity() === false) {
+                            event.preventDefault();
+                            event.stopPropagation();
+                        }
+                        form.classList.add('was-validated');
+                    }, false);
+                });
+            }, false);
+        })();
+    </script>
+
 </body>
 </html>
