@@ -43,24 +43,24 @@ namespace SistemaToque.Controllers
                 else
                 {
                     user.Status = false;
-                    ViewBag.LoginInvalido = "Senha Invalida";
+                    ViewBag.UsuarioInvalido = "";
+                    ViewBag.SenhaInvalido = "Senha Invalida";
                     return View("Login", user);
                 }
             }
             else
             {
                 user.Status = false;
-                ViewBag.LoginInvalido = "Usuario Invalido";
+                ViewBag.UsuarioInvalido = "Usuario Invalido";
+                ViewBag.SenhaInvalido = "";
                 return View("Login", user);
             }
         }
 
         public ActionResult Login(UserModel user)
         {
-            if (user.Message == null)
-                ViewBag.LoginInvalido = "";
-            else
-                ViewBag.LoginInvalido = user.Message;
+            ViewBag.UsuarioInvalido = "";
+            ViewBag.SenhaInvalido = "";
             ViewBag.Message = "Your contact page.";
 
             return View();
