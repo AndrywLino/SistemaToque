@@ -27,18 +27,26 @@ namespace SistemaToque.Controllers
             return View();
         }
 
-        public ActionResult About()
+        [HttpPost]
+        public ActionResult UserLogin(UserModel user)
         {
-            ViewBag.Message = "Your application description page.";
+            string userName = user.UserName.ToUpper();
+            string password = user.Password;
 
-            return View();
-        }
+            if (userName == "SUPERVISOR")
+            {
+                if (password == "ceinet123")
+                    return View("Toque");
+                else
+                {
+                    return View("Login");
+                }
+            }
+            else
+            {
 
-        public ActionResult Contact()
-        {
-            ViewBag.Message = "Your contact page.";
-
-            return View();
+                return View("Login");
+            }
         }
 
         public ActionResult Login()
