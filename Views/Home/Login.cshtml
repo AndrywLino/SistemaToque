@@ -1,4 +1,4 @@
-﻿
+﻿@model SistemaToque.Models.UserModel
 @{
     ViewBag.Title = "Login";
 }
@@ -34,40 +34,42 @@
                     </div>
                     <div class="card-body">
                         <p class="login-box-msg">Faça login para iniciar sua sessão</p>
-
-                        <form action="~/index3.html" method="post">
-                            <div class="input-group mb-3">
-                                <input type="text" class="form-control" placeholder="Usuário" autofocus required>
-                                <div class="input-group-append">
-                                    <div class="input-group-text">
-                                        <span class="fas fa-user"></span>
+                        @using (Html.BeginForm("UserLogin", "Home", FormMethod.Post, new { enctype = "multipart/form-data" }))
+                        {
+                            <form action="~/index3.html" method="post">
+                                <div class="input-group mb-3">
+                                    <input type="text" class="form-control" id="UserName" name="UserName" placeholder="Usuário" autofocus required>
+                                    <div class="input-group-append">
+                                        <div class="input-group-text">
+                                            <span class="fas fa-user"></span>
+                                        </div>
                                     </div>
                                 </div>
-                            </div>
-                            <div class="input-group mb-3">
-                                <input type="password" class="form-control" placeholder="Senha" required>
-                                <div class="input-group-append">
-                                    <div class="input-group-text">
-                                        <span class="fas fa-lock"></span>
+                                <div class="input-group mb-3">
+                                    <input type="password" class="form-control" id="Password" name="Password" placeholder="Senha" required>
+                                    <div class="input-group-append">
+                                        <div class="input-group-text">
+                                            <span class="fas fa-lock"></span>
+                                        </div>
                                     </div>
                                 </div>
-                            </div>
-                            <div class="row">
-                                <div class="col-8">
-                                    <div class="icheck-primary">
-                                        <input type="checkbox" id="remember">
-                                        <label for="remember">
-                                            Lembrar de mim
-                                        </label>
+                                <div class="row">
+                                    <div class="col-8">
+                                        <div class="icheck-primary">
+                                            <input type="checkbox" id="remember">
+                                            <label for="remember">
+                                                Lembrar de mim
+                                            </label>
+                                        </div>
                                     </div>
+                                    <!-- /.col -->
+                                    <div class="col-4">
+                                        <button type="submit" class="btn btn-primary btn-block">Entrar</button>
+                                    </div>
+                                    <!-- /.col -->
                                 </div>
-                                <!-- /.col -->
-                                <div class="col-4">
-                                    <button type="submit" class="btn btn-primary btn-block">Entrar</button>
-                                </div>
-                                <!-- /.col -->
-                            </div>
-                        </form>
+                            </form>
+                        }
 
                     </div>
                     <!-- /.card-body -->
@@ -78,7 +80,7 @@
         <div class="col-md-4">
         </div>
     </div>
-    
+
     <!-- /.login-box -->
     <!-- jQuery -->
     <script src="~/plugins/jquery/jquery.min.js"></script>
