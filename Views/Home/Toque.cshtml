@@ -58,7 +58,15 @@
                 <!-- Sidebar Menu -->
                 <nav class="mt-2">
                     <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
-                        <li class="nav-header">EXAMPLES</li>
+                        <li class="nav-header">MENU</li>
+                        <li class="nav-item">
+                            <a href="" class="nav-link">
+                                <i class="nav-icon fas fa-home"></i>
+                                <p>
+                                    Home
+                                </p>
+                            </a>
+                        </li>
                         <li class="nav-item">
                             <a href="" class="nav-link">
                                 <i class="nav-icon fas fa-cog"></i>
@@ -78,15 +86,6 @@
         <div class="content-wrapper">
             <!-- Content Header (Page header) -->
             <section class="content-header">
-                <div class="container-fluid">
-                    <div class="row mb-2">
-                        <div class="col-sm-6">
-                            <h1></h1>
-                        </div>
-                        <div class="col-sm-6">
-                        </div>
-                    </div>
-                </div><!-- /.container-fluid -->
             </section>
 
             <!-- Main content -->
@@ -107,9 +106,12 @@
                         <div class="card-body">
                             <div class="row">
                                 <div class="col-md-12">
+                                    <div class="row">
+                                        <label for="example-time-input" class="col-form-label">Carrege o seu arquivo:</label>
+                                    </div>
                                     <div class="input-group">
                                         <div class="custom-file">
-                                            <input type="file" class="custom-file-input" id="exampleInputFile">
+                                            <input type="file" class="custom-file-input" id="exampleInputFile" name="exampleInputFile" accept="audio/mp3,audio/*">
                                             <label class="custom-file-label" for="exampleInputFile">Escolher arquivo</label>
                                         </div>
                                         <div class="input-group-append">
@@ -120,40 +122,40 @@
                                     <br>
 
                                     <!--<div class="">
-                                        <audio controls loop autoplay>
-                                            <source src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/9473/new_year_dubstep_minimix.ogg" type="audio/ogg">
-                                            Seu navegador não suporta a tag de áudio
-                                        </audio>
-                                    </div>-->
+        <audio controls loop autoplay>
+            <source src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/9473/new_year_dubstep_minimix.ogg" type="audio/ogg">
+            Seu navegador não suporta a tag de áudio
+        </audio>
+    </div>-->
 
                                     <div class="form-group row">
-                                        <label for="example-time-input" class="col-2 col-form-label">Hora</label>
-                                        <div class="col-10">
-                                            <input class="form-control" type="time" value="13:45:00" id="example-time-input">
+                                        <label for="example-time-input" class="col-1 col-form-label">Hora:</label>
+                                        <div class="col-11">
+                                            <input class="form-control" type="time" value="13:45:00" id="example-time-input" name="example-time-input">
                                         </div>
                                     </div>
 
                                     <div class="row">
-                                        <label for="example-time-input" class="col-form-label">Selecione o dia da semana</label>
+                                        <label for="example-time-input" class="col-form-label">Selecione o dia da semana:</label>
                                     </div>
 
                                     <div class="row">
                                         <div class="col-4">
                                             <div class="form-check">
-                                                <input class="form-check-input" type="checkbox" value="" id="flexCheckChecked" checked>
-                                                <label class="form-check-label" for="flexCheckChecked">
+                                                <input class="form-check-input" type="checkbox" value="" id="cb_1" name="cb_1" checked>
+                                                <label class="form-check-label" for="cb_1">
                                                     Segunda
                                                 </label>
                                             </div>
                                             <div class="form-check">
-                                                <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault" checked>
-                                                <label class="form-check-label" for="flexCheckDefault">
+                                                <input class="form-check-input" type="checkbox" value="" id="cb_2" name="cb_2" checked>
+                                                <label class="form-check-label" for="cb_2">
                                                     Terça
                                                 </label>
                                             </div>
                                             <div class="form-check">
-                                                <input class="form-check-input" type="checkbox" value="" id="flexCheckChecked" checked>
-                                                <label class="form-check-label" for="flexCheckChecked">
+                                                <input class="form-check-input" type="checkbox" value="" id="cb_3" name="cb_3" checked>
+                                                <label class="form-check-label" for="cb_3">
                                                     Quarta
                                                 </label>
                                             </div>
@@ -162,14 +164,14 @@
                                         <div class="col-4">
 
                                             <div class="form-check">
-                                                <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault" checked>
-                                                <label class="form-check-label" for="flexCheckDefault">
+                                                <input class="form-check-input" type="checkbox" value="" id="cb_4" name="cb_4" checked>
+                                                <label class="form-check-label" for="cb_4">
                                                     Quinta
                                                 </label>
                                             </div>
                                             <div class="form-check">
-                                                <input class="form-check-input" type="checkbox" value="" id="flexCheckChecked" checked>
-                                                <label class="form-check-label" for="flexCheckChecked">
+                                                <input class="form-check-input" type="checkbox" value="" id="cb_5" name="cb_5" checked>
+                                                <label class="form-check-label" for="cb_5">
                                                     Sexta
                                                 </label>
                                             </div>
@@ -177,14 +179,14 @@
                                         <!-- /.col -->
                                         <div class="col-4">
                                             <div class="form-check">
-                                                <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault">
-                                                <label class="form-check-label" for="flexCheckDefault">
+                                                <input class="form-check-input" type="checkbox" value="" id="cb_6" name="cb_6">
+                                                <label class="form-check-label" for="cb_6">
                                                     Sábado
                                                 </label>
                                             </div>
                                             <div class="form-check">
-                                                <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault">
-                                                <label class="form-check-label" for="flexCheckDefault">
+                                                <input class="form-check-input" type="checkbox" value="" id="cb_7" name="cb_7">
+                                                <label class="form-check-label" for="cb_7">
                                                     Domingo
                                                 </label>
                                             </div>
@@ -195,7 +197,7 @@
                                     <br>
 
                                     <div class="row">
-                                        <label for="" class="col-form-label">Tipo do canal</label>
+                                        <label for="" class="col-form-label">Tipo de ensino:</label>
                                     </div>
 
                                     <form>
@@ -204,11 +206,15 @@
                                                 <div class="col-sm-10">
                                                     <div class="form-check">
                                                         <input class="form-check-input" type="radio" name="gridRadios" id="gridRadios1" value="option1" checked>
-                                                        <label class="form-check-label" for="gridRadios1"> P2 </label>
+                                                        <label class="form-check-label" for="gridRadios1"> Fundamental I </label>
                                                     </div>
                                                     <div class="form-check">
                                                         <input class="form-check-input" type="radio" name="gridRadios" id="gridRadios2" value="option2">
-                                                        <label class="form-check-label" for="gridRadios2"> HDMI </label>
+                                                        <label class="form-check-label" for="gridRadios2"> Fundamental II </label>
+                                                    </div>
+                                                    <div class="form-check">
+                                                        <input class="form-check-input" type="radio" name="gridRadios" id="gridRadios3" value="option3">
+                                                        <label class="form-check-label" for="gridRadios3"> Médio </label>
                                                     </div>
                                                 </div>
                                             </div>
@@ -218,10 +224,10 @@
                                     <br>
 
                                     <div class="row">
-                                        <div class="col-8">
+                                        <div class="col-9">
                                         </div>
                                         <!-- /.col -->
-                                        <div class="col-4">
+                                        <div class="col-3">
                                             <button type="submit" class="btn btn-primary btn-block">Salvar</button>
                                         </div>
                                         <!-- /.col -->
@@ -240,11 +246,6 @@
             <!-- /.content -->
         </div>
         <!-- /.content-wrapper -->
-        <!-- Control Sidebar -->
-        <aside class="control-sidebar control-sidebar-dark">
-            <!-- Control sidebar content goes here -->
-        </aside>
-        <!-- /.control-sidebar -->
     </div>
     <!-- ./wrapper -->
     <!-- jQuery -->
