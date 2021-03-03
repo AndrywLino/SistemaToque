@@ -30,9 +30,23 @@ namespace SistemaToque.Controllers
         [HttpPost]
         public ActionResult UserLogin(UserModel user)
         {
-            string userName = user.UserName;
+            string userName = user.UserName.ToUpper();
             string password = user.Password;
-            return View("Toque");
+
+            if (userName == "SUPERVISOR")
+            {
+                if (password == "ceinet123")
+                    return View("Toque");
+                else
+                {
+                    return View("Login");
+                }
+            }
+            else
+            {
+
+                return View("Login");
+            }
         }
 
         public ActionResult Login()
