@@ -30,7 +30,6 @@ namespace SistemaToque.Controllers
         [HttpPost]
         public ActionResult UserLogin(UserModel user)
         {
-            bool logado = false;
             string userName = user.UserName.ToUpper();
             string password = user.Password;
 
@@ -38,24 +37,30 @@ namespace SistemaToque.Controllers
             {
                 if (password == "ceinet123")
                 {
-                    logado = true;
-                    return View("Toque", logado);
+                    user.Status = true;
+                    return View("Toque", user.Status);
                 }
                 else
                 {
-                    return View("Login");
+                    user.Status = false;
+                    ViewBag.LoginInvalido = "Senha Invalida";
+                    return View("Login", user);
                 }
             }
             else
             {
-
-                return View("Login");
+                user.Status = false;
+                ViewBag.LoginInvalido = "Usuario Invalido";
+                return View("Login", user);
             }
         }
 
-        public ActionResult Login(bool logado = false)
+        public ActionResult Login(UserModel user)
         {
-
+            if (user.Message == null)
+                ViewBag.LoginInvalido = "";
+            else
+                ViewBag.LoginInvalido = user.Message;
             ViewBag.Message = "Your contact page.";
 
             return View();
