@@ -38,7 +38,7 @@
                         <p class="login-box-msg">Faça login para iniciar sua sessão</p>
                         @using (Html.BeginForm("UserLogin", "Home", FormMethod.Post, new { enctype = "multipart/form-data" }))
                         {
-                            <form class="" action="~/index3.html" method="post" novalidate>
+                            <form class="needs-validation" action="~/index3.html" method="post" novalidate>
                                 <div class="input-group mb-3">
                                     <input type="text" class="form-control" id="UserName" name="UserName" placeholder="Usuário" autofocus required>
                                     <div class="input-group-append">
@@ -46,9 +46,9 @@
                                             <span class="fas fa-user"></span>
                                         </div>
                                     </div>
-                                    <div class="invalid-feedback">
+                                    <div>
                                         <!-- Menssagem de login -->
-                                        @Html.Label((string)ViewBag.LoginInvalido)
+                                        @Html.Label((string)ViewBag.UsuarioInvalido)
                                     </div>
                                 </div>
                                 <div class="input-group mb-3">
@@ -60,7 +60,7 @@
                                     </div>
                                     <div>
                                         <!-- Menssagem de login -->
-                                        @Html.Label((string)ViewBag.LoginInvalido)
+                                        @Html.Label((string)ViewBag.SenhaInvalido)
                                     </div>
                                 </div>
                                 <div class="row">
@@ -91,5 +91,27 @@
     <script src="~/plugins/bootstrap/js/bootstrap.bundle.min.js"></script>
     <!-- AdminLTE App -->
     <script src="~/dist/js/adminlte.min.js"></script>
+
+    <script>
+        // Example starter JavaScript for disabling form submissions if there are invalid fields
+        (function () {
+            'use strict';
+            window.addEventListener('load', function () {
+                // Fetch all the forms we want to apply custom Bootstrap validation styles to
+                var forms = document.getElementsByClassName('needs-validation');
+                // Loop over them and prevent submission
+                var validation = Array.prototype.filter.call(forms, function (form) {
+                    form.addEventListener('submit', function (event) {
+                        if (form.checkValidity() === false) {
+                            event.preventDefault();
+                            event.stopPropagation();
+                        }
+                        form.classList.add('was-validated');
+                    }, false);
+                });
+            }, false);
+        })();
+    </script>
+
 </body>
 </html>
