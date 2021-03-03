@@ -23453,7 +23453,7 @@ a.disabled.mailbox-attachment-close {
         color: #495057
     }
 
-.backgroud-body {
+.bg-body {
     -ms-flex-align: center;
     align-items: center;
     background-image: url('../../img/login.png');
