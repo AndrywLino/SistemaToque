@@ -95,7 +95,7 @@ namespace SistemaToque.Controllers
 
         private List<ToqueModel> LerToquesCSV()
         {
-            string path = "C:/Users/andrywafonso/Desktop/Raspberry toque/toque.csv";
+            string path = Path.Combine(Server.MapPath("~/CSV/toque.csv"));
             List<ToqueModel> planilha = ServiceCSV.ReadCSVFileToque(path);
             return planilha;
         }

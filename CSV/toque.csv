@@ -1,0 +1,5 @@
+ARQUIVO;HORA;CANAL;DIASEMANA;ISATIVO;NIVELENSINO
+teste;13:00:00;1;Segunda-Feira;1;1
+teste2;15:00:00;2;Terça-Feira;0;2
+teste3;09:00:00;1;Sexta-Feira;1;3
+teste04;19:00:00;2;Quarta-Feira;1;4
