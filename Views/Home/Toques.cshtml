@@ -94,12 +94,9 @@
                                         <div class="col-lg-8">
                                         </div>
                                         <div class="col-lg-4">
-                                            <button type="button" class="btn btn-success btn-block">
-                                                <i class="nav-icon fas fa-plus"></i>
-                                                <div>
-                                                    @Html.ActionLink("Adicionar um novo toque", "EditarToque", "Home", null, new { @type = "button", @class = "btn btn-success btn-block" })
-                                                </div>
-                                            </button>
+                                            <div>
+                                                @Html.ActionLink("Adicionar um novo toque", "EditarToque", "Home", null, new { @type = "button", @class = "btn btn-success btn-block" })
+                                            </div>
                                         </div>
                                     </div>
                                     <br>
@@ -143,18 +140,9 @@
                                                 </td>
                                                 <td align="center">
 
-                                                    @Html.ActionLink("Editar", "EditarToque", "Home", new { arquivo = item.Arquivo }, new { @type = "button", @class = "btn btn-success nav-icon fa fa-pencil-alt" })
-                                                    @*<button type="button" class="btn btn-success">
-                                                            <i class="nav-icon fa fa-pencil-alt"></i>
-                                                            <div>
-                                                            </div>
-                                                        </button>*@
-                                                    <button type="button" class="btn btn-danger">
-                                                        <i class="nav-icon fas fa-times"></i>
-                                                        <div hidden>
-                                                            @Html.ActionLink("Delete", "Delete", new { /* id=item.PrimaryKey */ })
-                                                        </div>
-                                                    </button>
+                                                    @Html.ActionLink("Editar", "EditarToque", "Home", new { arquivo = item.Arquivo }, new { @type = "button", @class = "btn btn-success" })
+                                                    <br><br>
+                                                    @Html.ActionLink("Deletar", "DeletarToque", "Home", new { arquivo = item.Arquivo }, new { @type = "button", @class = "btn btn-success btn-danger" })
                                                 </td>
                                             </tr>
                                         }
