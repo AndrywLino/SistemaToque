@@ -31,18 +31,18 @@ namespace SistemaToque.Services
             }
         }
 
-        public static int WriteCSVFileToque(string path, List<ToqueModel> toque)
+        public static int WriteCSVFileToque(string path, List<ToqueExportModel> toque)
         {
             try
             {
                 using (StreamWriter sw = new StreamWriter(path, false, new UTF8Encoding(true)))
                 using (CsvWriter cw = new CsvWriter(sw))
                 {
-                    cw.WriteHeader<ToqueModel>();
+                    cw.WriteHeader<ToqueExportModel>();
                     cw.NextRecord();
-                foreach (ToqueModel toq in toque)
+                foreach (ToqueExportModel toq in toque)
                     {
-                        cw.WriteRecord<ToqueModel>(toq);
+                        cw.WriteRecord<ToqueExportModel>(toq);
                         cw.NextRecord();
                     }
                 }

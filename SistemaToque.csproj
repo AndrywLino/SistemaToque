@@ -130,6 +130,7 @@
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Mappers\ToqueMap.cs" />
+    <Compile Include="Models\ToqueExportModel.cs" />
     <Compile Include="Models\ToqueModel.cs" />
     <Compile Include="Models\UserModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

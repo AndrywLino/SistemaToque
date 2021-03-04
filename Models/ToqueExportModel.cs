@@ -5,14 +5,11 @@ using System.Web;
 
 namespace SistemaToque.Models
 {
-    public class ToqueModel
+    public class ToqueExportModel
     {
         public string Arquivo { get; set; }
         public string Nome { get; set; }
         public string Hora { get; set; }
-        public string DiaSemana { get; set; }
-        public string TxEnsino { get; set; }
-        public string TxCanal { get; set; }
         public int Canal { get; set; }
         public int IsAtivo { get; set; }
         public int NivelEnsino { get; set; }
@@ -23,6 +20,5 @@ namespace SistemaToque.Models
         public int IsSexta { get; set; }
         public int IsSabado { get; set; }
         public int IsDomingo { get; set; }
-
     }
 }
