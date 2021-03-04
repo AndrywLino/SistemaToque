@@ -1,0 +1,63 @@
+﻿@model IEnumerable<SistemaToque.Models.ToqueModel>
+
+@{
+    ViewBag.Title = "Toques";
+}
+
+<h2>Toques</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.Arquivo)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Hora)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Canal)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.DiaSemana)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.IsAtivo)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.NivelEnsino)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.Arquivo)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Hora)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Canal)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.DiaSemana)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.IsAtivo)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.NivelEnsino)
+        </td>
+        <td>
+            @Html.ActionLink("Edit", "Edit", new { /* id=item.PrimaryKey */ }) |
+            @Html.ActionLink("Details", "Details", new { /* id=item.PrimaryKey */ }) |
+            @Html.ActionLink("Delete", "Delete", new { /* id=item.PrimaryKey */ })
+        </td>
+    </tr>
+}
+
+</table>

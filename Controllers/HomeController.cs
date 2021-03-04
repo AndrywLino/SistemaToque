@@ -38,7 +38,7 @@ namespace SistemaToque.Controllers
                 if (password == "ceinet123")
                 {
                     user.Status = true;
-                    return View("Toque", user.Status);
+                    return RedirectToAction("Toques", user.Status);
                 }
                 else
                 {
@@ -77,6 +77,26 @@ namespace SistemaToque.Controllers
             }
             else
                 return View("Login");
+        }
+
+        public ActionResult Toques(bool logado = false)
+        {
+            logado = true;
+            if (logado)
+            {
+                List<ToqueModel> model = LerToquesCSV();
+
+                return View(model);
+            }
+            else
+                return View("Login");
+        }
+
+        private List<ToqueModel> LerToquesCSV()
+        {
+            string path = "C:/Users/andrywafonso/Desktop/Raspberry toque/toque.csv";
+            List<ToqueModel> planilha = ServiceCSV.ReadCSVFileToque(path);
+            return planilha;
         }
 
     }
