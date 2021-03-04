@@ -69,6 +69,7 @@ namespace SistemaToque.Controllers
 
         public ActionResult Toque(bool logado = false)
         {
+            logado = true;
             if (logado)
             {
                 ViewBag.Message = "Your contact page.";
