@@ -101,23 +101,23 @@ namespace SistemaToque.Controllers
             {
                 if (pla.IsSegunda == 1)
                 {
-                    pla.DiaSemana = pla.DiaSemana + "- Segunda-Feira ";
+                    pla.DiaSemana = pla.DiaSemana + "- Segunda ";
                 }
                 if (pla.IsTerca == 1)
                 {
-                    pla.DiaSemana = pla.DiaSemana + "- Terça-Feira ";
+                    pla.DiaSemana = pla.DiaSemana + "- Terça ";
                 }
                 if (pla.IsQuarta == 1)
                 {
-                    pla.DiaSemana = pla.DiaSemana + "- Quarta-Feira ";
+                    pla.DiaSemana = pla.DiaSemana + "- Quarta ";
                 }
                 if (pla.IsQuinta == 1)
                 {
-                    pla.DiaSemana = pla.DiaSemana + "- Quinta-Feira ";
+                    pla.DiaSemana = pla.DiaSemana + "- Quinta ";
                 }
                 if (pla.IsSexta == 1)
                 {
-                    pla.DiaSemana = pla.DiaSemana + "- Sexta-Feira ";
+                    pla.DiaSemana = pla.DiaSemana + "- Sexta ";
                 }
                 if (pla.IsSabado == 1)
                 {

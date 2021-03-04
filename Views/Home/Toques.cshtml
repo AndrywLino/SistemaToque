@@ -129,28 +129,27 @@
                                         @foreach (var item in Model)
                                         {
                                             <tr>
-                                                <td>
+                                                <td align="center">
                                                     @Html.DisplayFor(modelItem => item.Arquivo)
                                                 </td>
-                                                <td>
+                                                <td align="center">
                                                     @Html.DisplayFor(modelItem => item.Hora)
                                                 </td>
-                                                <td>
+                                                <td align="center">
                                                     @Html.DisplayFor(modelItem => item.Canal)
                                                 </td>
                                                 <td>
                                                     @Html.DisplayFor(modelItem => item.DiaSemana)
                                                 </td>
-                                                <td>
+                                                <td align="center">
                                                     @Html.DisplayFor(modelItem => item.IsAtivo)
                                                 </td>
-                                                <td>
+                                                <td align="center">
                                                     @Html.DisplayFor(modelItem => item.NivelEnsino)
                                                 </td>
                                                 <td align="center">
-                                                    
-                                                    <a href="~/Views/Home/Toque.cshtml">
-                                                        <button type="button" class="btn btn-success">
+                                                    <a href="~/Home/Toque.cshtml">
+                                                        <button type="button" class="btn btn-success" id="Editar" name="Editar">
                                                             <i class="nav-icon fa fa-pencil-alt"></i>
                                                         </button>
                                                     </a>
