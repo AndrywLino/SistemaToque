@@ -42,59 +42,6 @@ namespace SistemaToque.Controllers
             }
         }
 
-        public ActionResult Login(UserModel user)
-        {
-            ViewBag.UsuarioInvalido = "";
-            ViewBag.SenhaInvalido = "";
-            ViewBag.Message = "Your contact page.";
-
-            return View();
-
-        }
-
-        public ActionResult Toque(bool logado = false)
-        {
-            logado = true;
-            if (logado)
-            {
-                ViewBag.Message = "Your contact page.";
-
-                return View();
-            }
-            else
-                return View("Login");
-        }
-
-        public ActionResult Toques(bool logado = false)
-        {
-            logado = true;
-            if (logado)
-            {
-                List<ToqueModel> model = LerToquesCSV();
-
-                return View(model);
-            }
-            else
-                return View("Login");
-        }
-
-
-        [HttpGet]
-        public ActionResult EditarToque(string arquivo)
-        {
-            string arq = arquivo;
-            List<ToqueModel> toques= LerToquesCSV();
-            ToqueModel toque = new ToqueModel();
-            foreach (var item in toques)
-            {
-                if(arq == item.Arquivo)
-                {
-                    toque = item;
-                }
-            }
-            return View(toque);
-        }
-
         [HttpPost]
         public ActionResult EditarToque(ToqueModel toque)
         {
@@ -146,6 +93,65 @@ namespace SistemaToque.Controllers
             ServiceCSV.WriteCSVFileToque(dir, toquesE);
             return View();
         }
+
+        [HttpPost]
+        public ActionResult CadastrarToque(ToqueExportModel toque)
+        {
+            return View();
+        }
+
+        [HttpGet]
+        public ActionResult EditarToque(string arquivo)
+        {
+            string arq = arquivo;
+            List<ToqueModel> toques = LerToquesCSV();
+            ToqueModel toque = new ToqueModel();
+            foreach (var item in toques)
+            {
+                if (arq == item.Arquivo)
+                {
+                    toque = item;
+                }
+            }
+            return View(toque);
+        }
+
+        public ActionResult Login(UserModel user)
+        {
+            ViewBag.UsuarioInvalido = "";
+            ViewBag.SenhaInvalido = "";
+            ViewBag.Message = "Your contact page.";
+
+            return View();
+
+        }
+
+        public ActionResult Toque(bool logado = false)
+        {
+            logado = true;
+            if (logado)
+            {
+                ViewBag.Message = "Your contact page.";
+
+                return View();
+            }
+            else
+                return View("Login");
+        }
+
+        public ActionResult Toques(bool logado = false)
+        {
+            logado = true;
+            if (logado)
+            {
+                List<ToqueModel> model = LerToquesCSV();
+
+                return View(model);
+            }
+            else
+                return View("Login");
+        }
+
         private List<ToqueModel> LerToquesCSV()
         {
             string path = Path.Combine(Server.MapPath("~/CSV/toque.csv"));
