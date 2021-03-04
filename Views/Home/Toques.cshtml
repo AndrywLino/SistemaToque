@@ -148,12 +148,13 @@
                                                     @Html.DisplayFor(modelItem => item.TxEnsino)
                                                 </td>
                                                 <td align="center">
-                                                    
-                                                    <a href="~/Home/Toque">
-                                                        <button type="button" class="btn btn-success">
-                                                            <i class="nav-icon fa fa-pencil-alt"></i>
-                                                        </button>
-                                                    </a>
+
+                                                    <button type="button" class="btn btn-success">
+                                                        <i class="nav-icon fa fa-pencil-alt"></i>
+                                                        <div>
+                                                            @Html.ActionLink("Edit", "Edit", new { /* id=item.PrimaryKey */ })
+                                                        </div>
+                                                    </button>
                                                     <button type="button" class="btn btn-danger">
                                                         <i class="nav-icon fas fa-times"></i>
                                                         <div hidden>
