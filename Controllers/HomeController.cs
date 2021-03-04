@@ -11,6 +11,18 @@ namespace SistemaToque.Controllers
 {
     public class HomeController : Controller
     {
+        public ActionResult Index()
+        {
+            string dir = "C:/Users/andrywafonso/Desktop/Raspberry toque/criado/";
+            dir += "teste.csv";
+            List<ToqueModel> toqueteste = new List<ToqueModel>();
+
+            ServiceCSV.WriteCSVFileToque(dir, toqueteste);
+
+            //ServiceCSV.ReadCSVFileToque("C:/Users/andrywafonso/Desktop/Raspberry toque/toque.csv");
+            return View();
+        }
+
         [HttpPost]
         public ActionResult UserLogin(UserModel user)
         {
@@ -81,6 +93,39 @@ namespace SistemaToque.Controllers
         {
             string path = Path.Combine(Server.MapPath("~/CSV/toque.csv"));
             List<ToqueModel> planilha = ServiceCSV.ReadCSVFileToque(path);
+            foreach (var pla in planilha)
+            {
+                if (pla.IsSegunda == 1)
+                {
+                    pla.DiaSemana = pla.DiaSemana + "- Segunda-Feira ";
+                }
+                if (pla.IsTerca == 1)
+                {
+                    pla.DiaSemana = pla.DiaSemana + "- Terça-Feira ";
+                }
+                if (pla.IsQuarta == 1)
+                {
+                    pla.DiaSemana = pla.DiaSemana + "- Quarta-Feira ";
+                }
+                if (pla.IsQuinta == 1)
+                {
+                    pla.DiaSemana = pla.DiaSemana + "- Quinta-Feira ";
+                }
+                if (pla.IsSexta == 1)
+                {
+                    pla.DiaSemana = pla.DiaSemana + "- Sexta-Feira ";
+                }
+                if (pla.IsSabado == 1)
+                {
+                    pla.DiaSemana = pla.DiaSemana + "- Sabado ";
+                }
+                if (pla.IsDomingo == 1)
+                {
+                    pla.DiaSemana = pla.DiaSemana + "- Domingo ";
+                }
+
+                pla.DiaSemana = pla.DiaSemana.Substring(2);
+            }
             return planilha;
         }
 
