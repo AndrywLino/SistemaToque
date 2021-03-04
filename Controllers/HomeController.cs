@@ -97,23 +97,23 @@ namespace SistemaToque.Controllers
             {
                 if (pla.IsSegunda == 1)
                 {
-                    pla.DiaSemana = pla.DiaSemana + "- Segunda-Feira ";
+                    pla.DiaSemana = pla.DiaSemana + "- Segunda ";
                 }
                 if (pla.IsTerca == 1)
                 {
-                    pla.DiaSemana = pla.DiaSemana + "- Terça-Feira ";
+                    pla.DiaSemana = pla.DiaSemana + "- Terça ";
                 }
                 if (pla.IsQuarta == 1)
                 {
-                    pla.DiaSemana = pla.DiaSemana + "- Quarta-Feira ";
+                    pla.DiaSemana = pla.DiaSemana + "- Quarta ";
                 }
                 if (pla.IsQuinta == 1)
                 {
-                    pla.DiaSemana = pla.DiaSemana + "- Quinta-Feira ";
+                    pla.DiaSemana = pla.DiaSemana + "- Quinta ";
                 }
                 if (pla.IsSexta == 1)
                 {
-                    pla.DiaSemana = pla.DiaSemana + "- Sexta-Feira ";
+                    pla.DiaSemana = pla.DiaSemana + "- Sexta ";
                 }
                 if (pla.IsSabado == 1)
                 {
@@ -122,6 +122,26 @@ namespace SistemaToque.Controllers
                 if (pla.IsDomingo == 1)
                 {
                     pla.DiaSemana = pla.DiaSemana + "- Domingo ";
+                }
+                if(pla.Canal == 1)
+                {
+                    pla.TxCanal = "P2";
+                }
+                if (pla.Canal == 2)
+                {
+                    pla.TxCanal = "HDMI";
+                }
+                if (pla.NivelEnsino == 1)
+                {
+                    pla.TxEnsino = "Fund 1";
+                }
+                if (pla.NivelEnsino == 2)
+                {
+                    pla.TxEnsino = "Fund2";
+                }
+                if (pla.NivelEnsino == 3)
+                {
+                    pla.TxEnsino = "EM";
                 }
 
                 pla.DiaSemana = pla.DiaSemana.Substring(2);
