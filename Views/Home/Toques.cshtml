@@ -49,7 +49,7 @@
                     <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
                         <li class="nav-header">MENU</li>
                         <li class="nav-item">
-                            <a href="~/Home/Toques" class="nav-link active">
+                            <a href="~/Views/Home/Toques.cshtml" class="nav-link active">
                                 <i class="nav-icon fas fa-music"></i>
                                 <p>
                                     Toques
@@ -57,7 +57,7 @@
                             </a>
                         </li>
                         <li class="nav-item">
-                            <a href="~/Home/Toque" class="nav-link">
+                            <a href="~/Views/Home/Toque.cshtml" class="nav-link">
                                 <i class="nav-icon fas fa-cog"></i>
                                 <p>
                                     Configurações
@@ -112,6 +112,9 @@
                                                 @Html.DisplayNameFor(model => model.Hora)
                                             </th>
                                             <th>
+                                                @Html.DisplayNameFor(model => model.TxCanal)
+                                            </th>
+                                            <th>
                                                 @Html.DisplayNameFor(model => model.DiaSemana)
                                             </th>
                                             <th>
@@ -126,59 +129,38 @@
                                         @foreach (var item in Model)
                                         {
                                             <tr>
-                                                <td align="center">
+                                                <td>
                                                     @Html.DisplayFor(modelItem => item.Arquivo)
                                                 </td>
-                                                <td align="center">
+                                                <td>
                                                     @Html.DisplayFor(modelItem => item.Hora)
                                                 </td>
-                                                <td align="center">
+                                                <td>
+                                                    @Html.DisplayFor(modelItem => item.TxCanal)
+                                                </td>
+                                                <td>
                                                     @Html.DisplayFor(modelItem => item.DiaSemana)
                                                 </td>
-                                                <td align="center">
+                                                <td>
                                                     @Html.DisplayFor(modelItem => item.IsAtivo)
                                                 </td>
-                                                <td align="center">
+                                                <td>
                                                     @Html.DisplayFor(modelItem => item.TxEnsino)
                                                 </td>
                                                 <td align="center">
-                                                    <div class="row">
-                                                        <a href="~/Home/Toque">
-                                                            <button href="~/Home/Toque" type="button" class="btn btn-success btn-sm">
-                                                                <i class="nav-icon fa fa-pencil-alt"></i>
-                                                            </button>
-                                                        </a>
 
-                                                        <!-- Button trigger modal -->
-                                                        <button type="button" class="btn btn-danger btn-sm" data-toggle="modal" data-target="#modal-default">
-                                                            <i class="nav-icon fa fa-times"></i>
-                                                        </button>
-
-                                                        <!-- Modal -->
-                                                        <div class="modal fade" id="modal-default">
-                                                            <div class="modal-dialog">
-                                                                <div class="modal-content">
-                                                                    <div class="modal-header">
-                                                                        <h4 class="modal-title">Excluir Toque</h4>
-                                                                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                                                            <span aria-hidden="true">&times;</span>
-                                                                        </button>
-                                                                    </div>
-                                                                    <div class="modal-body">
-                                                                        Você confirma a exclusão desse toque?
-                                                                    </div>
-                                                                    <div class="modal-footer justify-content-between">
-                                                                        <button type="button" class="btn btn-default" data-dismiss="modal">Fechar</button>
-                                                                        <button type="button" class="btn btn-danger">Excluir</button>
-                                                                    </div>
-                                                                </div>
-                                                                <!-- /.modal-content -->
-                                                            </div>
-                                                            <!-- /.modal-dialog -->
+                                                    <button type="button" class="btn btn-success">
+                                                        <i class="nav-icon fa fa-pencil-alt"></i>
+                                                        <div>
+                                                            @Html.ActionLink("Edit", "Edit", new { /* id=item.PrimaryKey */ })
                                                         </div>
-                                                        <!-- /.modal -->
-
-                                                    </div>
+                                                    </button>
+                                                    <button type="button" class="btn btn-danger">
+                                                        <i class="nav-icon fas fa-times"></i>
+                                                        <div hidden>
+                                                            @Html.ActionLink("Delete", "Delete", new { /* id=item.PrimaryKey */ })
+                                                        </div>
+                                                    </button>
                                                 </td>
                                             </tr>
                                         }
