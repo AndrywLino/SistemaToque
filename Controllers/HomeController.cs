@@ -127,14 +127,6 @@ namespace SistemaToque.Controllers
                 {
                     pla.DiaSemana = pla.DiaSemana + "- Domingo ";
                 }
-                if(pla.Canal == 1)
-                {
-                    pla.TxCanal = "P2";
-                }
-                if (pla.Canal == 2)
-                {
-                    pla.TxCanal = "HDMI";
-                }
                 if (pla.NivelEnsino == 1)
                 {
                     pla.TxEnsino = "Fund 1";
@@ -152,6 +144,14 @@ namespace SistemaToque.Controllers
             }
             return planilha;
         }
+
+        [HttpGet]
+        public ActionResult EditarToque(string arquivo)
+        {
+            string toq = arquivo;
+            return View();
+        }
+
 
     }
 }

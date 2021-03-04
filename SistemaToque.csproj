@@ -2312,6 +2312,7 @@
     <Content Include="Views\Home\Login.cshtml" />
     <Content Include="Views\Home\Toque.cshtml" />
     <Content Include="Views\Home\Toques.cshtml" />
+    <Content Include="Views\Home\EditarToque.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Code\" />

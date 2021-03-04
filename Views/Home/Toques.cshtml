@@ -95,9 +95,9 @@
                                         </div>
                                         <div class="col-lg-4">
                                             <button type="button" class="btn btn-success btn-block">
-                                                <i class="nav-icon fas fa-plus"></i> Adicionar um novo toque
-                                                <div hidden>
-                                                    @Html.ActionLink("Adicionar um novo toque", "Create")
+                                                <i class="nav-icon fas fa-plus"></i>
+                                                <div>
+                                                    @Html.ActionLink("Adicionar um novo toque", "EditarToque", "Home", null, new { @type = "button", @class = "btn btn-success btn-block" })
                                                 </div>
                                             </button>
                                         </div>
@@ -149,12 +149,12 @@
                                                 </td>
                                                 <td align="center">
 
-                                                    <button type="button" class="btn btn-success">
-                                                        <i class="nav-icon fa fa-pencil-alt"></i>
-                                                        <div>
-                                                            @Html.ActionLink("Edit", "Edit", new { /* id=item.PrimaryKey */ })
-                                                        </div>
-                                                    </button>
+                                                    @Html.ActionLink("Editar", "EditarToque", "Home", new { arquivo = item.Arquivo }, new { @type = "button", @class = "btn btn-success nav-icon fa fa-pencil-alt" })
+                                                    @*<button type="button" class="btn btn-success">
+                                                            <i class="nav-icon fa fa-pencil-alt"></i>
+                                                            <div>
+                                                            </div>
+                                                        </button>*@
                                                     <button type="button" class="btn btn-danger">
                                                         <i class="nav-icon fas fa-times"></i>
                                                         <div hidden>
