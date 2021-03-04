@@ -17,10 +17,6 @@ namespace SistemaToque.Controllers
             dir += "teste.csv";
             List<ToqueModel> toqueteste = new List<ToqueModel>();
 
-            toqueteste.Add(new ToqueModel() { Arquivo = "teste123", Canal = 3, DiaSemana = "Sabado", Hora = "11:00:00", IsAtivo = 0, NivelEnsino = 5 });
-            toqueteste.Add(new ToqueModel() { Arquivo = "teste", Canal = 2, DiaSemana = "Domingo", Hora = "11:30:00", IsAtivo = 1, NivelEnsino = 6 });
-            toqueteste.Add(new ToqueModel() { Arquivo = "teste123456", Canal = 1, DiaSemana = "Sexta-Feira", Hora = "12:15:00", IsAtivo = 2, NivelEnsino = 7 });
-
             ServiceCSV.WriteCSVFileToque(dir, toqueteste);
 
             //ServiceCSV.ReadCSVFileToque("C:/Users/andrywafonso/Desktop/Raspberry toque/toque.csv");
@@ -97,6 +93,39 @@ namespace SistemaToque.Controllers
         {
             string path = Path.Combine(Server.MapPath("~/CSV/toque.csv"));
             List<ToqueModel> planilha = ServiceCSV.ReadCSVFileToque(path);
+            foreach (var pla in planilha)
+            {
+                if (pla.IsSegunda == 1)
+                {
+                    pla.DiaSemana = pla.DiaSemana + "- Segunda-Feira ";
+                }
+                if (pla.IsTerca == 1)
+                {
+                    pla.DiaSemana = pla.DiaSemana + "- Terça-Feira ";
+                }
+                if (pla.IsQuarta == 1)
+                {
+                    pla.DiaSemana = pla.DiaSemana + "- Quarta-Feira ";
+                }
+                if (pla.IsQuinta == 1)
+                {
+                    pla.DiaSemana = pla.DiaSemana + "- Quinta-Feira ";
+                }
+                if (pla.IsSexta == 1)
+                {
+                    pla.DiaSemana = pla.DiaSemana + "- Sexta-Feira ";
+                }
+                if (pla.IsSabado == 1)
+                {
+                    pla.DiaSemana = pla.DiaSemana + "- Sabado ";
+                }
+                if (pla.IsDomingo == 1)
+                {
+                    pla.DiaSemana = pla.DiaSemana + "- Domingo ";
+                }
+
+                pla.DiaSemana = pla.DiaSemana.Substring(2);
+            }
             return planilha;
         }
 
