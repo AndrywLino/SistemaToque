@@ -4,60 +4,221 @@
     ViewBag.Title = "Toques";
 }
 
-<h2>Toques</h2>
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Sistema de Toque</title>
 
-<p>
-    @Html.ActionLink("Create New", "Create")
-</p>
-<table class="table">
-    <tr>
-        <th>
-            @Html.DisplayNameFor(model => model.Arquivo)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Hora)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Canal)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.DiaSemana)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.IsAtivo)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.NivelEnsino)
-        </th>
-        <th></th>
-    </tr>
+    <!-- Google Font: Source Sans Pro -->
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700&display=fallback">
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="~/plugins/fontawesome-free/css/all.min.css">
+    <!-- DataTables -->
+    <link rel="stylesheet" href="~/plugins/datatables-bs4/css/dataTables.bootstrap4.min.css">
+    <link rel="stylesheet" href="~/plugins/datatables-responsive/css/responsive.bootstrap4.min.css">
+    <link rel="stylesheet" href="~/plugins/datatables-buttons/css/buttons.bootstrap4.min.css">
+    <!-- Theme style -->
+    <link rel="stylesheet" href="~/dist/css/adminlte.min.css">
+</head>
+<body class="hold-transition sidebar-mini bg-body">
+    <div class="wrapper">
+        <!-- Main Sidebar Container -->
+        <aside class="main-sidebar sidebar-dark-primary elevation-4">
+            <!-- Brand Logo -->
+            <a href="" class="brand-link">
+                <img src="~/dist/img/logo.png" alt="" class="brand-image img-circle elevation-3" style="opacity: .8">
+                <span class="brand-text font-weight-light">Sistema de Toque</span>
+            </a>
 
-@foreach (var item in Model) {
-    <tr>
-        <td>
-            @Html.DisplayFor(modelItem => item.Arquivo)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Hora)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Canal)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.DiaSemana)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.IsAtivo)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.NivelEnsino)
-        </td>
-        <td>
-            @Html.ActionLink("Edit", "Edit", new { /* id=item.PrimaryKey */ }) |
-            @Html.ActionLink("Details", "Details", new { /* id=item.PrimaryKey */ }) |
-            @Html.ActionLink("Delete", "Delete", new { /* id=item.PrimaryKey */ })
-        </td>
-    </tr>
-}
+            <!-- Sidebar -->
+            <div class="sidebar">
+                <!-- Sidebar user (optional) -->
+                <div class="user-panel mt-3 pb-3 mb-3 d-flex">
+                    <div class="image">
+                        <img src="~/dist/img/user.jpg" class="img-circle elevation-2" alt="User Image">
+                    </div>
+                    <div class="info">
+                        <a href="" class="d-block">Usuário</a>
+                    </div>
+                </div>
 
-</table>
+                <!-- Sidebar Menu -->
+                <nav class="mt-2">
+                    <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
+                        <li class="nav-header">MENU</li>
+                        <li class="nav-item">
+                            <a href="~/Views/Home/Toques.cshtml" class="nav-link active">
+                                <i class="nav-icon fas fa-music"></i>
+                                <p>
+                                    Toques
+                                </p>
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="~/Views/Home/Toque.cshtml" class="nav-link">
+                                <i class="nav-icon fas fa-cog"></i>
+                                <p>
+                                    Configurações
+                                </p>
+                            </a>
+                        </li>
+                    </ul>
+                </nav>
+                <!-- /.sidebar-menu -->
+            </div>
+            <!-- /.sidebar -->
+        </aside>
+
+        <!-- Content Wrapper. Contains page content -->
+        <div class="content-wrapper">
+            <!-- Content Header (Page header) -->
+            <section class="content-header">
+                <div class="container-fluid">
+                </div><!-- /.container-fluid -->
+            </section>
+
+            <!-- Main content -->
+            <section class="content">
+                <div class="container-fluid">
+                    <div class="row">
+                        <div class="col-12">
+                            <div class="card">
+                                <div class="card-header">
+                                    <h3 class="card-title"><b>Toques ativos</b></h3>
+                                </div>
+                                <!-- /.card-header -->
+                                <div class="card-body">
+                                    <div class="row">
+                                        <div class="col-lg-8">
+                                        </div>
+                                        <div class="col-lg-4">
+                                            <button type="button" class="btn btn-success btn-block">
+                                                <i class="nav-icon fas fa-plus"></i> Adicionar um novo toque
+                                                <div hidden>
+                                                    @Html.ActionLink("Adicionar um novo toque", "Create")
+                                                </div>
+                                            </button>
+                                        </div>
+                                    </div>
+                                    <br>
+                                    <table id="example1" class="table table-bordered table-striped">
+                                        <tr>
+                                            <th>
+                                                @Html.DisplayNameFor(model => model.Arquivo)
+                                            </th>
+                                            <th>
+                                                @Html.DisplayNameFor(model => model.Hora)
+                                            </th>
+                                            <th>
+                                                @Html.DisplayNameFor(model => model.Canal)
+                                            </th>
+                                            <th>
+                                                @Html.DisplayNameFor(model => model.DiaSemana)
+                                            </th>
+                                            <th>
+                                                @Html.DisplayNameFor(model => model.IsAtivo)
+                                            </th>
+                                            <th>
+                                                @Html.DisplayNameFor(model => model.NivelEnsino)
+                                            </th>
+                                            <th></th>
+                                        </tr>
+
+                                        @foreach (var item in Model)
+                                        {
+                                            <tr>
+                                                <td>
+                                                    @Html.DisplayFor(modelItem => item.Arquivo)
+                                                </td>
+                                                <td>
+                                                    @Html.DisplayFor(modelItem => item.Hora)
+                                                </td>
+                                                <td>
+                                                    @Html.DisplayFor(modelItem => item.Canal)
+                                                </td>
+                                                <td>
+                                                    @Html.DisplayFor(modelItem => item.DiaSemana)
+                                                </td>
+                                                <td>
+                                                    @Html.DisplayFor(modelItem => item.IsAtivo)
+                                                </td>
+                                                <td>
+                                                    @Html.DisplayFor(modelItem => item.NivelEnsino)
+                                                </td>
+                                                <td align="center">
+                                                    
+                                                    <a href="~/Views/Home/Toque.cshtml">
+                                                        <button type="button" class="btn btn-success">
+                                                            <i class="nav-icon fa fa-pencil-alt"></i>
+                                                        </button>
+                                                    </a>
+                                                    <button type="button" class="btn btn-danger">
+                                                        <i class="nav-icon fas fa-times"></i>
+                                                        <div hidden>
+                                                            @Html.ActionLink("Delete", "Delete", new { /* id=item.PrimaryKey */ })
+                                                        </div>
+                                                    </button>
+                                                </td>
+                                            </tr>
+                                        }
+                                    </table>
+                                </div>
+                                <!-- /.card-body -->
+                            </div>
+                            <!-- /.card -->
+                        </div>
+                        <!-- /.col -->
+                    </div>
+                    <!-- /.row -->
+                </div>
+                <!-- /.container-fluid -->
+            </section>
+            <!-- /.content -->
+        </div>
+        <!-- /.content-wrapper -->
+
+    </div>
+    <!-- ./wrapper -->
+    <!-- jQuery -->
+    <script src="~/plugins/jquery/jquery.min.js"></script>
+    <!-- Bootstrap 4 -->
+    <script src="~/plugins/bootstrap/js/bootstrap.bundle.min.js"></script>
+    <!-- DataTables  & Plugins -->
+    <script src="~/plugins/datatables/jquery.dataTables.min.js"></script>
+    <script src="~/plugins/datatables-bs4/js/dataTables.bootstrap4.min.js"></script>
+    <script src="~/plugins/datatables-responsive/js/dataTables.responsive.min.js"></script>
+    <script src="~/plugins/datatables-responsive/js/responsive.bootstrap4.min.js"></script>
+    <script src="~/plugins/datatables-buttons/js/dataTables.buttons.min.js"></script>
+    <script src="~/plugins/datatables-buttons/js/buttons.bootstrap4.min.js"></script>
+    <script src="~/plugins/jszip/jszip.min.js"></script>
+    <script src="~/plugins/pdfmake/pdfmake.min.js"></script>
+    <script src="~/plugins/pdfmake/vfs_fonts.js"></script>
+    <script src="~/plugins/datatables-buttons/js/buttons.html5.min.js"></script>
+    <script src="~/plugins/datatables-buttons/js/buttons.print.min.js"></script>
+    <script src="~/plugins/datatables-buttons/js/buttons.colVis.min.js"></script>
+    <!-- AdminLTE App -->
+    <script src="~/dist/js/adminlte.min.js"></script>
+    <!-- AdminLTE for demo purposes -->
+    <script src="~/dist/js/demo.js"></script>
+    <!-- Page specific script -->
+    <script>
+        $(function () {
+            $("#example1").DataTable({
+                "responsive": true, "lengthChange": false, "autoWidth": false,
+                "buttons": ["copy", "csv", "excel", "pdf", "print", "colvis"]
+            }).buttons().container().appendTo('#example1_wrapper .col-md-6:eq(0)');
+            $('#example2').DataTable({
+                "paging": true,
+                "lengthChange": false,
+                "searching": false,
+                "ordering": true,
+                "info": true,
+                "autoWidth": false,
+                "responsive": true,
+            });
+        });
+    </script>
+</body>
+</html>

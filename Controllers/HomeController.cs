@@ -11,22 +11,6 @@ namespace SistemaToque.Controllers
 {
     public class HomeController : Controller
     {
-        public ActionResult Index()
-        {
-            string dir = "C:/Users/andrywafonso/Desktop/Raspberry toque/criado/";
-            dir += "teste.csv";
-            List<ToqueModel> toqueteste = new List<ToqueModel>();
-
-            toqueteste.Add(new ToqueModel() { Arquivo = "teste123", Canal = 3, DiaSemana = "Sabado", Hora = "11:00:00", IsAtivo = 0, NivelEnsino = 5 });
-            toqueteste.Add(new ToqueModel() { Arquivo = "teste", Canal = 2, DiaSemana = "Domingo", Hora = "11:30:00", IsAtivo = 1, NivelEnsino = 6 });
-            toqueteste.Add(new ToqueModel() { Arquivo = "teste123456", Canal = 1, DiaSemana = "Sexta-Feira", Hora = "12:15:00", IsAtivo = 2, NivelEnsino = 7 });
-
-            ServiceCSV.WriteCSVFileToque(dir, toqueteste);
-
-            //ServiceCSV.ReadCSVFileToque("C:/Users/andrywafonso/Desktop/Raspberry toque/toque.csv");
-            return View();
-        }
-
         [HttpPost]
         public ActionResult UserLogin(UserModel user)
         {
