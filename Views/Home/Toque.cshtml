@@ -1,4 +1,5 @@
-﻿@model SistemaToque.Models.ToqueExportModel
+﻿@model SistemaToque.Models.CadastroModel
+
 @{
     ViewBag.Title = "Toque";
 }
@@ -97,29 +98,29 @@
                             <h3 class="card-title"><b>Configurações</b></h3>
                         </div>
                         <!-- /.card-header -->
-                        <div class="card-body">
-                            <div class="row">
-                                <div class="col-md-12">
-                                    <div class="row">
-                                        <label for="example-time-input" class="col-form-label">Carrege o seu arquivo:</label>
-                                    </div>
-                                    <div class="input-group">
-                                        <div class="custom-file">
-                                            <input type="file" class="custom-file-input" id="UploadFile" name="UploadFile" accept="audio/mp3,audio/*">
-                                            <label class="custom-file-label" for="exampleInputFile">Escolher arquivo</label>
+                        @using (Html.BeginForm("CadastrarToque", "Home", FormMethod.Post, new { enctype = "multipart/form-data" }))
+                        {
+                            <div class="card-body">
+                                <div class="row">
+                                    <div class="col-md-12">
+                                        <div class="row">
+                                            <label for="example-time-input" class="col-form-label">Carrege o seu arquivo:</label>
                                         </div>
-                                    </div>
+                                        <div class="input-group">
+                                            <div class="custom-file">
+                                                <input type="file" class="custom-file-input" id="Musica" name="Musica" accept="audio/mp3,audio/*">
+                                                <label class="custom-file-label" for="exampleInputFile">Escolher arquivo</label>
+                                            </div>
+                                        </div>
 
-                                    <br>
+                                        <br>
 
-                                    <!--<div class="">
-                                        <audio controls loop autoplay>
-                                            <source src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/9473/new_year_dubstep_minimix.ogg" type="audio/ogg">
-                                            Seu navegador não suporta a tag de áudio
-                                        </audio>
-                                    </div>-->
-                                    @using (Html.BeginForm("CadastrarToque", "Home", FormMethod.Post, new { enctype = "multipart/form-data" }))
-                                    {
+                                        <!--<div class="">
+                                            <audio controls loop autoplay>
+                                                <source src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/9473/new_year_dubstep_minimix.ogg" type="audio/ogg">
+                                                Seu navegador não suporta a tag de áudio
+                                            </audio>
+                                        </div>-->
                                         <div class="form-group row">
                                             <label for="example-time-input" class="col-1 col-form-label">Hora:</label>
                                             <div class="col-11">
@@ -134,19 +135,19 @@
                                         <div class="row">
                                             <div class="col-4">
                                                 <div class="form-check">
-                                                    <input class="form-check-input" type="checkbox" value="" id="IsSegunda" name="IsSegunda" checked>
+                                                    <input class="form-check-input" type="checkbox" value="1" id="IsSegunda" name="IsSegunda" checked>
                                                     <label class="form-check-label" for="cb_1">
                                                         Segunda
                                                     </label>
                                                 </div>
                                                 <div class="form-check">
-                                                    <input class="form-check-input" type="checkbox" value="" id="IsTerca" name="IsTerca" checked>
+                                                    <input class="form-check-input" type="checkbox" value="1" id="IsTerca" name="IsTerca" checked>
                                                     <label class="form-check-label" for="cb_2">
                                                         Terça
                                                     </label>
                                                 </div>
                                                 <div class="form-check">
-                                                    <input class="form-check-input" type="checkbox" value="" id="IsQuarta" name="IsQuarta" checked>
+                                                    <input class="form-check-input" type="checkbox" value="1" id="IsQuarta" name="IsQuarta" checked>
                                                     <label class="form-check-label" for="cb_3">
                                                         Quarta
                                                     </label>
@@ -156,13 +157,13 @@
                                             <div class="col-4">
 
                                                 <div class="form-check">
-                                                    <input class="form-check-input" type="checkbox" value="" id="IsQuinta" name="IsQuinta" checked>
+                                                    <input class="form-check-input" type="checkbox" value="1" id="IsQuinta" name="IsQuinta" checked>
                                                     <label class="form-check-label" for="cb_4">
                                                         Quinta
                                                     </label>
                                                 </div>
                                                 <div class="form-check">
-                                                    <input class="form-check-input" type="checkbox" value="" id="IsSexta" name="IsSexta" checked>
+                                                    <input class="form-check-input" type="checkbox" value="1" id="IsSexta" name="IsSexta" checked>
                                                     <label class="form-check-label" for="cb_5">
                                                         Sexta
                                                     </label>
@@ -171,13 +172,13 @@
                                             <!-- /.col -->
                                             <div class="col-4">
                                                 <div class="form-check">
-                                                    <input class="form-check-input" type="checkbox" value="" id="IsSabado" name="IsSabado">
+                                                    <input class="form-check-input" type="checkbox" value="1" id="IsSabado" name="IsSabado">
                                                     <label class="form-check-label" for="cb_6">
                                                         Sábado
                                                     </label>
                                                 </div>
                                                 <div class="form-check">
-                                                    <input class="form-check-input" type="checkbox" value="" id="IsDomingo" name="IsDomingo">
+                                                    <input class="form-check-input" type="checkbox" value="1" id="IsDomingo" name="IsDomingo">
                                                     <label class="form-check-label" for="cb_7">
                                                         Domingo
                                                     </label>
@@ -195,22 +196,21 @@
                                                 <div class="row">
                                                     <div class="col-sm-10">
                                                         <div class="form-check">
-                                                            <input class="form-check-input" type="radio" name="RdFund1" id="RdFund1" value="option1" checked>
+                                                            <input class="form-check-input" type="radio" name="Ensino" id="Ensino" value="2" checked>
                                                             <label class="form-check-label" for="gridRadios1"> Fundamental I </label>
                                                         </div>
                                                         <div class="form-check">
-                                                            <input class="form-check-input" type="radio" name="RdFund2" id="RdFund2" value="option2">
+                                                            <input class="form-check-input" type="radio" name="Ensino" id="Ensino" value="3">
                                                             <label class="form-check-label" for="gridRadios2"> Fundamental II </label>
                                                         </div>
                                                         <div class="form-check">
-                                                            <input class="form-check-input" type="radio" name="RdMedio" id="RdMedio" value="option3">
+                                                            <input class="form-check-input" type="radio" name="Ensino" id="Ensino" value="4">
                                                             <label class="form-check-label" for="gridRadios3"> Médio </label>
                                                         </div>
                                                     </div>
                                                 </div>
                                             </fieldset>
                                         </form>
-
                                         <div class="row">
                                             <div class="col-9">
                                             </div>
@@ -220,12 +220,13 @@
                                             </div>
                                             <!-- /.col -->
                                         </div>
-                                    }
+
+                                    </div>
+                                    <!-- /.col -->
                                 </div>
-                                <!-- /.col -->
+                                <!-- /.row -->
                             </div>
-                            <!-- /.row -->
-                        </div>
+                        }
                         <!-- /.card-body -->
                     </div>
                     <!-- /.card -->
@@ -393,7 +394,15 @@
         document.querySelector("#actions .cancel").onclick = function () {
             myDropzone.removeAllFiles(true)
         }
-                                  // DropzoneJS Demo Code End
+        // DropzoneJS Demo Code End
     </script>
 </body>
 </html>
+
+<script>
+    // Add the following code if you want the name of the file appear on select
+    $(".custom-file-input").on("change", function () {
+        var fileName = $(this).val().split("\\").pop();
+        $(this).siblings(".custom-file-label").addClass("selected").html(fileName);
+    });
+</script>

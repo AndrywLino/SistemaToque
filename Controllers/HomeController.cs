@@ -95,9 +95,10 @@ namespace SistemaToque.Controllers
         }
 
         [HttpPost]
-        public ActionResult CadastrarToque(ToqueExportModel toque)
+        public ActionResult CadastrarToque(CadastroModel cadastro)
         {
-            return View();
+
+            return RedirectToAction("Toques", true);
         }
 
         [HttpGet]
@@ -191,6 +192,10 @@ namespace SistemaToque.Controllers
                 if (pla.IsDomingo == 1)
                 {
                     pla.DiaSemana = pla.DiaSemana + "- Domingo ";
+                }
+                if (pla.IsSegunda == 0 && pla.IsTerca == 0 && pla.IsQuarta == 0 && pla.IsQuinta == 0 && pla.IsSexta == 0 && pla.IsSabado == 0 && pla.IsDomingo == 0)
+                {
+                    pla.DiaSemana = "- Nenhum dia selecionado";
                 }
                 if (pla.NivelEnsino == 1)
                 {
