@@ -180,6 +180,16 @@ namespace SistemaToque.Controllers
 
         }
 
+        public ActionResult Detalhes(UserModel user)
+        {
+            ViewBag.UsuarioInvalido = "";
+            ViewBag.SenhaInvalido = "";
+            ViewBag.Message = "Your contact page.";
+
+            return View();
+
+        }
+
         public ActionResult Toque(bool logado = false)
         {
             logado = true;
