@@ -29,14 +29,14 @@ namespace SistemaToque.Controllers
                 {
                     user.Status = false;
                     ViewBag.UsuarioInvalido = "";
-                    ViewBag.SenhaInvalido = "Senha Invalida";
+                    ViewBag.SenhaInvalido = "Senha Inválida";
                     return View("Login", user);
                 }
             }
             else
             {
                 user.Status = false;
-                ViewBag.UsuarioInvalido = "Usuario Invalido";
+                ViewBag.UsuarioInvalido = "Usuário Inválido";
                 ViewBag.SenhaInvalido = "";
                 return View("Login", user);
             }

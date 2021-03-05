@@ -1,0 +1,146 @@
+﻿@model SistemaToque.Models.ToqueModel
+
+@{
+    ViewBag.Title = "Detalhes";
+}
+
+<h2>Detalhes</h2>
+
+<div>
+    <h4>ToqueModel</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.Arquivo)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Arquivo)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Nome)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Nome)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Hora)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Hora)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.DiaSemana)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.DiaSemana)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.TxEnsino)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.TxEnsino)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.TxCanal)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.TxCanal)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Canal)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Canal)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.IsAtivo)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.IsAtivo)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.NivelEnsino)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.NivelEnsino)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.IsSegunda)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.IsSegunda)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.IsTerca)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.IsTerca)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.IsQuarta)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.IsQuarta)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.IsQuinta)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.IsQuinta)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.IsSexta)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.IsSexta)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.IsSabado)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.IsSabado)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.IsDomingo)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.IsDomingo)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { /* id = Model.PrimaryKey */ }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

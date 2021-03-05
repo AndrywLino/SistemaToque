@@ -18,6 +18,8 @@
     <link rel="stylesheet" href="~/plugins/icheck-bootstrap/icheck-bootstrap.min.css">
     <!-- Theme style -->
     <link rel="stylesheet" href="~/dist/css/adminlte.min.css">
+    <link href="~/dist/css/personalizado.css" rel="stylesheet" />
+    
 </head>
 <body class="hold-transition login-page">
     <div class="row">
@@ -39,28 +41,32 @@
                         @using (Html.BeginForm("UserLogin", "Home", FormMethod.Post, new { enctype = "multipart/form-data" }))
                         {
                             <form class="needs-validation" action="~/index3.html" method="post" novalidate>
-                                <div class="input-group mb-3">
+                                <div class="input-group mb-2">
                                     <input type="text" class="form-control" id="UserName" name="UserName" placeholder="Usuário" autofocus required>
                                     <div class="input-group-append">
                                         <div class="input-group-text">
                                             <span class="fas fa-user"></span>
                                         </div>
                                     </div>
-                                    <div>
-                                        <!-- Menssagem de login -->
-                                        @Html.Label((string)ViewBag.UsuarioInvalido)
-                                    </div>
+                                    <div class="col-12">
+                                        <div class="txt-validation-1">
+                                            <!-- Menssagem de login -->
+                                            @Html.Label((string)ViewBag.UsuarioInvalido)
+                                        </div>
+                                    </div>  
                                 </div>
-                                <div class="input-group mb-3">
+                                <div class="input-group mb-2">
                                     <input type="password" class="form-control" id="Password" name="Password" placeholder="Senha" required>
                                     <div class="input-group-append">
                                         <div class="input-group-text">
                                             <span class="fas fa-lock"></span>
                                         </div>
                                     </div>
-                                    <div>
-                                        <!-- Menssagem de login -->
-                                        @Html.Label((string)ViewBag.SenhaInvalido)
+                                    <div class="col-12">
+                                        <div class="txt-validation-1">
+                                            <!-- Menssagem de login -->
+                                            @Html.Label((string)ViewBag.SenhaInvalido)
+                                        </div>
                                     </div>
                                 </div>
                                 <div class="row">
