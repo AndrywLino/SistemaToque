@@ -101,6 +101,12 @@ namespace SistemaToque.Controllers
         }
 
         [HttpGet]
+        public ActionResult RedirectCadastro()
+        {
+            return RedirectToAction("Toque", true);
+        }
+
+        [HttpGet]
         public ActionResult EditarToque(string arquivo)
         {
             string arq = arquivo;
