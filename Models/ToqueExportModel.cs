@@ -11,15 +11,15 @@ namespace SistemaToque.Models
         public string Nome { get; set; }
         public string Hora { get; set; }
         public int Canal { get; set; }
-        public int IsAtivo { get; set; }
+        public bool IsAtivo { get; set; }
         public int NivelEnsino { get; set; }
-        public int IsSegunda { get; set; }
-        public int IsTerca { get; set; }
-        public int IsQuarta { get; set; }
-        public int IsQuinta { get; set; }
-        public int IsSexta { get; set; }
-        public int IsSabado { get; set; }
-        public int IsDomingo { get; set; }
+        public bool IsSegunda { get; set; }
+        public bool IsTerca { get; set; }
+        public bool IsQuarta { get; set; }
+        public bool IsQuinta { get; set; }
+        public bool IsSexta { get; set; }
+        public bool IsSabado { get; set; }
+        public bool IsDomingo { get; set; }
 
     }
 }

@@ -84,7 +84,8 @@ namespace SistemaToque.Controllers
                     toquesE[i].IsSexta = toque.IsSexta;
                     toquesE[i].IsSabado = toque.IsSabado;
                     toquesE[i].IsDomingo = toque.IsDomingo;
-                    toquesE[i].IsAtivo = toque.NivelEnsino;
+                    toquesE[i].IsAtivo = toque.IsAtivo;
+                    toquesE[i].NivelEnsino = toque.NivelEnsino;
 
                     break;
                 }
@@ -92,7 +93,7 @@ namespace SistemaToque.Controllers
             }
             string dir = Path.Combine(Server.MapPath("~/CSV/toque.csv"));
             ServiceCSV.WriteCSVFileToque(dir, toquesE);
-            return View();
+            return RedirectToAction("Toques", true);
         }
 
         [HttpPost]
@@ -126,7 +127,7 @@ namespace SistemaToque.Controllers
             toque.Arquivo = arquivoId.ToString();
             toque.Nome = cadastro.Nome;
             toque.Hora = cadastro.Hora;
-            toque.IsAtivo = 1;
+            toque.IsAtivo = true;
             toque.NivelEnsino = cadastro.Ensino;
             toque.IsSegunda = cadastro.IsSegunda;
             toque.IsTerca = cadastro.IsTerca;
@@ -212,35 +213,35 @@ namespace SistemaToque.Controllers
             List<ToqueModel> planilha = ServiceCSV.ReadCSVFileToque(path);
             foreach (var pla in planilha)
             {
-                if (pla.IsSegunda == 1)
+                if (pla.IsSegunda)
                 {
                     pla.DiaSemana = pla.DiaSemana + "- Segunda ";
                 }
-                if (pla.IsTerca == 1)
+                if (pla.IsTerca)
                 {
                     pla.DiaSemana = pla.DiaSemana + "- Terça ";
                 }
-                if (pla.IsQuarta == 1)
+                if (pla.IsQuarta)
                 {
                     pla.DiaSemana = pla.DiaSemana + "- Quarta ";
                 }
-                if (pla.IsQuinta == 1)
+                if (pla.IsQuinta)
                 {
                     pla.DiaSemana = pla.DiaSemana + "- Quinta ";
                 }
-                if (pla.IsSexta == 1)
+                if (pla.IsSexta)
                 {
                     pla.DiaSemana = pla.DiaSemana + "- Sexta ";
                 }
-                if (pla.IsSabado == 1)
+                if (pla.IsSabado)
                 {
                     pla.DiaSemana = pla.DiaSemana + "- Sabado ";
                 }
-                if (pla.IsDomingo == 1)
+                if (pla.IsDomingo)
                 {
                     pla.DiaSemana = pla.DiaSemana + "- Domingo ";
                 }
-                if (pla.IsSegunda == 0 && pla.IsTerca == 0 && pla.IsQuarta == 0 && pla.IsQuinta == 0 && pla.IsSexta == 0 && pla.IsSabado == 0 && pla.IsDomingo == 0)
+                if (!pla.IsSegunda && !pla.IsTerca && !pla.IsQuarta && !pla.IsQuinta && !pla.IsSexta && !pla.IsSabado && !pla.IsDomingo)
                 {
                     pla.DiaSemana = "- Nenhum dia selecionado";
                 }
