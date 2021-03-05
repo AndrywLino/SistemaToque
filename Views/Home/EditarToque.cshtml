@@ -107,47 +107,134 @@
                                     {
                                         @Html.AntiForgeryToken()
 
+                                        <div class="form-group row">
+                                            <label class="col-2 col-form-label">Descrição:</label>
+                                            <div class="col-10">
+                                                <input type="text" class="form-control" id="Nome" name="Nome" placeholder="Informe aqui a descrição do toque" required>
+                                            </div>
+                                        </div>
+
+                                        <div class="form-group row">
+                                            <label class="col-3 col-form-label">Carrege o seu arquivo:</label>
+                                            <div class="col-9">
+                                                <div class="input-group">
+                                                    <div class="custom-file">
+                                                        <input type="file" class="custom-file-input" id="Musica" name="Musica" accept="audio/mp3,audio/*" required>
+                                                        <label class="custom-file-label" for="Musica">Escolher arquivo</label>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                        <div class="form-group row">
+                                            <label for="example-time-input" class="col-1 col-form-label">Hora:</label>
+                                            <div class="col-11">
+                                                @Html.EditorFor(model => model.Hora, new { htmlAttributes = new { @type = "Time", @class = "form-control" } })
+                                            </div>
+                                        </div>
+
+                                        <div class="row">
+                                            <label for="example-time-input" class="col-form-label">Selecione o dia da semana:</label>
+                                        </div>
+
+                                        <div class="row">
+                                            <div class="col-4">
+                                                <div class="form-check">
+                                                    @Html.EditorFor(model => model.IsSegunda, new { htmlAttributes = new { @type = "checkbox", @class = "form-check-input" } })
+                                                    <label class="form-check-label" for="cb_1">
+                                                        Segunda
+                                                    </label>
+                                                </div>
+                                                <div class="form-check">
+                                                    @Html.EditorFor(model => model.IsTerca, new { htmlAttributes = new { @type = "checkbox", @class = "form-check-input" } })
+                                                    <label class="form-check-label" for="cb_2">
+                                                        Terça
+                                                    </label>
+                                                </div>
+                                                <div class="form-check">
+                                                    @Html.EditorFor(model => model.IsQuarta, new { htmlAttributes = new { @type = "checkbox", @class = "form-check-input" } })
+                                                    <label class="form-check-label" for="cb_3">
+                                                        Quarta
+                                                    </label>
+                                                </div>
+                                            </div>
+                                            <!-- /.col -->
+                                            <div class="col-4">
+                                                <div class="form-check">
+                                                    @Html.EditorFor(model => model.IsQuinta, new { htmlAttributes = new { @type = "checkbox", @class = "form-check-input" } })
+                                                    <label class="form-check-label" for="cb_4">
+                                                        Quinta
+                                                    </label>
+                                                </div>
+                                                <div class="form-check">
+                                                    @Html.EditorFor(model => model.IsSexta, new { htmlAttributes = new { @type = "checkbox", @class = "form-check-input" } })
+                                                    <label class="form-check-label" for="cb_5">
+                                                        Sexta
+                                                    </label>
+                                                </div>
+                                            </div>
+                                            <!-- /.col -->
+                                            <div class="col-4">
+                                                <div class="form-check">
+                                                    @Html.EditorFor(model => model.IsSabado, new { htmlAttributes = new { @type = "checkbox", @class = "form-check-input" } })
+                                                    <label class="form-check-label" for="cb_6">
+                                                        Sábado
+                                                    </label>
+                                                </div>
+                                                <div class="form-check">
+                                                    @Html.EditorFor(model => model.IsDomingo, new { htmlAttributes = new { @type = "checkbox", @class = "form-check-input" } })
+                                                    <label class="form-check-label" for="cb_7">
+                                                        Domingo
+                                                    </label>
+                                                </div>
+                                            </div>
+                                            <!-- /.col -->
+
+                                            <div class="col-12">
+                                                <div class="txt-validation-2">
+                                                    Selecione pelo menos um dia da semana para criar o seu novo toque
+                                                </div>
+                                            </div>
+                                            <!-- /.col -->
+
+                                        </div>
+
+                                        <div class="row">
+                                            <label for="" class="col-form-label">Tipo de ensino:</label>
+                                        </div>
+
+                                        <form>
+                                            <fieldset class="form-group">
+                                                <div class="row">
+                                                    <div class="col-sm-12">
+                                                        <div class="form-check">
+                                                            <input class="form-check-input" type="radio" name="Ensino" id="Ensino" value="1" checked>
+                                                            <label class="form-check-label" for="Ensino"> Fundamental I </label>
+                                                        </div>
+                                                        <div class="form-check">
+                                                            <input class="form-check-input" type="radio" name="Ensino" id="Ensino" value="2">
+                                                            <label class="form-check-label" for="Ensino"> Fundamental II </label>
+                                                        </div>
+                                                        <div class="form-check">
+                                                            <input class="form-check-input" type="radio" name="Ensino" id="Ensino" value="3">
+                                                            <label class="form-check-label" for="Ensino"> Médio </label>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </fieldset>
+                                        </form>
+
+                                        <div class="row">
+                                            <div class="col-9">
+                                            </div>
+                                            <!-- /.col -->
+                                            <div class="col-3">
+                                                <button type="submit" value="Save" class="btn btn-primary btn-block">Salvar</button>
+                                            </div>
+                                            <!-- /.col -->
+                                        </div>
+
                                         <div class="form-horizontal">
-
-                                            <div class="form-group">
-                                                @Html.LabelFor(model => model.TxEnsino, htmlAttributes: new { @class = "control-label col-md-2" })
-                                                <div class="col-md-10">
-                                                    @Html.EditorFor(model => model.TxEnsino, new { htmlAttributes = new { @class = "form-control" } })
-                                                    @Html.ValidationMessageFor(model => model.TxEnsino, "", new { @class = "text-danger" })
-                                                </div>
-                                            </div>
-
-                                            <div class="form-group">
-                                                @Html.LabelFor(model => model.TxCanal, htmlAttributes: new { @class = "control-label col-md-2" })
-                                                <div class="col-md-10">
-                                                    @Html.EditorFor(model => model.TxCanal, new { htmlAttributes = new { @class = "form-control" } })
-                                                    @Html.ValidationMessageFor(model => model.TxCanal, "", new { @class = "text-danger" })
-                                                </div>
-                                            </div>
-
-                                            <div class="form-group">
-                                                @Html.LabelFor(model => model.Canal, htmlAttributes: new { @class = "control-label col-md-2" })
-                                                <div class="col-md-10">
-                                                    @Html.EditorFor(model => model.Canal, new { htmlAttributes = new { @class = "form-control" } })
-                                                    @Html.ValidationMessageFor(model => model.Canal, "", new { @class = "text-danger" })
-                                                </div>
-                                            </div>
-
-                                            <div class="form-group">
-                                                @Html.LabelFor(model => model.IsAtivo, htmlAttributes: new { @class = "control-label col-md-2" })
-                                                <div class="col-md-10">
-                                                    @Html.EditorFor(model => model.IsAtivo, new { htmlAttributes = new { @class = "form-control" } })
-                                                    @Html.ValidationMessageFor(model => model.IsAtivo, "", new { @class = "text-danger" })
-                                                </div>
-                                            </div>
-
-                                            <div class="form-group">
-                                                @Html.LabelFor(model => model.NivelEnsino, htmlAttributes: new { @class = "control-label col-md-2" })
-                                                <div class="col-md-10">
-                                                    @Html.EditorFor(model => model.NivelEnsino, new { htmlAttributes = new { @class = "form-control" } })
-                                                    @Html.ValidationMessageFor(model => model.NivelEnsino, "", new { @class = "text-danger" })
-                                                </div>
-                                            </div>
 
                                             <div class="form-group">
                                                 <div class="col-md-offset-2 col-md-10">
@@ -157,117 +244,6 @@
                                         </div>
                                     }
 
-                                    <div>
-                                        @Html.ActionLink("Back to List", "Index")
-                                    </div>
-
-                                    @section Scripts {
-                                        @Scripts.Render("~/bundles/jqueryval")
-                                    }
-
-                                    <div class="row">
-                                        <label for="example-time-input" class="col-form-label">Carrege o seu arquivo:</label>
-                                    </div>
-                                    <div class="input-group">
-                                        <div class="custom-file">
-                                            @Html.EditorFor(model => model.Arquivo, new { htmlAttributes = new { @type = "file", @class = "custom-file-input", @id = "exampleInputFile", @name = "exampleInputFile", @accept = "audio/mp3,audio/*" } })
-                                            <label class="custom-file-label" for="exampleInputFile">Escolha o seu arquivo</label>
-                                        </div>
-                                    </div>
-
-                                    <br>
-
-                                    <div class="form-group row">
-                                        <label for="example-time-input" class="col-1 col-form-label">Hora:</label>
-                                        <div class="col-11">
-                                            @Html.EditorFor(model => model.Hora, new { htmlAttributes = new { @type = "Time", @class = "form-control" } })
-                                        </div>
-                                    </div>
-
-                                    <div class="row">
-                                        <label for="example-time-input" class="col-form-label">Selecione o dia da semana:</label>
-                                    </div>
-
-                                    <div class="row">
-                                        <div class="col-4">
-                                            <div class="form-check">
-                                                @Html.EditorFor(model => model.IsSegunda, new { htmlAttributes = new { @type = "checkbox", @class = "form-check-input" } })
-                                                <label class="form-check-label" for="cb_1">
-                                                    Segunda
-                                                </label>
-                                            </div>
-                                            <div class="form-check">
-                                                @Html.EditorFor(model => model.IsTerca, new { htmlAttributes = new { @type = "checkbox", @class = "form-check-input" } })
-                                                <label class="form-check-label" for="cb_2">
-                                                    Terça
-                                                </label>
-                                            </div>
-                                            <div class="form-check">
-                                                @Html.EditorFor(model => model.IsQuarta, new { htmlAttributes = new { @type = "checkbox", @class = "form-check-input" } })
-                                                <label class="form-check-label" for="cb_3">
-                                                    Quarta
-                                                </label>
-                                            </div>
-                                        </div>
-                                        <!-- /.col -->
-                                        <div class="col-4">
-                                            <div class="form-check">
-                                                @Html.EditorFor(model => model.IsQuinta, new { htmlAttributes = new { @type = "checkbox", @class = "form-check-input" } })
-                                                <label class="form-check-label" for="cb_4">
-                                                    Quinta
-                                                </label>
-                                            </div>
-                                            <div class="form-check">
-                                                @Html.EditorFor(model => model.IsSexta, new { htmlAttributes = new { @type = "checkbox", @class = "form-check-input" } })
-                                                <label class="form-check-label" for="cb_5">
-                                                    Sexta
-                                                </label>
-                                            </div>
-                                        </div>
-                                        <!-- /.col -->
-                                        <div class="col-4">
-                                            <div class="form-check">
-                                                @Html.EditorFor(model => model.IsSabado, new { htmlAttributes = new { @type = "checkbox", @class = "form-check-input" } })
-                                                <label class="form-check-label" for="cb_6">
-                                                    Sábado
-                                                </label>
-                                            </div>
-                                            <div class="form-check">
-                                                @Html.EditorFor(model => model.IsDomingo, new { htmlAttributes = new { @type = "checkbox", @class = "form-check-input" } })
-                                                <label class="form-check-label" for="cb_7">
-                                                    Domingo
-                                                </label>
-                                            </div>
-                                        </div>
-                                        <!-- /.col -->
-                                    </div>
-
-                                    <div class="row">
-                                        <label for="" class="col-form-label">Tipo de ensino:</label>
-                                    </div>
-
-                                    <form>
-                                        <fieldset class="form-group">
-                                            <div class="row">
-                                                <div class="col-sm-12">
-                                                    <div class="form-check">
-                                                        @Html.EditorFor(model => model.NivelEnsino, new { htmlAttributes = new { @class="form-check-input", @type="radio", @name="gridRadios", @id="gridRadios1", @value="option1"} })
-                                                        <label class="form-check-label" for="gridRadios1"> @Html.LabelFor(model => model.NivelEnsino, htmlAttributes: new { @class = "control-label col-md-2" }) </label>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </fieldset>
-                                    </form>
-
-                                    <div class="row">
-                                        <div class="col-9">
-                                        </div>
-                                        <!-- /.col -->
-                                        <div class="col-3">
-                                            <button type="submit" value="Save" class="btn btn-primary btn-block">Salvar</button>
-                                        </div>
-                                        <!-- /.col -->
-                                    </div>
                                 </div>
                                 <!-- /.col -->
                             </div>
