@@ -64,7 +64,8 @@ namespace SistemaToque.Controllers
                 it.IsSexta = item.IsSexta;
                 it.IsSabado = item.IsSabado;
                 it.IsDomingo = item.IsDomingo;
-                it.IsAtivo = item.NivelEnsino;
+                it.IsAtivo = item.IsAtivo;
+                it.NivelEnsino = item.NivelEnsino;
 
                 toquesE.Add(it);
             }
@@ -97,6 +98,52 @@ namespace SistemaToque.Controllers
         [HttpPost]
         public ActionResult CadastrarToque(CadastroModel cadastro)
         {
+            List<ToqueModel> toques = LerToquesCSV();
+            List<ToqueExportModel> toquesE = new List<ToqueExportModel>();
+            int arquivoId = toques.Count + 1;
+
+            foreach (var item in toques)
+            {
+                ToqueExportModel it = new ToqueExportModel();
+                it.Arquivo = item.Arquivo;
+                it.Nome = item.Nome;
+                it.Hora = item.Hora;
+                it.Canal = item.Canal;
+                it.IsSegunda = item.IsSegunda;
+                it.IsTerca = item.IsTerca;
+                it.IsQuarta = item.IsQuarta;
+                it.IsQuinta = item.IsQuinta;
+                it.IsSexta = item.IsSexta;
+                it.IsSabado = item.IsSabado;
+                it.IsDomingo = item.IsDomingo;
+                it.IsAtivo = item.IsAtivo;
+                it.NivelEnsino = item.NivelEnsino;
+
+                toquesE.Add(it);
+            }
+
+            ToqueExportModel toque = new ToqueExportModel();
+            toque.Arquivo = arquivoId.ToString();
+            toque.Nome = cadastro.Nome;
+            toque.Hora = cadastro.Hora;
+            toque.IsAtivo = 1;
+            toque.NivelEnsino = cadastro.Ensino;
+            toque.IsSegunda = cadastro.IsSegunda;
+            toque.IsTerca = cadastro.IsTerca;
+            toque.IsQuarta = cadastro.IsQuarta;
+            toque.IsQuinta = cadastro.IsQuinta;
+            toque.IsSexta = cadastro.IsSexta;
+            toque.IsSabado = cadastro.IsSabado;
+            toque.IsDomingo = cadastro.IsDomingo;
+
+            if (cadastro.Ensino == 3 || cadastro.Ensino == 4)
+                toque.Canal = 1;
+            else
+                toque.Canal = 2;
+            toquesE.Add(toque);
+
+            string dir = Path.Combine(Server.MapPath("~/CSV/toque.csv"));
+            ServiceCSV.WriteCSVFileToque(dir, toquesE);
 
             return RedirectToAction("Toques", true);
         }
