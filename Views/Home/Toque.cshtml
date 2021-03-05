@@ -32,8 +32,8 @@
     <!-- dropzonejs -->
     <link rel="stylesheet" href="~/plugins/dropzone/min/dropzone.min.css">
     <!-- Theme style -->
-    <link rel="stylesheet" href="~/dist/css/adminlte.min.css"/>
-    <link href="~/dist/css/personalizado.css" rel="stylesheet"/>
+    <link rel="stylesheet" href="~/dist/css/adminlte.min.css" />
+    <link href="~/dist/css/personalizado.css" rel="stylesheet" />
 </head>
 <body class="hold-transition sidebar-mini bg-body">
     <div class="wrapper">
@@ -108,28 +108,40 @@
                                         <div class="form-group row">
                                             <label class="col-2 col-form-label">Descrição:</label>
                                             <div class="col-10">
-                                                <input type="text" class="form-control" id="Nome" name="Nome" placeholder="Informe aqui a descrição do toque" required>
+                                                <input type="text" class="form-control" id="Nome" name="Nome" placeholder="Informe aqui o nome do toque" required>
                                             </div>
                                         </div>
+
+                                        @*<dkiv class="form-group row">
+                                            <label class="col-3 col-form-label">Carrege o seu arquivo:</label>
+                                            <div class="col-9">
+                                                <div class="input-group">
+                                                    <div class="custom-file">
+                                                        <input type="file" class="custom-file-input" id="files" name="files[]" accept="audio/mp3,audio/*" required>
+                                                        <label class="custom-file-label" for="files">Escolher arquivo</label>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </dkiv>*@
 
                                         <div class="form-group row">
                                             <label class="col-3 col-form-label">Carrege o seu arquivo:</label>
                                             <div class="col-9">
                                                 <div class="input-group">
                                                     <div class="custom-file">
-                                                        <input type="file" class="custom-file-input" id="Musica" name="Musica" accept="audio/mp3,audio/*" required>
-                                                        <label class="custom-file-label" for="Musica">Escolher arquivo</label>
+                                                        <input type="file" class="custom-file-input" id="file" name="fileupload" accept="audio/mp3,audio/*" required>
+                                                        <label class="custom-file-label" for="file">Escolher arquivo</label>
                                                     </div>
+
+                                                    &nbsp;&nbsp;&nbsp;
+
+                                                    <button class="btn btn-primary" onclick="upload()" type="button">Upload</button>
                                                 </div>
                                             </div>
+
                                         </div>
 
-                                        <div class="">
-                                            <audio controls loop >
-                                                <source src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/9473/new_year_dubstep_minimix.ogg" type="audio/ogg">
-                                                Seu navegador não suporta a tag de áudio
-                                            </audio>
-                                        </div>
+                                        <div id="song"></div>
 
                                         <div class="form-group row">
                                             <label for="example-time-input" class="col-1 col-form-label">Hora:</label>
@@ -283,13 +295,43 @@
     <!-- AdminLTE for demo purposes -->
     <script src="~/dist/js/demo.js"></script>
     <!-- Page specific script -->
-
+    @*nome do arquivo sendo mostrado na seleção da música*@
     <script>
-        // Add the following code if you want the name of the file appear on select
         $(".custom-file-input").on("change", function () {
             var fileName = $(this).val().split("\\").pop();
             $(this).siblings(".custom-file-label").addClass("selected").html(fileName);
         });
+    </script>
+
+    @* Configuração do audio *@
+    <script>
+        document.getElementById("player").controls = true;  // Controles de play, pause, volume e download
+        document.getElementById("player").volume = 1;       // Volume - Ex.: 0.1 , 0.25, 0.5, 0.9, 1
+        document.getElementById("player").loop = true;      // Loop = True (Ligado), false (Desligado)
+        document.getElementById("player").currentTime = 0;  // Tempo de início da música
+        //document.getElementById("player").play();         // Play automático na música
+    </script>
+
+    @* Script Upload arquivo de áudio *@
+    <script>
+        const upload = () => {
+            var url;
+            var file = document.querySelector("#file").files[0];
+            var reader = new FileReader();
+            reader.onload = function (evt) {
+                url = evt.target.result;
+                console.log(url);
+                var sound = document.createElement("audio");
+                var link = document.createElement("source");
+                sound.id = "audio-player";
+                sound.controls = "controls";
+                link.src = url;
+                sound.type = "audio/mpeg";
+                sound.appendChild(link);
+                document.getElementById("song").appendChild(sound);
+            };
+            reader.readAsDataURL(file);
+        };
     </script>
 
 </body>
