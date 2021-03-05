@@ -33,6 +33,7 @@
     <link rel="stylesheet" href="~/plugins/dropzone/min/dropzone.min.css">
     <!-- Theme style -->
     <link rel="stylesheet" href="~/dist/css/adminlte.min.css">
+    <link href="~/dist/css/personalizado.css" rel="stylesheet" />
 </head>
 <body class="hold-transition sidebar-mini bg-body">
     <div class="wrapper">
@@ -107,30 +108,6 @@
                                         @Html.AntiForgeryToken()
 
                                         <div class="form-horizontal">
-                                            @Html.ValidationSummary(true, "", new { @class = "text-danger" })
-                                            <div class="form-group">
-                                                @Html.LabelFor(model => model.Arquivo, htmlAttributes: new { @class = "control-label col-md-2" })
-                                                <div class="col-md-10">
-                                                    @Html.EditorFor(model => model.Arquivo, new { htmlAttributes = new { @class = "custom-file-input", @accept = "audio/mp3,audio/*" } })
-                                                    @Html.ValidationMessageFor(model => model.Arquivo, "", new { @class = "text-danger" })
-                                                </div>
-                                            </div>
-
-                                            <div class="form-group">
-                                                @Html.LabelFor(model => model.Hora, htmlAttributes: new { @class = "control-label col-md-2" })
-                                                <div class="col-md-10">
-                                                    @Html.EditorFor(model => model.Hora, new { htmlAttributes = new { @type = "Time", @class = "form-control" } })
-                                                    @Html.ValidationMessageFor(model => model.Hora, "", new { @class = "text-danger" })
-                                                </div>
-                                            </div>
-
-                                            <div class="form-group">
-                                                @Html.LabelFor(model => model.DiaSemana, htmlAttributes: new { @class = "control-label col-md-2" })
-                                                <div class="col-md-10">
-                                                    @Html.EditorFor(model => model.DiaSemana, new { htmlAttributes = new { @class = "form-control" } })
-                                                    @Html.ValidationMessageFor(model => model.DiaSemana, "", new { @class = "text-danger" })
-                                                </div>
-                                            </div>
 
                                             <div class="form-group">
                                                 @Html.LabelFor(model => model.TxEnsino, htmlAttributes: new { @class = "control-label col-md-2" })

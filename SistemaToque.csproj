@@ -180,6 +180,7 @@
     <Content Include="dist\css\alt\adminlte.pages.min.css" />
     <Content Include="dist\css\alt\adminlte.plugins.css" />
     <Content Include="dist\css\alt\adminlte.plugins.min.css" />
+    <Content Include="dist\css\personalizado.css" />
     <Content Include="dist\img\logo.png" />
     <Content Include="dist\img\user.jpg" />
     <Content Include="dist\js\adminlte.js" />
@@ -2316,6 +2317,7 @@
     <Content Include="Views\Home\Toque.cshtml" />
     <Content Include="Views\Home\Toques.cshtml" />
     <Content Include="Views\Home\EditarToque.cshtml" />
+    <Content Include="Views\Home\Detalhes.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Code\" />
