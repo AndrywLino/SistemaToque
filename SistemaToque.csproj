@@ -136,6 +136,7 @@
     <Compile Include="Models\UserModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Services\ServiceCSV.cs" />
+    <Compile Include="Services\ServiceMedia.cs" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="build\config\postcss.config.js" />
