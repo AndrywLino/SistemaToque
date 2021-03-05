@@ -251,8 +251,16 @@
                                             <div class="row">
                                                 <div class="col-sm-12">
                                                     <div class="form-check">
-                                                        @Html.EditorFor(model => model.NivelEnsino, new { htmlAttributes = new { @class="form-check-input", @type="radio", @name= "Ensino", @id= "Ensino", @} })
-                                                        <label class="form-check-label" for="gridRadios1"> @Html.LabelFor(model => model.NivelEnsino, htmlAttributes: new { @class = "control-label col-md-2" }) </label>
+                                                        <input class="form-check-input" type="radio" name="NivelEnsino" id="NivelEnsino" value="1" checked>
+                                                        <label class="form-check-label" for="gridRadios1"> Fundamental I </label>
+                                                    </div>
+                                                    <div class="form-check">
+                                                        <input class="form-check-input" type="radio" name="NivelEnsino" id="NivelEnsino" value="2">
+                                                        <label class="form-check-label" for="gridRadios2"> Fundamental II </label>
+                                                    </div>
+                                                    <div class="form-check">
+                                                        <input class="form-check-input" type="radio" name="NivelEnsino" id="NivelEnsino" value="3">
+                                                        <label class="form-check-label" for="gridRadios3"> Médio </label>
                                                     </div>
                                                 </div>
                                             </div>
