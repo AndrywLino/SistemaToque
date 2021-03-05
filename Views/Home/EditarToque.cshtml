@@ -99,18 +99,18 @@
                             <h3 class="card-title"><b>Configurações</b></h3>
                         </div>
                         <!-- /.card-header -->
-                        <div class="card-body">
-                            <div class="row">
-                                <div class="col-md-12">
+                        @using (Html.BeginForm("EditarToque", "Home", FormMethod.Post, new { enctype = "multipart/form-data" }))
+                        {
+                            <div class="card-body">
+                                <div class="row">
+                                    <div class="col-md-12">
 
-                                    @using (Html.BeginForm())
-                                    {
-                                        @Html.AntiForgeryToken()
+                                        @*@Html.AntiForgeryToken()*@
 
                                         <div class="form-group row">
                                             <label class="col-2 col-form-label">Descrição:</label>
                                             <div class="col-10">
-                                                <input type="text" class="form-control" id="Nome" name="Nome" placeholder="Informe aqui a descrição do toque" required>
+                                                @Html.EditorFor(model => model.Nome, new { htmlAttributes = new { @type = "text", @class = "form-control" } })
                                             </div>
                                         </div>
 
@@ -208,15 +208,15 @@
                                                 <div class="row">
                                                     <div class="col-sm-12">
                                                         <div class="form-check">
-                                                            <input class="form-check-input" type="radio" name="Ensino" id="Ensino" value="1" checked>
+                                                            <input class="form-check-input" type="radio" name="NivelEnsino" id="NivelEnsino" value="1" checked>
                                                             <label class="form-check-label" for="Ensino"> Fundamental I </label>
                                                         </div>
                                                         <div class="form-check">
-                                                            <input class="form-check-input" type="radio" name="Ensino" id="Ensino" value="2">
+                                                            <input class="form-check-input" type="radio" name="NivelEnsino" id="NivelEnsino" value="2">
                                                             <label class="form-check-label" for="Ensino"> Fundamental II </label>
                                                         </div>
                                                         <div class="form-check">
-                                                            <input class="form-check-input" type="radio" name="Ensino" id="Ensino" value="3">
+                                                            <input class="form-check-input" type="radio" name="NivelEnsino" id="NivelEnsino" value="3">
                                                             <label class="form-check-label" for="Ensino"> Médio </label>
                                                         </div>
                                                     </div>
@@ -234,21 +234,12 @@
                                             <!-- /.col -->
                                         </div>
 
-                                        <div class="form-horizontal">
-
-                                            <div class="form-group">
-                                                <div class="col-md-offset-2 col-md-10">
-                                                    <input type="submit" value="Save" class="btn btn-default" />
-                                                </div>
-                                            </div>
-                                        </div>
-                                    }
-
+                                    </div>
+                                    <!-- /.col -->
                                 </div>
-                                <!-- /.col -->
+                                <!-- /.row -->
                             </div>
-                            <!-- /.row -->
-                        </div>
+                        }
                         <!-- /.card-body -->
                     </div>
                     <!-- /.card -->
