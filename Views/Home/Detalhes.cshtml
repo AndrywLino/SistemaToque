@@ -4,143 +4,195 @@
     ViewBag.Title = "Detalhes";
 }
 
-<h2>Detalhes</h2>
+<!DOCTYPE html>
+<html lang="pt-br">
 
-<div>
-    <h4>ToqueModel</h4>
-    <hr />
-    <dl class="dl-horizontal">
-        <dt>
-            @Html.DisplayNameFor(model => model.Arquivo)
-        </dt>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Sistema de Toque</title>
 
-        <dd>
-            @Html.DisplayFor(model => model.Arquivo)
-        </dd>
+    <!-- Google Font: Source Sans Pro -->
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700&display=fallback">
+    <!-- Font Awesome Icons -->
+    <link rel="stylesheet" href="~/plugins/fontawesome-free/css/all.min.css">
+    <!-- overlayScrollbars -->
+    <link rel="stylesheet" href="~/plugins/overlayScrollbars/css/OverlayScrollbars.min.css">
+    <!-- Theme style -->
+    <link rel="stylesheet" href="~/dist/css/adminlte.css">
+    <link href="~/dist/css/personalizado.css" rel="stylesheet" />
+</head>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.Nome)
-        </dt>
+<body class="hold-transition sidebar-mini layout-fixed layout-navbar-fixed layout-footer-fixed sidebar-collapse">
+    
+    <div class="wrapper">
+        <!-- Navbar -->
+        <nav class="main-header navbar navbar-expand navbar-white navbar-light">
+            <!-- Left navbar links -->
+            <ul class="navbar-nav">
+                <li class="nav-item">
+                    <a class="nav-link" data-widget="pushmenu" href="#" role="button"><i class="fas fa-bars"></i></a>
+                </li>
+                <li class="nav-item d-none d-sm-inline-block">
+                    <a href="~/Home/Toques" class="nav-link">Home</a>
+                </li>
+                <li class="nav-item d-none d-sm-inline-block">
+                    <a href="~/Home/Toque" class="nav-link">Add um novo toque</a>
+                </li>
+            </ul>
 
-        <dd>
-            @Html.DisplayFor(model => model.Nome)
-        </dd>
+            <!-- Right navbar links -->
+            <ul class="navbar-nav ml-auto">
+                <!-- Botão para expandir a tela -->
+                <li class="nav-item">
+                    <a class="nav-link" data-widget="fullscreen" href="#" role="button">
+                        <i class="fas fa-expand-arrows-alt"></i>
+                    </a>
+                </li>
+            </ul>
+        </nav>
+        <!-- /.navbar -->
 
-        <dt>
-            @Html.DisplayNameFor(model => model.Hora)
-        </dt>
+        <!-- Main Sidebar Container -->
+        <aside class="main-sidebar sidebar-dark-primary elevation-3">
+            <!-- Brand Logo -->
+            <a href="~/Home/Toques" class="brand-link">
+                <img src="~/dist/img/logo.png" alt="Sistema de Toque" class="brand-image img-circle elevation-3" style="opacity: .8">
+                <span class="brand-text font-weight-light">Sistema de Toque</span>
+            </a>
 
-        <dd>
-            @Html.DisplayFor(model => model.Hora)
-        </dd>
+            <!-- Sidebar -->
+            <div class="sidebar">
+                <!-- Sidebar user panel (optional) -->
+                <div class="user-panel mt-3 pb-3 mb-3 d-flex">
+                    <div class="image">
+                        <img src="~/dist/img/user.jpg" class="img-circle elevation-2" alt="User Image">
+                    </div>
+                    <div class="info">
+                        <a href="#" class="d-block">Usuário</a>
+                    </div>
+                </div>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.DiaSemana)
-        </dt>
+                <!-- Sidebar Menu -->
+                <nav class="mt-2">
+                    <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
+                        <li class="nav-item">
+                            <a href="~/Home/Toques" class="nav-link active">
+                                <i class="nav-icon fas fa-music"></i>
+                                <p>
+                                    Toques
+                                </p>
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="~/Home/Toque" class="nav-link">
+                                <i class="nav-icon fas fa-plus"></i>
+                                <p>
+                                    Add um novo toque
+                                </p>
+                            </a>
+                        </li>
+                    </ul>
+                </nav>
+                <!-- /.sidebar-menu -->
+            </div>
+            <!-- /.sidebar -->
+        </aside>
 
-        <dd>
-            @Html.DisplayFor(model => model.DiaSemana)
-        </dd>
+        <!-- Content Wrapper. Contains page content -->
+        <div class="content-wrapper">
+            <!-- Content Header (Page header) -->
+            <div class="content-header">
+                <div class="container-fluid">
+                    <div class="row mb-2">
+                        <div class="col-sm-6">
+                            <h1 class="m-0">Detalhes</h1>
+                        </div><!-- /.col -->
+                        <div class="col-sm-6">
+                            <ol class="breadcrumb float-sm-right">
+                                <li class="breadcrumb-item"><a href="~/Home/Toques">Home</a></li>
+                                <li class="breadcrumb-item active">Detalhes</li>
+                            </ol>
+                        </div><!-- /.col -->
+                    </div><!-- /.row -->
+                </div><!-- /.container-fluid -->
+            </div>
+            <!-- /.content-header -->
+            <!-- Main content -->
+            <section class="content">
+                <div class="container-fluid">
 
-        <dt>
-            @Html.DisplayNameFor(model => model.TxEnsino)
-        </dt>
+                    <div class="row">
+                        <div class="col-md-12">
+                            <div class="card">
+                                <div class="card-header">
+                                    <h5 class="card-title">Detalhes do toque</h5>
 
-        <dd>
-            @Html.DisplayFor(model => model.TxEnsino)
-        </dd>
+                                    <div class="card-tools">
+                                        <button type="button" class="btn btn-tool" data-card-widget="collapse">
+                                            <i class="fas fa-minus"></i>
+                                        </button>
+                                    </div>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.TxCanal)
-        </dt>
+                                </div>
+                                <!-- /.card-header -->
+                                <div class="card-body">
+                                    <div class="row">
+                                    </div>
+                                    <!-- /.row -->
+                                </div>
+                                <!-- ./card-body -->
+                            </div>
+                            <!-- /.card -->
+                        </div>
+                        <!-- /.col -->
+                    </div>
+                    <!-- /.row -->
+                </div><!--/. container-fluid -->
+            </section>
+            <!-- /.content -->
+        </div>
+        <!-- /.content-wrapper -->
+        <!-- Control Sidebar -->
+        <aside class="control-sidebar control-sidebar-dark">
+            <!-- Control sidebar content goes here -->
+        </aside>
+        <!-- /.control-sidebar -->
 
-        <dd>
-            @Html.DisplayFor(model => model.TxCanal)
-        </dd>
+        <!-- Main Footer -->
+        <footer class="main-footer">
+            <strong>Copyright &copy; 1972 - 2021 <a href="https://ceinet.com.br">CEI</a>.</strong>
+            All rights reserved.
+            <div class="float-right d-none d-sm-inline-block">
+                <b>Version</b> 09.03.21 - AM - 1.0
+            </div>
+        </footer>
+        <!-- /.Main Footer -->
 
-        <dt>
-            @Html.DisplayNameFor(model => model.Canal)
-        </dt>
+    </div>
+    <!-- ./wrapper -->
+    <!-- REQUIRED SCRIPTS -->
+    <!-- jQuery -->
+    <script src="~/plugins/jquery/jquery.min.js"></script>
+    <!-- Bootstrap -->
+    <script src="~/plugins/bootstrap/js/bootstrap.bundle.min.js"></script>
+    <!-- overlayScrollbars -->
+    <script src="~/plugins/overlayScrollbars/js/jquery.overlayScrollbars.min.js"></script>
+    <!-- AdminLTE App -->
+    <script src="~/dist/js/adminlte.js"></script>
 
-        <dd>
-            @Html.DisplayFor(model => model.Canal)
-        </dd>
+    <!-- PAGE ~/plugins -->
+    <!-- jQuery Mapael -->
+    <script src="~/plugins/jquery-mousewheel/jquery.mousewheel.js"></script>
+    <script src="~/plugins/raphael/raphael.min.js"></script>
+    <script src="~/plugins/jquery-mapael/jquery.mapael.min.js"></script>
+    <script src="~/plugins/jquery-mapael/maps/usa_states.min.js"></script>
+    <!-- ChartJS -->
+    <script src="~/plugins/chart.js/Chart.min.js"></script>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.IsAtivo)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.IsAtivo)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.NivelEnsino)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.NivelEnsino)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.IsSegunda)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.IsSegunda)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.IsTerca)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.IsTerca)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.IsQuarta)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.IsQuarta)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.IsQuinta)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.IsQuinta)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.IsSexta)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.IsSexta)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.IsSabado)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.IsSabado)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.IsDomingo)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.IsDomingo)
-        </dd>
-
-    </dl>
-</div>
-<p>
-    @Html.ActionLink("Edit", "Edit", new { /* id = Model.PrimaryKey */ }) |
-    @Html.ActionLink("Back to List", "Index")
-</p>
+    <!-- AdminLTE for demo purposes -->
+    <script src="~/dist/js/demo.js"></script>
+    <!-- AdminLTE dashboard demo (This is only for demo purposes) -->
+    <script src="~/dist/js/pages/dashboard2.js"></script>
+</body>
+</html>
