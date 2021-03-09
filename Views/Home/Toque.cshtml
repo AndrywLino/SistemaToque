@@ -75,7 +75,7 @@
                 <nav class="mt-2">
                     <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
                         <li class="nav-item">
-                            <a href="~/Home/Toques" class="nav-link active">
+                            <a href="~/Home/Toques" class="nav-link">
                                 <i class="nav-icon fas fa-music"></i>
                                 <p>
                                     Toques
@@ -83,7 +83,7 @@
                             </a>
                         </li>
                         <li class="nav-item">
-                            <a href="~/Home/Toque" class="nav-link">
+                            <a href="~/Home/Toque" class="nav-link active">
                                 <i class="nav-icon fas fa-plus"></i>
                                 <p>
                                     Add um novo toque
@@ -100,238 +100,254 @@
         <!-- Content Wrapper. Contains page content -->
         <div class="content-wrapper">
             <!-- Content Header (Page header) -->
-            <section class="content-header">
-            </section>
-
+            <div class="content-header">
+                <div class="container-fluid">
+                    <div class="row mb-2">
+                        <div class="col-sm-6">
+                            <h1 class="m-0">Adicionar um novo toque</h1>
+                        </div><!-- /.col -->
+                        <div class="col-sm-6">
+                            <ol class="breadcrumb float-sm-right">
+                                <li class="breadcrumb-item"><a href="~/Home/Toques">Home</a></li>
+                                <li class="breadcrumb-item active">Adicionar um novo toque</li>
+                            </ol>
+                        </div><!-- /.col -->
+                    </div><!-- /.row -->
+                </div><!-- /.container-fluid -->
+            </div>
+            <!-- /.content-header -->
             <!-- Main content -->
             <section class="content">
                 <div class="container-fluid">
-                    <!-- Configurações -->
-                    <div class="card card-default">
-                        <div class="card-header">
-                            <h3 class="card-title"><b>Configurações</b></h3>
-                        </div>
-                        <!-- /.card-header -->
-                        @using (Html.BeginForm("CadastrarToque", "Home", FormMethod.Post, new { enctype = "multipart/form-data" }))
-                        {
-                            <div class="card-body">
-                                <div class="row">
-                                    <div class="col-md-12">
+                    <div class="row">
+                        <div class="col-12">
+                            <div class="card">
 
-                                        <div class="form-group row">
-                                            <label class="col-2 col-form-label">Descrição:</label>
-                                            <div class="col-10">
-                                                <input type="text" class="form-control" id="Nome" name="Nome" placeholder="Informe aqui o nome do toque" required>
-                                            </div>
-                                        </div>
-
-                                        <form id="uploadForm">
-                                            <div class="form-group row">
-                                                <label class="col-3 col-form-label">Carrege o seu arquivo:</label>
-                                                <div class="col-9">
-                                                    <div class="input-group">
-                                                        <div class="custom-file">
-                                                            <input type="file" class="custom-file-input" id="file" name="fileupload" accept="audio/mp3,audio/*" required>
-                                                            <label class="custom-file-label" for="file">Escolher arquivo</label>
-                                                        </div>
-
-                                                        &nbsp;&nbsp;&nbsp;
-
-                                                        <button class="btn btn-primary" onclick="upload()" id="uploadBtn" name="uploadBtn" type="button">Upload</button>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </form>
-
-                                        <div id="song"></div>
-
-                                        <div class="form-group row">
-                                            <label for="example-time-input" class="col-4 col-form-label">A partir de quantos segundos você deseja que a música comece?</label>
-                                            <div class="col-8">
-                                                <select class="form-control" id="segundos">
-                                                    <option>00</option>
-                                                    <option>01</option>
-                                                    <option>02</option>
-                                                    <option>03</option>
-                                                    <option>04</option>
-                                                    <option>05</option>
-                                                    <option>06</option>
-                                                    <option>07</option>
-                                                    <option>08</option>
-                                                    <option>09</option>
-                                                    <option>10</option>
-                                                    <option>11</option>
-                                                    <option>12</option>
-                                                    <option>13</option>
-                                                    <option>14</option>
-                                                    <option>15</option>
-                                                    <option>16</option>
-                                                    <option>17</option>
-                                                    <option>18</option>
-                                                    <option>19</option>
-                                                    <option>20</option>
-                                                    <option>21</option>
-                                                    <option>22</option>
-                                                    <option>23</option>
-                                                    <option>24</option>
-                                                    <option>25</option>
-                                                    <option>26</option>
-                                                    <option>27</option>
-                                                    <option>28</option>
-                                                    <option>29</option>
-                                                    <option>30</option>
-                                                    <option>31</option>
-                                                    <option>32</option>
-                                                    <option>33</option>
-                                                    <option>34</option>
-                                                    <option>35</option>
-                                                    <option>36</option>
-                                                    <option>37</option>
-                                                    <option>38</option>
-                                                    <option>39</option>
-                                                    <option>40</option>
-                                                    <option>41</option>
-                                                    <option>42</option>
-                                                    <option>43</option>
-                                                    <option>44</option>
-                                                    <option>45</option>
-                                                    <option>46</option>
-                                                    <option>47</option>
-                                                    <option>48</option>
-                                                    <option>49</option>
-                                                    <option>50</option>
-                                                    <option>51</option>
-                                                    <option>52</option>
-                                                    <option>53</option>
-                                                    <option>54</option>
-                                                    <option>55</option>
-                                                    <option>56</option>
-                                                    <option>57</option>
-                                                    <option>58</option>
-                                                    <option>59</option>
-                                                    <option>60</option>
-                                                </select>
-                                            </div>
-                                        </div>
-
-                                        <div class="form-group row">
-                                            <label for="example-time-input" class="col-4 col-form-label">Informe a hora que você deseja que iniciar o toque:</label>
-                                            <div class="col-8">
-                                                <input class="form-control" type="time" value="13:45:00" id="Hora" name="Hora">
-                                            </div>
-                                        </div>
-
-                                        <div class="row">
-                                            <label for="example-time-input" class="col-form-label">Selecione o dia da semana:</label>
-                                        </div>
-
-                                        <div class="row">
-                                            <div class="col-4">
-                                                <div class="form-check">
-                                                    <input class="form-check-input" type="checkbox" value="1" id="IsSegunda" name="IsSegunda" checked>
-                                                    <label class="form-check-label" for="cb_1">
-                                                        Segunda
-                                                    </label>
-                                                </div>
-                                                <div class="form-check">
-                                                    <input class="form-check-input" type="checkbox" value="1" id="IsTerca" name="IsTerca" checked>
-                                                    <label class="form-check-label" for="cb_2">
-                                                        Terça
-                                                    </label>
-                                                </div>
-                                                <div class="form-check">
-                                                    <input class="form-check-input" type="checkbox" value="1" id="IsQuarta" name="IsQuarta" checked>
-                                                    <label class="form-check-label" for="cb_3">
-                                                        Quarta
-                                                    </label>
-                                                </div>
-                                            </div>
-                                            <!-- /.col -->
-                                            <div class="col-4">
-
-                                                <div class="form-check">
-                                                    <input class="form-check-input" type="checkbox" value="1" id="IsQuinta" name="IsQuinta" checked>
-                                                    <label class="form-check-label" for="cb_4">
-                                                        Quinta
-                                                    </label>
-                                                </div>
-                                                <div class="form-check">
-                                                    <input class="form-check-input" type="checkbox" value="1" id="IsSexta" name="IsSexta" checked>
-                                                    <label class="form-check-label" for="cb_5">
-                                                        Sexta
-                                                    </label>
-                                                </div>
-                                            </div>
-                                            <!-- /.col -->
-                                            <div class="col-4">
-                                                <div class="form-check">
-                                                    <input class="form-check-input" type="checkbox" value="1" id="IsSabado" name="IsSabado">
-                                                    <label class="form-check-label" for="cb_6">
-                                                        Sábado
-                                                    </label>
-                                                </div>
-                                                <div class="form-check">
-                                                    <input class="form-check-input" type="checkbox" value="1" id="IsDomingo" name="IsDomingo">
-                                                    <label class="form-check-label" for="cb_7">
-                                                        Domingo
-                                                    </label>
-                                                </div>
-                                            </div>
-                                            <!-- /.col -->
-                                            <div class="col-12">
-                                                <div class="txt-validation-2">
-                                                    Selecione pelo menos um dia da semana para criar o seu novo toque
-                                                </div>
-                                            </div>
-                                            <!-- /.col -->
-                                        </div>
-
-                                        <div class="row">
-                                            <label for="" class="col-form-label">Tipo de ensino:</label>
-                                        </div>
-
-                                        <form>
-                                            <fieldset class="form-group">
-                                                <div class="row">
-                                                    <div class="col-sm-12">
-                                                        <div class="form-check">
-                                                            <input class="form-check-input" type="radio" name="Ensino" id="Ensino" value="1" checked>
-                                                            <label class="form-check-label" for="Ensino"> Fundamental I </label>
-                                                        </div>
-                                                        <div class="form-check">
-                                                            <input class="form-check-input" type="radio" name="Ensino" id="Ensino" value="2">
-                                                            <label class="form-check-label" for="Ensino"> Fundamental II </label>
-                                                        </div>
-                                                        <div class="form-check">
-                                                            <input class="form-check-input" type="radio" name="Ensino" id="Ensino" value="3">
-                                                            <label class="form-check-label" for="Ensino"> Médio </label>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </fieldset>
-                                        </form>
-
-                                        <div class="row">
-                                            <div class="col-9">
-                                            </div>
-                                            <!-- /.col -->
-                                            <div class="col-3">
-                                                <button type="submit" class="btn btn-primary btn-block">Salvar</button>
-                                            </div>
-                                            <!-- /.col -->
-                                        </div>
-
-                                    </div>
-                                    <!-- /.col -->
+                                <div class="card-header">
+                                    <h5 class="card-title"><b>Configuração do novo toque</b></h5>
                                 </div>
-                                <!-- /.row -->
+                                <!-- /.card-header -->
+
+                                @using (Html.BeginForm("CadastrarToque", "Home", FormMethod.Post, new { enctype = "multipart/form-data" }))
+                                {
+                                    <div class="card-body">
+                                        <div class="row">
+                                            <div class="col-md-12">
+
+                                                <div class="form-group row">
+                                                    <label class="col-2 col-form-label">Descrição:</label>
+                                                    <div class="col-10">
+                                                        <input type="text" class="form-control" id="Nome" name="Nome" placeholder="Informe aqui o nome do toque" required>
+                                                    </div>
+                                                </div>
+
+                                                <form id="uploadForm">
+                                                    <div class="form-group row">
+                                                        <label class="col-3 col-form-label">Carrege o seu arquivo:</label>
+                                                        <div class="col-9">
+                                                            <div class="input-group">
+                                                                <div class="custom-file">
+                                                                    <input type="file" class="custom-file-input" id="file" name="fileupload" accept="audio/mp3,audio/*" required>
+                                                                    <label class="custom-file-label" for="file">Escolher arquivo</label>
+                                                                </div>
+
+                                                                &nbsp;&nbsp;&nbsp;
+
+                                                                <button class="btn btn-primary" onclick="upload()" id="uploadBtn" name="uploadBtn" type="button">Upload</button>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </form>
+
+                                                <div id="song"></div>
+
+                                                <div class="form-group row">
+                                                    <label for="example-time-input" class="col-4 col-form-label">A partir de quantos segundos você deseja que a música comece?</label>
+                                                    <div class="col-8">
+                                                        <select class="form-control" id="segundos">
+                                                            <option>00</option>
+                                                            <option>01</option>
+                                                            <option>02</option>
+                                                            <option>03</option>
+                                                            <option>04</option>
+                                                            <option>05</option>
+                                                            <option>06</option>
+                                                            <option>07</option>
+                                                            <option>08</option>
+                                                            <option>09</option>
+                                                            <option>10</option>
+                                                            <option>11</option>
+                                                            <option>12</option>
+                                                            <option>13</option>
+                                                            <option>14</option>
+                                                            <option>15</option>
+                                                            <option>16</option>
+                                                            <option>17</option>
+                                                            <option>18</option>
+                                                            <option>19</option>
+                                                            <option>20</option>
+                                                            <option>21</option>
+                                                            <option>22</option>
+                                                            <option>23</option>
+                                                            <option>24</option>
+                                                            <option>25</option>
+                                                            <option>26</option>
+                                                            <option>27</option>
+                                                            <option>28</option>
+                                                            <option>29</option>
+                                                            <option>30</option>
+                                                            <option>31</option>
+                                                            <option>32</option>
+                                                            <option>33</option>
+                                                            <option>34</option>
+                                                            <option>35</option>
+                                                            <option>36</option>
+                                                            <option>37</option>
+                                                            <option>38</option>
+                                                            <option>39</option>
+                                                            <option>40</option>
+                                                            <option>41</option>
+                                                            <option>42</option>
+                                                            <option>43</option>
+                                                            <option>44</option>
+                                                            <option>45</option>
+                                                            <option>46</option>
+                                                            <option>47</option>
+                                                            <option>48</option>
+                                                            <option>49</option>
+                                                            <option>50</option>
+                                                            <option>51</option>
+                                                            <option>52</option>
+                                                            <option>53</option>
+                                                            <option>54</option>
+                                                            <option>55</option>
+                                                            <option>56</option>
+                                                            <option>57</option>
+                                                            <option>58</option>
+                                                            <option>59</option>
+                                                            <option>60</option>
+                                                        </select>
+                                                    </div>
+                                                </div>
+
+                                                <div class="form-group row">
+                                                    <label for="example-time-input" class="col-4 col-form-label">Informe a hora que você deseja que iniciar o toque:</label>
+                                                    <div class="col-8">
+                                                        <input class="form-control" type="time" value="13:45:00" id="Hora" name="Hora">
+                                                    </div>
+                                                </div>
+
+                                                <div class="row">
+                                                    <label for="example-time-input" class="col-form-label">Selecione o dia da semana:</label>
+                                                </div>
+
+                                                <div class="row">
+                                                    <div class="col-4">
+                                                        <div class="form-check">
+                                                            <input class="form-check-input" type="checkbox" value="1" id="IsSegunda" name="IsSegunda" checked>
+                                                            <label class="form-check-label" for="cb_1">
+                                                                Segunda
+                                                            </label>
+                                                        </div>
+                                                        <div class="form-check">
+                                                            <input class="form-check-input" type="checkbox" value="1" id="IsTerca" name="IsTerca" checked>
+                                                            <label class="form-check-label" for="cb_2">
+                                                                Terça
+                                                            </label>
+                                                        </div>
+                                                        <div class="form-check">
+                                                            <input class="form-check-input" type="checkbox" value="1" id="IsQuarta" name="IsQuarta" checked>
+                                                            <label class="form-check-label" for="cb_3">
+                                                                Quarta
+                                                            </label>
+                                                        </div>
+                                                    </div>
+                                                    <!-- /.col -->
+                                                    <div class="col-4">
+
+                                                        <div class="form-check">
+                                                            <input class="form-check-input" type="checkbox" value="1" id="IsQuinta" name="IsQuinta" checked>
+                                                            <label class="form-check-label" for="cb_4">
+                                                                Quinta
+                                                            </label>
+                                                        </div>
+                                                        <div class="form-check">
+                                                            <input class="form-check-input" type="checkbox" value="1" id="IsSexta" name="IsSexta" checked>
+                                                            <label class="form-check-label" for="cb_5">
+                                                                Sexta
+                                                            </label>
+                                                        </div>
+                                                    </div>
+                                                    <!-- /.col -->
+                                                    <div class="col-4">
+                                                        <div class="form-check">
+                                                            <input class="form-check-input" type="checkbox" value="1" id="IsSabado" name="IsSabado">
+                                                            <label class="form-check-label" for="cb_6">
+                                                                Sábado
+                                                            </label>
+                                                        </div>
+                                                        <div class="form-check">
+                                                            <input class="form-check-input" type="checkbox" value="1" id="IsDomingo" name="IsDomingo">
+                                                            <label class="form-check-label" for="cb_7">
+                                                                Domingo
+                                                            </label>
+                                                        </div>
+                                                    </div>
+                                                    <!-- /.col -->
+                                                    <div class="col-12">
+                                                        <div class="txt-validation-2">
+                                                            Selecione pelo menos um dia da semana para criar o seu novo toque
+                                                        </div>
+                                                    </div>
+                                                    <!-- /.col -->
+                                                </div>
+
+                                                <div class="row">
+                                                    <label for="" class="col-form-label">Tipo de ensino:</label>
+                                                </div>
+
+                                                <form>
+                                                    <fieldset class="form-group">
+                                                        <div class="row">
+                                                            <div class="col-sm-12">
+                                                                <div class="form-check">
+                                                                    <input class="form-check-input" type="radio" name="Ensino" id="Ensino" value="1" checked>
+                                                                    <label class="form-check-label" for="Ensino"> Fundamental I </label>
+                                                                </div>
+                                                                <div class="form-check">
+                                                                    <input class="form-check-input" type="radio" name="Ensino" id="Ensino" value="2">
+                                                                    <label class="form-check-label" for="Ensino"> Fundamental II </label>
+                                                                </div>
+                                                                <div class="form-check">
+                                                                    <input class="form-check-input" type="radio" name="Ensino" id="Ensino" value="3">
+                                                                    <label class="form-check-label" for="Ensino"> Médio </label>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </fieldset>
+                                                </form>
+
+                                                <div class="row">
+                                                    <div class="col-9">
+                                                    </div>
+                                                    <!-- /.col -->
+                                                    <div class="col-3">
+                                                        <button type="submit" class="btn btn-primary btn-block">Salvar</button>
+                                                    </div>
+                                                    <!-- /.col -->
+                                                </div>
+
+                                            </div>
+                                            <!-- /.col -->
+                                        </div>
+                                        <!-- /.row -->
+                                    </div>
+                                }
+                                <!-- /.card-body -->
                             </div>
-                        }
-                        <!-- /.card-body -->
-                    </div>
-                    <!-- /.card -->
-                </div>
-                <!-- /.container-fluid -->
+                            <!-- /.card -->
+                        </div>
+                        <!-- /.container-fluid -->
             </section>
             <!-- /.content -->
         </div>
@@ -348,6 +364,7 @@
 
     </div>
     <!-- ./wrapper -->
+
     <!-- REQUIRED SCRIPTS -->
     <!-- jQuery -->
     <script src="~/plugins/jquery/jquery.min.js"></script>

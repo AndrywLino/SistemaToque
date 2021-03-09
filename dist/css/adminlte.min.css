@@ -12792,7 +12792,8 @@ body.sidebar-collapse:not(.sidebar-mini-md):not(.sidebar-mini) .main-header::bef
 }
 
 .content-wrapper {
-    background-color: #f4f6f9
+    background-color: #fff
+    /*background-color: #f4f6f9*/
 }
 
     .content-wrapper > .content {
@@ -23787,7 +23788,8 @@ body.iframe-mode-fullscreen {
         left: 0;
         width: 100%;
         display: none;
-        background-color: #f4f6f9
+        background-color: #fff
+        /*background-color: #f4f6f9*/
     }
 
         .content-wrapper.iframe-mode .tab-loading > div {

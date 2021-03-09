@@ -1,4 +1,4 @@
-﻿@model SistemaToque.Models.ToqueModel
+@model SistemaToque.Models.ToqueModel
 
 @{
     ViewBag.Title = "Detalhes";
@@ -77,7 +77,7 @@
                 <nav class="mt-2">
                     <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
                         <li class="nav-item">
-                            <a href="~/Home/Toques" class="nav-link active">
+                            <a href="~/Home/Toques" class="nav-link">
                                 <i class="nav-icon fas fa-music"></i>
                                 <p>
                                     Toques
@@ -101,6 +101,7 @@
 
         <!-- Content Wrapper. Contains page content -->
         <div class="content-wrapper">
+
             <!-- Content Header (Page header) -->
             <div class="content-header">
                 <div class="container-fluid">
@@ -118,6 +119,7 @@
                 </div><!-- /.container-fluid -->
             </div>
             <!-- /.content-header -->
+
             <!-- Main content -->
             <section class="content">
                 <div class="container-fluid">
@@ -126,16 +128,10 @@
                         <div class="col-md-12">
                             <div class="card">
                                 <div class="card-header">
-                                    <h5 class="card-title">Detalhes do toque</h5>
-
-                                    <div class="card-tools">
-                                        <button type="button" class="btn btn-tool" data-card-widget="collapse">
-                                            <i class="fas fa-minus"></i>
-                                        </button>
-                                    </div>
-
+                                    <h5 class="card-title"><b>Detalhes do toque</b></h5>
                                 </div>
                                 <!-- /.card-header -->
+
                                 <div class="card-body">
                                     <div class="row">
                                     </div>
@@ -171,6 +167,7 @@
 
     </div>
     <!-- ./wrapper -->
+
     <!-- REQUIRED SCRIPTS -->
     <!-- jQuery -->
     <script src="~/plugins/jquery/jquery.min.js"></script>
@@ -194,5 +191,6 @@
     <script src="~/dist/js/demo.js"></script>
     <!-- AdminLTE dashboard demo (This is only for demo purposes) -->
     <script src="~/dist/js/pages/dashboard2.js"></script>
+
 </body>
 </html>
