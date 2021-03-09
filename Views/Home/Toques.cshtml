@@ -21,6 +21,14 @@
     <!-- Theme style -->
     <link rel="stylesheet" href="~/dist/css/adminlte.css">
     <link href="~/dist/css/personalizado.css" rel="stylesheet" />
+
+    <style>
+        .btn-style {
+            width: 30px;
+            margin: 2px
+        }
+    </style>
+
 </head>
 
 <body class="hold-transition sidebar-mini layout-fixed layout-navbar-fixed layout-footer-fixed sidebar-collapse">
@@ -99,11 +107,39 @@
 
         <!-- Content Wrapper. Contains page content -->
         <div class="content-wrapper">
+
             <!-- Content Header (Page header) -->
-            <section class="content-header">
+            <div class="content-header">
                 <div class="container-fluid">
+                    <div class="row mb-2">
+                        <div class="col-sm-6">
+                            <h1 class="m-0">Toques</h1>
+                        </div><!-- /.col -->
+                        <div class="col-sm-6">
+                            <ol class="breadcrumb float-sm-right">
+                                <li class="breadcrumb-item"><a href="~/Home/Toques">Home</a></li>
+                                <li class="breadcrumb-item active">Toques</li>
+                            </ol>
+                        </div><!-- /.col -->
+                    </div><!-- /.row -->
                 </div><!-- /.container-fluid -->
-            </section>
+            </div>
+            <!-- /.content-header -->
+
+            <div class="row">
+                <div class="col-lg-8">
+                </div>
+                <div class="col-lg-4">
+                    <div>
+                        <a href="@Url.Action("RedirectCadastro", "Home")" class="btn btn-success btn-block">
+                            <i class="fa fa-plus"></i> <b> &nbsp; Adicionar um novo toque</b>
+                        </a>
+                        @*@Html.ActionLink("Adicionar um novo toque", "RedirectCadastro", "Home", null, new { @type = "button", @class = "btn btn-success btn-block" })*@
+                    </div>
+                </div>
+            </div>
+
+            <br>
 
             <!-- Main content -->
             <section class="content">
@@ -111,34 +147,23 @@
                     <div class="row">
                         <div class="col-12">
                             <div class="card">
+
                                 <div class="card-header">
-                                    <h3 class="card-title"><b>Toques ativos</b></h3>
+                                    <h5 class="card-title"><b>Toques ativos</b></h5>
                                 </div>
                                 <!-- /.card-header -->
+
                                 <div class="card-body">
-                                    <div class="row">
-                                        <div class="col-lg-8">
-                                        </div>
-                                        <div class="col-lg-4">
-                                            <div>
-                                                @Html.ActionLink("Adicionar um novo toque", "RedirectCadastro", "Home", null, new { @type = "button", @class = "btn btn-success btn-block" })
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <br>
                                     <table id="example1" class="table table-bordered table-striped">
                                         <tr>
                                             <th align="center">
-                                                @Html.DisplayNameFor(model => model.Arquivo)
+                                                Descrição
                                             </th>
                                             <th align="center">
                                                 @Html.DisplayNameFor(model => model.Hora)
                                             </th>
                                             <th align="center">
                                                 @Html.DisplayNameFor(model => model.DiaSemana)
-                                            </th>
-                                            <th align="center">
-                                                @Html.DisplayNameFor(model => model.IsAtivo)
                                             </th>
                                             <th align="center">
                                                 @Html.DisplayNameFor(model => model.TxEnsino)
@@ -153,7 +178,7 @@
                                         {
                                             <tr>
                                                 <td align="center">
-                                                    @Html.DisplayFor(modelItem => item.Arquivo)
+                                                    @Html.DisplayFor(modelItem => item.Nome)
                                                 </td>
                                                 <td align="center">
                                                     @Html.DisplayFor(modelItem => item.Hora)
@@ -162,18 +187,29 @@
                                                     @Html.DisplayFor(modelItem => item.DiaSemana)
                                                 </td>
                                                 <td align="center">
-                                                    @Html.DisplayFor(modelItem => item.IsAtivo)
-                                                </td>
-                                                <td align="center">
                                                     @Html.DisplayFor(modelItem => item.TxEnsino)
                                                 </td>
                                                 <td align="center">
                                                     00:00:00
                                                 </td>
                                                 <td align="center">
-                                                    @Html.ActionLink("Editar", "EditarToque", "Home", new { arquivo = item.Arquivo }, new { @type = "button", @class = "btn btn-success" })
-                                                    <br><br>
-                                                    @Html.ActionLink("Deletar", "DeletarToque", "Home", new { arquivo = item.Arquivo }, new { @type = "button", @class = "btn btn-success btn-danger" })
+                                                    <div class="row" align="center">
+                                                        <div class="col-xl-4 col-lg-12 col-md-12 col-sm-12">
+                                                            <a href="@Url.Action("EditarToque", "Home", new { arquivo = item.Arquivo })" class="btn btn-success btn-sm btn-style" title="Editar toque" alt="Editar toque">
+                                                                <i class="fa fa-pencil-alt"></i>
+                                                            </a>
+                                                        </div>
+                                                        <div class="col-xl-4 col-lg-4 col-md-12 col-sm-12">
+                                                            <a href="@Url.Action("Detalhes", "Home", new { arquivo = item.Arquivo })" class="btn btn-info btn-sm btn-style" title="Detalhes do toque" alt="Detalhes do toque">
+                                                                <i class="fas fa-info"></i>
+                                                            </a>
+                                                        </div>
+                                                        <div class="col-xl-4 col-lg-4 col-md-12 col-sm-12">
+                                                            <a href="@Url.Action("DeletarToque", "Home", new { arquivo = item.Arquivo })" class="btn btn-danger btn-sm btn-style" title="Excluir toque" alt="Excluir toque">
+                                                                <i class="fas fa-times"></i>
+                                                            </a>
+                                                        </div>
+                                                    </div>
                                                 </td>
                                             </tr>
                                         }
