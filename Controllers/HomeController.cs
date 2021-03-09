@@ -4,6 +4,7 @@ using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
+using System.Threading.Tasks;
 using System.Web;
 using System.Web.Mvc;
 
@@ -171,8 +172,10 @@ namespace SistemaToque.Controllers
             return View(toque);
         }
 
-        public ActionResult Login(UserModel user)
+        public async Task<ActionResult> Login(UserModel user)
         {
+            string dir = Path.Combine(Server.MapPath("~/CSV/"));
+            await FTPService.DownloadFile(dir);
             ViewBag.UsuarioInvalido = "";
             ViewBag.SenhaInvalido = "";
             ViewBag.Message = "Your contact page.";
