@@ -176,42 +176,66 @@
 
                                         @foreach (var item in Model)
                                         {
-                                            <tr>
-                                                <td align="center">
-                                                    @Html.DisplayFor(modelItem => item.Nome)
-                                                </td>
-                                                <td align="center">
-                                                    @Html.DisplayFor(modelItem => item.Hora)
-                                                </td>
-                                                <td align="center">
-                                                    @Html.DisplayFor(modelItem => item.DiaSemana)
-                                                </td>
-                                                <td align="center">
-                                                    @Html.DisplayFor(modelItem => item.TxEnsino)
-                                                </td>
-                                                <td align="center">
-                                                    @Html.DisplayFor(modelItem => item.UltimoToque)
-                                                </td>
-                                                <td align="center">
-                                                    <div class="row" align="center">
-                                                        <div class="col-xl-4 col-lg-12 col-md-12 col-sm-12">
-                                                            <a href="@Url.Action("EditarToque", "Home", new { arquivo = item.Arquivo })" class="btn btn-success btn-sm btn-style" title="Editar toque" alt="Editar toque">
-                                                                <i class="fa fa-pencil-alt"></i>
-                                                            </a>
-                                                        </div>
-                                                        <div class="col-xl-4 col-lg-4 col-md-12 col-sm-12">
-                                                            <a href="@Url.Action("Detalhes", "Home", new { arquivo = item.Arquivo })" class="btn btn-info btn-sm btn-style" title="Detalhes do toque" alt="Detalhes do toque">
-                                                                <i class="fas fa-info"></i>
-                                                            </a>
-                                                        </div>
-                                                        <div class="col-xl-4 col-lg-4 col-md-12 col-sm-12">
-                                                            <a href="@Url.Action("DeletarToque", "Home", new { arquivo = item.Arquivo })" class="btn btn-danger btn-sm btn-style" title="Excluir toque" alt="Excluir toque">
-                                                                <i class="fas fa-times"></i>
-                                                            </a>
-                                                        </div>
+                                    <tr>
+                                        <td align="center">
+                                            @Html.DisplayFor(modelItem => item.Nome)
+                                        </td>
+                                        <td align="center">
+                                            @Html.DisplayFor(modelItem => item.Hora)
+                                        </td>
+                                        <td align="center">
+                                            @Html.DisplayFor(modelItem => item.DiaSemana)
+                                        </td>
+                                        <td align="center">
+                                            @Html.DisplayFor(modelItem => item.TxEnsino)
+                                        </td>
+                                        <td align="center">
+                                            @Html.DisplayFor(modelItem => item.UltimoToque)
+                                        </td>
+                                        <td align="center">
+                                            <div class="row" align="center">
+                                                <div class="col-xl-4 col-lg-12 col-md-12 col-sm-12">
+                                                    <a href="@Url.Action("EditarToque", "Home", new { arquivo = item.Arquivo })" class="btn btn-success btn-sm btn-style" title="Editar toque" alt="Editar toque">
+                                                        <i class="fa fa-pencil-alt"></i>
+                                                    </a>
+                                                </div>
+                                                <div class="col-xl-4 col-lg-4 col-md-12 col-sm-12">
+                                                    <a href="@Url.Action("Detalhes", "Home", new { arquivo = item.Arquivo })" class="btn btn-info btn-sm btn-style" title="Detalhes do toque" alt="Detalhes do toque">
+                                                        <i class="fas fa-info"></i>
+                                                    </a>
+                                                </div>
+                                                <div class="col-xl-4 col-lg-4 col-md-12 col-sm-12">
+                                                    <a href="@Url.Action("DeletarToque", "Home", new { arquivo = item.Arquivo })" class="btn btn-danger btn-sm btn-style" title="Excluir toque" alt="Excluir toque" data-toggle="modal" data-target="#modal-sm">
+                                                        <i class="fas fa-times"></i>
+                                                    </a>
+                                                </div>
+                                            </div>
+                                        </td>
+
+                                        <div class="modal fade" id="modal-sm">
+                                            <div class="modal-dialog modal-sm">
+                                                <div class="modal-content">
+                                                    <div class="modal-header">
+                                                        <h4 class="modal-title">Excluir item</h4>
+                                                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                                            <span aria-hidden="true">&times;</span>
+                                                        </button>
                                                     </div>
-                                                </td>
-                                            </tr>
+                                                    <div class="modal-body">
+                                                        <p>Você tem certeza que deseja excluir esse item?</p>
+                                                    </div>
+                                                    <div class="modal-footer justify-content-between">
+                                                        <button type="button" class="btn btn-default" data-dismiss="modal">Cancelar</button>
+                                                        <button type="button" class="btn btn-danger">Excluir</button>
+                                                    </div>
+                                                </div>
+                                                <!-- /.modal-content -->
+                                            </div>
+                                            <!-- /.modal-dialog -->
+                                        </div>
+                                        <!-- /.modal -->
+
+                                    </tr>
                                         }
                                     </table>
                                 </div>
