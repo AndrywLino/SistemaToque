@@ -44,7 +44,7 @@ namespace SistemaToque.Controllers
         }
 
         [HttpPost]
-        public ActionResult EditarToque(ToqueModel toque)
+        public async Task<ActionResult> EditarToque(ToqueModel toque)
         {
             List<ToqueModel> toques = LerToquesCSV();
             List<ToqueExportModel> toquesE = new List<ToqueExportModel>();
@@ -67,9 +67,12 @@ namespace SistemaToque.Controllers
                 it.IsDomingo = item.IsDomingo;
                 it.IsAtivo = item.IsAtivo;
                 it.NivelEnsino = item.NivelEnsino;
+                it.UltimoToque = item.UltimoToque;
+                it.StartSegs = item.StartSegs;
 
                 toquesE.Add(it);
             }
+            string arquivoId = "";
             foreach (var item in toques)
             {
                 if (item.Arquivo == toque.Arquivo)
@@ -77,7 +80,6 @@ namespace SistemaToque.Controllers
                     toquesE[i].Arquivo = toque.Arquivo;
                     toquesE[i].Nome = toque.Nome;
                     toquesE[i].Hora = toque.Hora;
-                    toquesE[i].Canal = toque.Canal;
                     toquesE[i].IsSegunda = toque.IsSegunda;
                     toquesE[i].IsTerca = toque.IsTerca;
                     toquesE[i].IsQuarta = toque.IsQuarta;
@@ -87,13 +89,41 @@ namespace SistemaToque.Controllers
                     toquesE[i].IsDomingo = toque.IsDomingo;
                     toquesE[i].IsAtivo = toque.IsAtivo;
                     toquesE[i].NivelEnsino = toque.NivelEnsino;
+                    toquesE[i].StartSegs = toque.StartSegs;
+                    toquesE[i].UltimoToque = toque.UltimoToque;
+
+                    arquivoId = toque.Arquivo;
+
+                    if (toque.NivelEnsino == 2 || toque.NivelEnsino == 3)
+                        toquesE[i].Canal = 1;
+                    else
+                        toquesE[i].Canal = 2;
 
                     break;
                 }
                 i++;
             }
+
+            string pathMusica = "";
+
+            foreach (var file in toque.fileupload)
+            {
+                if (file != null && file.ContentLength > 0)
+                {
+                    var nameType = file.FileName.ToString().Split('.');
+                    pathMusica = Path.Combine(Server.MapPath("~/Musicas"), (arquivoId.ToString() + "." + nameType[1]));
+
+                    file.SaveAs(pathMusica);
+
+                }
+            }
+
             string dir = Path.Combine(Server.MapPath("~/CSV/toque.csv"));
             ServiceCSV.WriteCSVFileToque(dir, toquesE);
+
+            await FTPService.UploadFile(dir);
+            await FTPService.UploadFile(pathMusica);
+
             return RedirectToAction("Toques", true);
         }
 
@@ -121,6 +151,7 @@ namespace SistemaToque.Controllers
                 it.IsAtivo = item.IsAtivo;
                 it.NivelEnsino = item.NivelEnsino;
                 it.UltimoToque = item.UltimoToque;
+                it.StartSegs = item.StartSegs;
 
                 arquivoId = Convert.ToInt32(it.Arquivo);
                 toquesE.Add(it);
@@ -144,7 +175,7 @@ namespace SistemaToque.Controllers
             toque.UltimoToque = null;
             toque.StartSegs = cadastro.StartSegs;
 
-            if (cadastro.Ensino == 3 || cadastro.Ensino == 4)
+            if (cadastro.Ensino == 2 || cadastro.Ensino == 3)
                 toque.Canal = 1;
             else
                 toque.Canal = 2;
@@ -155,10 +186,10 @@ namespace SistemaToque.Controllers
 
             foreach (var file in cadastro.fileupload)
             {
-                if(file != null && file.ContentLength > 0)
+                if (file != null && file.ContentLength > 0)
                 {
                     var nameType = file.FileName.ToString().Split('.');
-                    pathMusica = Path.Combine(Server.MapPath("~/Musicas"), (arquivoId.ToString() + "."+ nameType[1]));
+                    pathMusica = Path.Combine(Server.MapPath("~/Musicas"), (arquivoId.ToString() + "." + nameType[1]));
 
                     file.SaveAs(pathMusica);
 
