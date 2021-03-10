@@ -145,11 +145,11 @@
 
                                                 <form id="uploadForm">
                                                     <div class="form-group row">
-                                                        <label class="col-3 col-form-label">Carrege o seu arquivo:</label>
+                                                        <label class="col-3 col-form-label">Arquivo selecionado:</label>
                                                         <div class="col-9">
                                                             <div class="input-group">
                                                                 <div class="custom-file">
-                                                                    <input type="file" class="custom-file-input" id="file" name="fileupload" accept="audio/mp3,audio/*" required>
+                                                                    <input type="file" class="custom-file-input" id="file" name="fileupload" accept="audio/mp3,audio/*">
                                                                     <label class="custom-file-label" for="file">Escolher arquivo</label>
                                                                 </div>
 
@@ -333,7 +333,7 @@
                                                     </div>
                                                     <!-- /.col -->
                                                     <div class="col-3">
-                                                        <button type="submit" value="Save" class="btn btn-primary btn-block">Salvar</button>
+                                                        <button type="submit" value="Save" class="btn btn-primary btn-block" onclick="validate()">Salvar</button>
                                                     </div>
                                                     <!-- /.col -->
                                                 </div>
@@ -444,6 +444,24 @@
             }
         }
     </script>
+
+    @* Script validação checkboxs *@
+<script type="text/javascript">
+        function validate() {
+            if ((document.getElementById('IsSegunda').checked) ||
+                (document.getElementById('IsTerca').checked) ||
+                (document.getElementById('IsQuarta').checked) ||
+                (document.getElementById('IsQuinta').checked) ||
+                (document.getElementById('IsSexta').checked) ||
+                (document.getElementById('IsSabado').checked) ||
+                (document.getElementById('IsDomingo').checked)) {
+                @ViewBag.selectCheckbox = true;
+            } else {
+                alert("Selecione pelo menos um dia da semana para criar o seu novo toque");
+                @ViewBag.selectCheckbox = false;
+            }
+        }
+</script>
 
 </body>
 </html>

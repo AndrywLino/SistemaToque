@@ -24,7 +24,7 @@
 
     <style>
         .btn-style {
-            width: 30px;
+            width: 33px;
             margin: 2px
         }
     </style>
@@ -205,7 +205,7 @@
                                                             </a>
                                                         </div>
                                                         <div class="col-xl-4 col-lg-4 col-md-12 col-sm-12">
-                                                            <a href="@Url.Action("DeletarToque", "Home", new { arquivo = item.Arquivo })" class="btn btn-danger btn-sm btn-style" title="Excluir toque" alt="Excluir toque" data-toggle="modal" data-target="#modal-sm">
+                                                            <a href="@Url.Action("DeletarToque", "Home", new { arquivo = item.Arquivo })" class="btn btn-danger btn-sm btn-style" title="Excluir toque" alt="Excluir toque" data-toggle="modal" data-target="#modal-lg">
                                                                 <i class="fas fa-times"></i>
                                                             </a>
                                                         </div>
@@ -216,8 +216,8 @@
                                         }
                                     </table>
 
-                                    <div class="modal fade" id="modal-sm">
-                                        <div class="modal-dialog modal-sm">
+                                    <div class="modal fade" id="modal-lg">
+                                        <div class="modal-dialog modal-lg">
                                             <div class="modal-content">
                                                 <div class="modal-header">
                                                     <h4 class="modal-title">Excluir item</h4>
@@ -238,7 +238,6 @@
                                         <!-- /.modal-dialog -->
                                     </div>
                                     <!-- /.modal -->
-
                                 </div>
                                 <!-- /.card-body -->
                             </div>
