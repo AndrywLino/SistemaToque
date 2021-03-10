@@ -195,9 +195,6 @@ namespace SistemaToque.Controllers
                 }
             }
 
-            string pathMusica = Path.Combine(Server.MapPath("~/Musicas"), (toque.Arquivo + ".mp3"));
-            //File()
-
             ViewBag.StartSegs = toque.StartSegs;
             ViewBag.Ensino = toque.NivelEnsino;
 
@@ -307,7 +304,6 @@ namespace SistemaToque.Controllers
             }
             return planilha;
         }
-
 
     }
 }
