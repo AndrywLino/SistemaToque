@@ -61,8 +61,8 @@ namespace SistemaToque.Services
                                 if (String.IsNullOrEmpty(fileContents))
                                     throw new Exception("Arquivo Vazio");
                             }
-                            string dir1 = Path.Combine(dir, ftpItem.Name);
-                            await ftp.MoveFileAsync(ftpItem.Name, dir1);
+
+                            await ftp.DownloadFileAsync(Path.Combine(dir, ftpItem.Name), ftpItem.Name);
                         }
                     }
                 }

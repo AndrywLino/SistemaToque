@@ -19,5 +19,6 @@ namespace SistemaToque.Models
         public bool IsSexta { get; set; }
         public bool IsSabado { get; set; }
         public bool IsDomingo { get; set; }
+        public string StartSegs { get; set; }
     }
 }

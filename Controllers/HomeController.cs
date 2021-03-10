@@ -102,7 +102,7 @@ namespace SistemaToque.Controllers
         {
             List<ToqueModel> toques = LerToquesCSV();
             List<ToqueExportModel> toquesE = new List<ToqueExportModel>();
-            int arquivoId = toques.Count + 1;
+            int arquivoId = 0;
 
             foreach (var item in toques)
             {
@@ -120,16 +120,20 @@ namespace SistemaToque.Controllers
                 it.IsDomingo = item.IsDomingo;
                 it.IsAtivo = item.IsAtivo;
                 it.NivelEnsino = item.NivelEnsino;
+                it.UltimoToque = item.UltimoToque;
 
+                arquivoId = Convert.ToInt32(it.Arquivo);
                 toquesE.Add(it);
             }
+
+            arquivoId += 1;
 
             ToqueExportModel toque = new ToqueExportModel();
             toque.Arquivo = arquivoId.ToString();
             toque.Nome = cadastro.Nome;
             toque.Hora = cadastro.Hora;
             toque.IsAtivo = true;
-            toque.NivelEnsino = cadastro.Ensino;
+            //toque.NivelEnsino = cadastro.Ensino;
             toque.IsSegunda = cadastro.IsSegunda;
             toque.IsTerca = cadastro.IsTerca;
             toque.IsQuarta = cadastro.IsQuarta;
@@ -137,11 +141,12 @@ namespace SistemaToque.Controllers
             toque.IsSexta = cadastro.IsSexta;
             toque.IsSabado = cadastro.IsSabado;
             toque.IsDomingo = cadastro.IsDomingo;
+            toque.UltimoToque = null;
 
-            if (cadastro.Ensino == 3 || cadastro.Ensino == 4)
-                toque.Canal = 1;
-            else
-                toque.Canal = 2;
+            //if (cadastro.Ensino == 3 || cadastro.Ensino == 4)
+            //    toque.Canal = 1;
+            //else
+            //    toque.Canal = 2;
             toquesE.Add(toque);
 
             string dir = Path.Combine(Server.MapPath("~/CSV/toque.csv"));
@@ -172,10 +177,10 @@ namespace SistemaToque.Controllers
             return View(toque);
         }
 
-        public async Task<ActionResult> Login(UserModel user)
+        public ActionResult Login(UserModel user)
         {
-            string dir = Path.Combine(Server.MapPath("~/CSV/"));
-            await FTPService.DownloadFile(dir);
+            //string dir = Path.Combine(Server.MapPath("~/CSV/"));
+            //await FTPService.DownloadFile(dir);
             ViewBag.UsuarioInvalido = "";
             ViewBag.SenhaInvalido = "";
             ViewBag.Message = "Your contact page.";
