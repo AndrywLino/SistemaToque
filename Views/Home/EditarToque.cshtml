@@ -143,23 +143,21 @@
                                                     </div>
                                                 </div>
 
-                                                <form id="uploadForm">
-                                                    <div class="form-group row">
-                                                        <label class="col-3 col-form-label">Arquivo selecionado:</label>
-                                                        <div class="col-9">
-                                                            <div class="input-group">
-                                                                <div class="custom-file">
-                                                                    <input type="file" class="custom-file-input" id="file" name="fileupload" accept="audio/mp3,audio/*">
-                                                                    <label class="custom-file-label" for="file">Escolher arquivo</label>
-                                                                </div>
-
-                                                                &nbsp;&nbsp;&nbsp;
-
-                                                                <button class="btn btn-primary" onclick="upload()" id="uploadBtn" name="uploadBtn" type="button">Upload</button>
+                                                <div class="form-group row">
+                                                    <label class="col-3 col-form-label">Arquivo selecionado:</label>
+                                                    <div class="col-9">
+                                                        <div class="input-group">
+                                                            <div class="custom-file">
+                                                                <input type="file" class="custom-file-input" id="file" name="fileupload" accept="audio/mp3,audio/*">
+                                                                <label class="custom-file-label" for="file">Escolher arquivo</label>
                                                             </div>
+
+                                                            &nbsp;&nbsp;&nbsp;
+
+                                                            <button class="btn btn-primary" onclick="upload()" id="uploadBtn" name="uploadBtn" type="button">Upload</button>
                                                         </div>
                                                     </div>
-                                                </form>
+                                                </div>
 
                                                 <div id="song"></div>
 
@@ -446,7 +444,7 @@
     </script>
 
     @* Script validação checkboxs *@
-<script type="text/javascript">
+    <script type="text/javascript">
         function validate() {
             if ((document.getElementById('IsSegunda').checked) ||
                 (document.getElementById('IsTerca').checked) ||
@@ -461,7 +459,7 @@
                 @ViewBag.selectCheckbox = false;
             }
         }
-</script>
+    </script>
 
 </body>
 </html>
