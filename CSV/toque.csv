@@ -1,10 +1,4 @@
-﻿Arquivo;Nome;Hora;Canal;IsAtivo;NivelEnsino;IsSegunda;IsTerca;IsQuarta;IsQuinta;IsSexta;IsSabado;IsDomingo;UltimoToque
-1;;16:00;1;True;1;False;False;False;False;False;False;False;09/03/2021 11:00
-2;teste;19:00:00;2;True;2;False;False;False;False;False;True;True;09/03/2021 10:00
-3;teste;09:00:00;1;True;3;False;True;False;True;False;True;False;09/03/2021 11:00
-4;;10:00:00;2;False;2;False;False;True;True;False;True;False;09/03/2021 10:00
-5;;13:45:00;2;True;1;True;True;True;True;True;False;False;09/03/2021 11:00
-7;teste;16:45;1;True;3;False;False;False;False;False;False;False;09/03/2021 11:30
-8;asdas;12:40;2;True;0;False;False;False;False;False;False;False;09/03/2021 20:00
-9;asdasd;09:50;2;True;0;False;False;False;False;False;False;False;
-10;asdasdas;13:45:00;2;True;0;False;False;False;False;False;False;False;
+Arquivo;Nome;Hora;Canal;IsAtivo;NivelEnsino;IsSegunda;IsTerca;IsQuarta;IsQuinta;IsSexta;IsSabado;IsDomingo;UltimoToque;StartSegs
+1;;16:00;1;True;1;False;False;False;False;False;False;False;09/03/2021 11:00;00:00:22
+2;teste;19:00:00;2;True;2;False;False;False;False;False;True;True;09/03/2021 10:00;00:00:15
+3;teste03;03:01;2;True;3;True;True;True;True;True;False;False;;00:00:27

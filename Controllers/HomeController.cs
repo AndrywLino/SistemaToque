@@ -98,7 +98,7 @@ namespace SistemaToque.Controllers
         }
 
         [HttpPost]
-        public ActionResult CadastrarToque(CadastroModel cadastro)
+        public async Task<ActionResult> CadastrarToque(CadastroModel cadastro)
         {
             List<ToqueModel> toques = LerToquesCSV();
             List<ToqueExportModel> toquesE = new List<ToqueExportModel>();
@@ -133,7 +133,7 @@ namespace SistemaToque.Controllers
             toque.Nome = cadastro.Nome;
             toque.Hora = cadastro.Hora;
             toque.IsAtivo = true;
-            //toque.NivelEnsino = cadastro.Ensino;
+            toque.NivelEnsino = cadastro.Ensino;
             toque.IsSegunda = cadastro.IsSegunda;
             toque.IsTerca = cadastro.IsTerca;
             toque.IsQuarta = cadastro.IsQuarta;
@@ -142,15 +142,34 @@ namespace SistemaToque.Controllers
             toque.IsSabado = cadastro.IsSabado;
             toque.IsDomingo = cadastro.IsDomingo;
             toque.UltimoToque = null;
+            toque.StartSegs = cadastro.StartSegs;
 
-            //if (cadastro.Ensino == 3 || cadastro.Ensino == 4)
-            //    toque.Canal = 1;
-            //else
-            //    toque.Canal = 2;
+            if (cadastro.Ensino == 3 || cadastro.Ensino == 4)
+                toque.Canal = 1;
+            else
+                toque.Canal = 2;
+
             toquesE.Add(toque);
+
+            string pathMusica = "";
+
+            foreach (var file in cadastro.fileupload)
+            {
+                if(file != null && file.ContentLength > 0)
+                {
+                    var nameType = file.FileName.ToString().Split('.');
+                    pathMusica = Path.Combine(Server.MapPath("~/Musicas"), (arquivoId.ToString() + "."+ nameType[1]));
+
+                    file.SaveAs(pathMusica);
+
+                }
+            }
 
             string dir = Path.Combine(Server.MapPath("~/CSV/toque.csv"));
             ServiceCSV.WriteCSVFileToque(dir, toquesE);
+
+            await FTPService.UploadFile(dir);
+            await FTPService.UploadFile(pathMusica);
 
             return RedirectToAction("Toques", true);
         }
@@ -172,8 +191,16 @@ namespace SistemaToque.Controllers
                 if (arq == item.Arquivo)
                 {
                     toque = item;
+                    break;
                 }
             }
+
+            string pathMusica = Path.Combine(Server.MapPath("~/Musicas"), (toque.Arquivo + ".mp3"));
+            //File()
+
+            ViewBag.StartSegs = toque.StartSegs;
+            ViewBag.Ensino = toque.NivelEnsino;
+
             return View(toque);
         }
 

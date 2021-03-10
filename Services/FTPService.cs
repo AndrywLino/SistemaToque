@@ -13,20 +13,18 @@ namespace SistemaToque.Services
     {
         private static FtpClient CreateFtpClient()
         {
-            return new FtpClient("192.168.2.102", new System.Net.NetworkCredential { UserName = "pi", Password = "RaspToque" });
+            return new FtpClient("192.168.2.99", new System.Net.NetworkCredential { UserName = "pi", Password = "RaspToque" });
         }
 
-        public static async Task UploadFile()
+        public static async Task UploadFile(string dir = "")
         {
-            const string fileToUpload = "C:\\Users\\andrywafonso\\source\\repos\\SistemaToque\\CSV\\toque.csv";
-
             try
             {
                 using (FtpClient ftp = CreateFtpClient())
                 {
-                    using (FileStream fs = File.OpenRead(fileToUpload))
+                    using (FileStream fs = File.OpenRead(dir))
                     {
-                        await ftp.UploadAsync(fs, Path.GetFileName(fileToUpload));
+                        await ftp.UploadAsync(fs, Path.GetFileName(dir));
                     }
                 }
             }

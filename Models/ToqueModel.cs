@@ -24,6 +24,7 @@ namespace SistemaToque.Models
         public bool IsSabado { get; set; }
         public bool IsDomingo { get; set; }
         public string UltimoToque { get; set; }
+        public string StartSegs { get; set; }
 
     }
 }
