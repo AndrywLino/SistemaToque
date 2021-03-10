@@ -330,7 +330,7 @@
                                                     </div>
                                                     <!-- /.col -->
                                                     <div class="col-3">
-                                                        <button type="submit" class="btn btn-primary btn-block">Salvar</button>
+                                                        <button type="submit" class="btn btn-primary btn-block" onclick="validate()">Salvar</button>
                                                     </div>
                                                     <!-- /.col -->
                                                 </div>
@@ -429,23 +429,22 @@
     </script>
 
     @* Script validação checkboxs *@
-    <script>
-        var opts = document.getElementsByName("op1[]");
-
-        var isChecked = function () {
-            for (var i = 0; i < 4; i++) {
-                if (opts[i].checked) return true; break;
-
+<script type="text/javascript">
+        function validate() {
+            if ((document.getElementById('IsSegunda').checked) ||
+                (document.getElementById('IsTerca').checked) ||
+                (document.getElementById('IsQuarta').checked) ||
+                (document.getElementById('IsQuinta').checked) ||
+                (document.getElementById('IsSexta').checked) ||
+                (document.getElementById('IsSabado').checked) ||
+                (document.getElementById('IsDomingo').checked)) {
+                @ViewBag.selectCheckbox = true;
+            } else {
+                alert("Selecione pelo menos um dia da semana para criar o seu novo toque");
+                @ViewBag.selectCheckbox = false;
             }
-        };
-
-        var btn = document.getElementById("btn");
-        btn.onclick = function () {
-            if (!isChecked()) {
-                alert("Selecione uma opção");
-            }
-        };
-    </script>
+        }
+</script>
 
 </body>
 </html>
