@@ -1,4 +1,4 @@
-@model SistemaToque.Models.ToqueModel
+﻿@model SistemaToque.Models.ToqueModel
 
 @{
     ViewBag.Title = "Detalhes";
@@ -24,7 +24,7 @@
 </head>
 
 <body class="hold-transition sidebar-mini layout-fixed layout-navbar-fixed layout-footer-fixed sidebar-collapse">
-    
+
     <div class="wrapper">
         <!-- Navbar -->
         <nav class="main-header navbar navbar-expand navbar-white navbar-light">
@@ -52,7 +52,6 @@
             </ul>
         </nav>
         <!-- /.navbar -->
-
         <!-- Main Sidebar Container -->
         <aside class="main-sidebar sidebar-dark-primary elevation-3">
             <!-- Brand Logo -->
@@ -119,7 +118,6 @@
                 </div><!-- /.container-fluid -->
             </div>
             <!-- /.content-header -->
-
             <!-- Main content -->
             <section class="content">
                 <div class="container-fluid">
@@ -133,9 +131,44 @@
                                 <!-- /.card-header -->
 
                                 <div class="card-body">
-                                    <div class="row">
+                                    <div class="form-row">
+                                        <div class="col-md-4 mb-3">
+                                            <label>Descrição:</label>
+                                            <input type="text" class="form-control" id="validationServer01" placeholder="First name" disabled>
+                                        </div>
+                                        <div class="col-md-4 mb-3">
+                                            <label for="validationServer02">Arquivo:</label>
+                                            <input type="text" class="form-control" id="validationServer02" placeholder="Last name" disabled>
+                                        </div>
+                                        <div class="col-md-4 mb-3">
+                                            <label for="validationServerUsername"> &nbsp; </label>
+                                            <div class="input-group">
+                                                <audio controls>
+                                                    <source src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/9473/new_year_dubstep_minimix.ogg" type="audio/ogg">
+                                                    Seu navegador não suporta a tag de áudio
+                                                </audio>
+                                            </div>
+                                        </div>
                                     </div>
-                                    <!-- /.row -->
+                                    <div class="form-row">
+                                        <div class="col-md-3 mb-3">
+                                            <label for="validationServer03">Segundos para início da música:</label>
+                                            <input type="text" class="form-control" id="validationServer03" placeholder="City" disabled>
+                                        </div>
+                                        <div class="col-md-3 mb-3">
+                                            <label for="validationServer04">Hora de início do toque:</label>
+                                            <input type="text" class="form-control" id="validationServer04" placeholder="State" disabled>
+                                        </div>
+                                        <div class="col-md-3 mb-3">
+                                            <label for="validationServer05">Dias da semana:</label>
+                                            <input type="text" class="form-control" id="validationServer05" placeholder="Zip" disabled>
+                                        </div>
+                                        <div class="col-md-3 mb-3">
+                                            <label for="validationServer05">Tipo de ensino selecionado:</label>
+                                            <input type="text" class="form-control" id="validationServer05" placeholder="Zip" disabled>
+                                        </div>
+                                    </div>
+                                    <!-- /.form-row -->
                                 </div>
                                 <!-- ./card-body -->
                             </div>
@@ -154,7 +187,6 @@
             <!-- Control sidebar content goes here -->
         </aside>
         <!-- /.control-sidebar -->
-
         <!-- Main Footer -->
         <footer class="main-footer">
             <strong>Copyright &copy; 1972 - 2021 <a href="https://ceinet.com.br">CEI</a>.</strong>
@@ -167,7 +199,6 @@
 
     </div>
     <!-- ./wrapper -->
-
     <!-- REQUIRED SCRIPTS -->
     <!-- jQuery -->
     <script src="~/plugins/jquery/jquery.min.js"></script>

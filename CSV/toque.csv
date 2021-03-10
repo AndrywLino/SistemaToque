@@ -1,6 +1,3 @@
 ﻿Arquivo;Nome;Hora;Canal;IsAtivo;NivelEnsino;IsSegunda;IsTerca;IsQuarta;IsQuinta;IsSexta;IsSabado;IsDomingo;UltimoToque;StartSegs
-1;;16:00;1;True;1;False;False;False;False;False;False;False;;
-2;teste;19:00:00;2;True;2;False;False;False;False;False;True;True;;
-3;teste03;03:01;2;True;3;True;True;True;True;True;False;False;;
-4;CXS;13:45:00;2;True;1;False;False;False;False;False;False;False;;
-5;Toque 2º horário;13:45:00;2;True;1;False;False;False;False;False;False;False;;
+1;Toque 1º horário;13:45:00;2;True;1;True;True;True;True;True;False;False;;
+2;Toque 2º horário;13:45:00;2;True;2;True;True;True;True;True;False;False;;
