@@ -136,7 +136,7 @@ namespace SistemaToque.Controllers
             }
             else
             {
-                return View();
+                return RedirectToAction("EditarToque", toque);
             }
         }
 
