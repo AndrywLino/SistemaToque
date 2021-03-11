@@ -258,10 +258,9 @@ namespace SistemaToque.Controllers
             return View(toque);
         }
 
-        public ActionResult Login(UserModel user)
+        public async Task<ActionResult> Login(UserModel user)
         {
-            //string dir = Path.Combine(Server.MapPath("~/CSV/"));
-            //await FTPService.DownloadFile(dir);
+            await SyncRasp();
             ViewBag.UsuarioInvalido = "";
             ViewBag.SenhaInvalido = "";
             ViewBag.Message = "Your contact page.";
@@ -270,13 +269,21 @@ namespace SistemaToque.Controllers
 
         }
 
-        public ActionResult Detalhes(UserModel user)
+        public ActionResult Detalhes(string arquivo)
         {
-            ViewBag.UsuarioInvalido = "";
-            ViewBag.SenhaInvalido = "";
-            ViewBag.Message = "Your contact page.";
+            string arq = arquivo;
+            List<ToqueModel> toques = LerToquesCSV();
+            ToqueModel toque = new ToqueModel();
+            foreach (var item in toques)
+            {
+                if (arq == item.Arquivo)
+                {
+                    toque = item;
+                    break;
+                }
+            }
 
-            return View();
+            return View(toque);
 
         }
 
@@ -360,6 +367,13 @@ namespace SistemaToque.Controllers
                 pla.DiaSemana = pla.DiaSemana.Substring(2);
             }
             return planilha;
+        }
+
+        private async Task<int> SyncRasp()
+        {
+            string dir = Path.Combine(Server.MapPath("~/CSV/"));
+            await FTPService.DownloadFile(dir);
+            return 1;
         }
 
     }
