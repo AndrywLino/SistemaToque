@@ -134,14 +134,14 @@
                                     <div class="form-row">
                                         <div class="col-md-4 mb-3">
                                             <label>Descrição:</label>
-                                            <input type="text" class="form-control" id="validationServer01" placeholder="First name" disabled>
+                                            @Html.EditorFor(model => model.Nome, new { htmlAttributes = new { @type = "text", @class = "form-control"} })
                                         </div>
                                         <div class="col-md-4 mb-3">
-                                            <label for="validationServer02">Arquivo:</label>
-                                            <input type="text" class="form-control" id="validationServer02" placeholder="Last name" disabled>
+                                            <label>Arquivo:</label>
+                                            <input type="text" class="form-control" placeholder="Last name" disabled>
                                         </div>
                                         <div class="col-md-4 mb-3">
-                                            <label for="validationServerUsername"> &nbsp; </label>
+                                            <label> &nbsp; </label>
                                             <div class="input-group">
                                                 <audio controls>
                                                     <source src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/9473/new_year_dubstep_minimix.ogg" type="audio/ogg">
@@ -152,19 +152,19 @@
                                     </div>
                                     <div class="form-row">
                                         <div class="col-md-3 mb-3">
-                                            <label for="validationServer03">Segundos para início da música:</label>
+                                            <label>Segundos para início da música:</label>
                                             <input type="text" class="form-control" id="validationServer03" placeholder="City" disabled>
                                         </div>
                                         <div class="col-md-3 mb-3">
-                                            <label for="validationServer04">Hora de início do toque:</label>
+                                            <label>Hora de início do toque:</label>
                                             <input type="text" class="form-control" id="validationServer04" placeholder="State" disabled>
                                         </div>
                                         <div class="col-md-3 mb-3">
-                                            <label for="validationServer05">Dias da semana:</label>
+                                            <label>Dias da semana:</label>
                                             <input type="text" class="form-control" id="validationServer05" placeholder="Zip" disabled>
                                         </div>
                                         <div class="col-md-3 mb-3">
-                                            <label for="validationServer05">Tipo de ensino selecionado:</label>
+                                            <label>Tipo de ensino selecionado:</label>
                                             <input type="text" class="form-control" id="validationServer05" placeholder="Zip" disabled>
                                         </div>
                                     </div>
