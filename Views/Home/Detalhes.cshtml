@@ -134,17 +134,13 @@
                                     <div class="form-row">
                                         <div class="col-md-4 mb-3">
                                             <label>Descrição:</label>
-                                            @Html.EditorFor(model => model.Nome, new { htmlAttributes = new { @type = "text", @class = "form-control"} })
+                                            <input type="text" class="form-control" value="@Html.DisplayFor(model => model.Nome)" disabled>
                                         </div>
-                                        <div class="col-md-4 mb-3">
-                                            <label>Arquivo:</label>
-                                            <input type="text" class="form-control" placeholder="Last name" disabled>
-                                        </div>
-                                        <div class="col-md-4 mb-3">
+                                        <div class="col-md-8 mb-3">
                                             <label> &nbsp; </label>
                                             <div class="input-group">
                                                 <audio controls>
-                                                    <source src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/9473/new_year_dubstep_minimix.ogg" type="audio/ogg">
+                                                    <source src="~/Musicas/" type="audio/mp3">
                                                     Seu navegador não suporta a tag de áudio
                                                 </audio>
                                             </div>
@@ -153,19 +149,19 @@
                                     <div class="form-row">
                                         <div class="col-md-3 mb-3">
                                             <label>Segundos para início da música:</label>
-                                            <input type="text" class="form-control" id="validationServer03" placeholder="City" disabled>
+                                            <input type="text" class="form-control" value="@Html.DisplayFor(model => model.StartSegs)" disabled>
                                         </div>
                                         <div class="col-md-3 mb-3">
                                             <label>Hora de início do toque:</label>
-                                            <input type="text" class="form-control" id="validationServer04" placeholder="State" disabled>
+                                            <input type="text" class="form-control" value="@Html.DisplayFor(model => model.Hora)" disabled>
                                         </div>
                                         <div class="col-md-3 mb-3">
                                             <label>Dias da semana:</label>
-                                            <input type="text" class="form-control" id="validationServer05" placeholder="Zip" disabled>
+                                            <textarea class="form-control" id="text-content" rows="3" disabled>@Html.DisplayFor(model => model.DiaSemana)</textarea>
                                         </div>
                                         <div class="col-md-3 mb-3">
                                             <label>Tipo de ensino selecionado:</label>
-                                            <input type="text" class="form-control" id="validationServer05" placeholder="Zip" disabled>
+                                            <input type="text" class="form-control" value="@Html.DisplayFor(model => model.TxEnsino)" disabled>
                                         </div>
                                     </div>
                                     <!-- /.form-row -->
@@ -222,6 +218,29 @@
     <script src="~/dist/js/demo.js"></script>
     <!-- AdminLTE dashboard demo (This is only for demo purposes) -->
     <script src="~/dist/js/pages/dashboard2.js"></script>
+
+    @*Selecionar valor atual no select e radioButton*@
+    <script>
+        selectElement('StartSegs', '@ViewBag.StartSegs')
+        checkRadio()
+
+        function selectElement(id, valueToSelect) {
+            let element = document.getElementById(id);
+            element.value = valueToSelect;
+        }
+
+        function checkRadio() {
+            if (@ViewBag.Ensino == 1) {
+                document.getElementById("radioFund1").checked = true;
+            }
+            if (@ViewBag.Ensino == 2) {
+                document.getElementById("radioFund2").checked = true;
+            }
+            if (@ViewBag.Ensino == 3) {
+                document.getElementById("radioEM").checked = true;
+            }
+        }
+    </script>
 
 </body>
 </html>

@@ -258,9 +258,9 @@ namespace SistemaToque.Controllers
             return View(toque);
         }
 
-        public async Task<ActionResult> Login(UserModel user)
+        public ActionResult Login(UserModel user)
         {
-            await SyncRasp();
+            //await SyncRasp();
             ViewBag.UsuarioInvalido = "";
             ViewBag.SenhaInvalido = "";
             ViewBag.Message = "Your contact page.";
