@@ -34,7 +34,7 @@ namespace SistemaToque.Services
             }
         }
 
-        public static async Task DownloadFile(string dir)
+        public static async Task DownloadFile(string dir, string formato)
         {
             try
             {
@@ -48,19 +48,25 @@ namespace SistemaToque.Services
 
                         using (MemoryStream ms = new MemoryStream())
                         {
-                            await ftp.DownloadAsync(ms, ftpItem.Name);
+                            string fileName = ftpItem.Name;
+                            string[] typeFile = fileName.Split('.');
 
-                            ms.Position = 0;
-
-                            using (StreamReader sr = new StreamReader(ms))
+                            if (typeFile[1] == formato)
                             {
-                                string fileContents = await sr.ReadToEndAsync();
+                                await ftp.DownloadAsync(ms, ftpItem.Name);
 
-                                if (String.IsNullOrEmpty(fileContents))
-                                    throw new Exception("Arquivo Vazio");
+                                ms.Position = 0;
+
+                                using (StreamReader sr = new StreamReader(ms))
+                                {
+                                    string fileContents = await sr.ReadToEndAsync();
+
+                                    if (String.IsNullOrEmpty(fileContents))
+                                        throw new Exception("Arquivo Vazio");
+                                }
+
+                                await ftp.DownloadFileAsync(Path.Combine(dir, ftpItem.Name), ftpItem.Name);
                             }
-
-                            await ftp.DownloadFileAsync(Path.Combine(dir, ftpItem.Name), ftpItem.Name);
                         }
                     }
                 }
@@ -70,5 +76,6 @@ namespace SistemaToque.Services
 
             }
         }
+
     }
 }
