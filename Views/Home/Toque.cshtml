@@ -128,7 +128,7 @@
                                 </div>
                                 <!-- /.card-header -->
 
-                                @using (Html.BeginForm("CadastrarToque", "Home", FormMethod.Post, new { enctype = "multipart/form-data" }))
+                                @using (Html.BeginForm("Toque", "Home", FormMethod.Post, new { enctype = "multipart/form-data" }))
                                 {
                                     <div class="card-body">
                                         <div class="form-row">
@@ -405,10 +405,8 @@
                 (document.getElementById('IsSexta').checked) ||
                 (document.getElementById('IsSabado').checked) ||
                 (document.getElementById('IsDomingo').checked)) {
-                @ViewBag.selectCheckbox = true;
             } else {
                 alert("Selecione pelo menos um dia da semana para criar o seu novo toque");
-                @ViewBag.selectCheckbox = false;
             }
         }
     </script>

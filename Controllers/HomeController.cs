@@ -46,163 +46,189 @@ namespace SistemaToque.Controllers
         [HttpPost]
         public async Task<ActionResult> EditarToque(ToqueModel toque)
         {
-            List<ToqueModel> toques = LerToquesCSV();
-            List<ToqueExportModel> toquesE = new List<ToqueExportModel>();
-
-            int i = 0;
-
-            foreach (var item in toques)
+            if ((toque.IsSegunda) ||
+                (toque.IsTerca) ||
+                (toque.IsQuarta) ||
+                (toque.IsQuinta) ||
+                (toque.IsSexta) ||
+                (toque.IsSabado) ||
+                (toque.IsDomingo))
             {
-                ToqueExportModel it = new ToqueExportModel();
-                it.Arquivo = item.Arquivo;
-                it.Nome = item.Nome;
-                it.Hora = item.Hora;
-                it.Canal = item.Canal;
-                it.IsSegunda = item.IsSegunda;
-                it.IsTerca = item.IsTerca;
-                it.IsQuarta = item.IsQuarta;
-                it.IsQuinta = item.IsQuinta;
-                it.IsSexta = item.IsSexta;
-                it.IsSabado = item.IsSabado;
-                it.IsDomingo = item.IsDomingo;
-                it.IsAtivo = item.IsAtivo;
-                it.NivelEnsino = item.NivelEnsino;
-                it.UltimoToque = item.UltimoToque;
-                it.StartSegs = item.StartSegs;
+                List<ToqueModel> toques = LerToquesCSV();
+                List<ToqueExportModel> toquesE = new List<ToqueExportModel>();
 
-                toquesE.Add(it);
-            }
-            string arquivoId = "";
-            foreach (var item in toques)
-            {
-                if (item.Arquivo == toque.Arquivo)
+                int i = 0;
+
+                foreach (var item in toques)
                 {
-                    toquesE[i].Arquivo = toque.Arquivo;
-                    toquesE[i].Nome = toque.Nome;
-                    toquesE[i].Hora = toque.Hora;
-                    toquesE[i].IsSegunda = toque.IsSegunda;
-                    toquesE[i].IsTerca = toque.IsTerca;
-                    toquesE[i].IsQuarta = toque.IsQuarta;
-                    toquesE[i].IsQuinta = toque.IsQuinta;
-                    toquesE[i].IsSexta = toque.IsSexta;
-                    toquesE[i].IsSabado = toque.IsSabado;
-                    toquesE[i].IsDomingo = toque.IsDomingo;
-                    toquesE[i].IsAtivo = toque.IsAtivo;
-                    toquesE[i].NivelEnsino = toque.NivelEnsino;
-                    toquesE[i].StartSegs = toque.StartSegs;
-                    toquesE[i].UltimoToque = toque.UltimoToque;
+                    ToqueExportModel it = new ToqueExportModel();
+                    it.Arquivo = item.Arquivo;
+                    it.Nome = item.Nome;
+                    it.Hora = item.Hora;
+                    it.Canal = item.Canal;
+                    it.IsSegunda = item.IsSegunda;
+                    it.IsTerca = item.IsTerca;
+                    it.IsQuarta = item.IsQuarta;
+                    it.IsQuinta = item.IsQuinta;
+                    it.IsSexta = item.IsSexta;
+                    it.IsSabado = item.IsSabado;
+                    it.IsDomingo = item.IsDomingo;
+                    it.IsAtivo = item.IsAtivo;
+                    it.NivelEnsino = item.NivelEnsino;
+                    it.UltimoToque = item.UltimoToque;
+                    it.StartSegs = item.StartSegs;
 
-                    arquivoId = toque.Arquivo;
-
-                    if (toque.NivelEnsino == 2 || toque.NivelEnsino == 3)
-                        toquesE[i].Canal = 1;
-                    else
-                        toquesE[i].Canal = 2;
-
-                    break;
+                    toquesE.Add(it);
                 }
-                i++;
-            }
-
-            string pathMusica = "";
-
-            foreach (var file in toque.fileupload)
-            {
-                if (file != null && file.ContentLength > 0)
+                string arquivoId = "";
+                foreach (var item in toques)
                 {
-                    var nameType = file.FileName.ToString().Split('.');
-                    pathMusica = Path.Combine(Server.MapPath("~/Musicas"), (arquivoId.ToString() + "." + nameType[1]));
+                    if (item.Arquivo == toque.Arquivo)
+                    {
+                        toquesE[i].Arquivo = toque.Arquivo;
+                        toquesE[i].Nome = toque.Nome;
+                        toquesE[i].Hora = toque.Hora;
+                        toquesE[i].IsSegunda = toque.IsSegunda;
+                        toquesE[i].IsTerca = toque.IsTerca;
+                        toquesE[i].IsQuarta = toque.IsQuarta;
+                        toquesE[i].IsQuinta = toque.IsQuinta;
+                        toquesE[i].IsSexta = toque.IsSexta;
+                        toquesE[i].IsSabado = toque.IsSabado;
+                        toquesE[i].IsDomingo = toque.IsDomingo;
+                        toquesE[i].IsAtivo = toque.IsAtivo;
+                        toquesE[i].NivelEnsino = toque.NivelEnsino;
+                        toquesE[i].StartSegs = toque.StartSegs;
+                        toquesE[i].UltimoToque = toque.UltimoToque;
 
-                    file.SaveAs(pathMusica);
+                        arquivoId = toque.Arquivo;
 
+                        if (toque.NivelEnsino == 2 || toque.NivelEnsino == 3)
+                            toquesE[i].Canal = 1;
+                        else
+                            toquesE[i].Canal = 2;
+
+                        break;
+                    }
+                    i++;
                 }
+
+                string pathMusica = "";
+
+                foreach (var file in toque.fileupload)
+                {
+                    if (file != null && file.ContentLength > 0)
+                    {
+                        var nameType = file.FileName.ToString().Split('.');
+                        pathMusica = Path.Combine(Server.MapPath("~/Musicas"), (arquivoId.ToString() + "." + nameType[1]));
+
+                        file.SaveAs(pathMusica);
+
+                    }
+                }
+
+                string dir = Path.Combine(Server.MapPath("~/CSV/toque.csv"));
+                ServiceCSV.WriteCSVFileToque(dir, toquesE);
+
+                await FTPService.UploadFile(dir);
+                await FTPService.UploadFile(pathMusica);
+
+                return RedirectToAction("Toques", true);
             }
-
-            string dir = Path.Combine(Server.MapPath("~/CSV/toque.csv"));
-            ServiceCSV.WriteCSVFileToque(dir, toquesE);
-
-            await FTPService.UploadFile(dir);
-            await FTPService.UploadFile(pathMusica);
-
-            return RedirectToAction("Toques", true);
+            else
+            {
+                return View();
+            }
         }
 
         [HttpPost]
-        public async Task<ActionResult> CadastrarToque(CadastroModel cadastro)
+        public async Task<ActionResult> Toque(CadastroModel cadastro)
         {
             List<ToqueModel> toques = LerToquesCSV();
             List<ToqueExportModel> toquesE = new List<ToqueExportModel>();
-            int arquivoId = 0;
-
-            foreach (var item in toques)
+            if ((cadastro.IsSegunda) ||
+                (cadastro.IsTerca) ||
+                (cadastro.IsQuarta) ||
+                (cadastro.IsQuinta) ||
+                (cadastro.IsSexta) ||
+                (cadastro.IsSabado) ||
+                (cadastro.IsDomingo))
             {
-                ToqueExportModel it = new ToqueExportModel();
-                it.Arquivo = item.Arquivo;
-                it.Nome = item.Nome;
-                it.Hora = item.Hora;
-                it.Canal = item.Canal;
-                it.IsSegunda = item.IsSegunda;
-                it.IsTerca = item.IsTerca;
-                it.IsQuarta = item.IsQuarta;
-                it.IsQuinta = item.IsQuinta;
-                it.IsSexta = item.IsSexta;
-                it.IsSabado = item.IsSabado;
-                it.IsDomingo = item.IsDomingo;
-                it.IsAtivo = item.IsAtivo;
-                it.NivelEnsino = item.NivelEnsino;
-                it.UltimoToque = item.UltimoToque;
-                it.StartSegs = item.StartSegs;
+                int arquivoId = 0;
 
-                arquivoId = Convert.ToInt32(it.Arquivo);
-                toquesE.Add(it);
-            }
-
-            arquivoId += 1;
-
-            ToqueExportModel toque = new ToqueExportModel();
-            toque.Arquivo = arquivoId.ToString();
-            toque.Nome = cadastro.Nome;
-            toque.Hora = cadastro.Hora;
-            toque.IsAtivo = true;
-            toque.NivelEnsino = cadastro.Ensino;
-            toque.IsSegunda = cadastro.IsSegunda;
-            toque.IsTerca = cadastro.IsTerca;
-            toque.IsQuarta = cadastro.IsQuarta;
-            toque.IsQuinta = cadastro.IsQuinta;
-            toque.IsSexta = cadastro.IsSexta;
-            toque.IsSabado = cadastro.IsSabado;
-            toque.IsDomingo = cadastro.IsDomingo;
-            toque.UltimoToque = null;
-            toque.StartSegs = cadastro.StartSegs;
-
-            if (cadastro.Ensino == 2 || cadastro.Ensino == 3)
-                toque.Canal = 1;
-            else
-                toque.Canal = 2;
-
-            toquesE.Add(toque);
-
-            string pathMusica = "";
-
-            foreach (var file in cadastro.fileupload)
-            {
-                if (file != null && file.ContentLength > 0)
+                foreach (var item in toques)
                 {
-                    var nameType = file.FileName.ToString().Split('.');
-                    pathMusica = Path.Combine(Server.MapPath("~/Musicas"), (arquivoId.ToString() + "." + nameType[1]));
+                    ToqueExportModel it = new ToqueExportModel();
+                    it.Arquivo = item.Arquivo;
+                    it.Nome = item.Nome;
+                    it.Hora = item.Hora;
+                    it.Canal = item.Canal;
+                    it.IsSegunda = item.IsSegunda;
+                    it.IsTerca = item.IsTerca;
+                    it.IsQuarta = item.IsQuarta;
+                    it.IsQuinta = item.IsQuinta;
+                    it.IsSexta = item.IsSexta;
+                    it.IsSabado = item.IsSabado;
+                    it.IsDomingo = item.IsDomingo;
+                    it.IsAtivo = item.IsAtivo;
+                    it.NivelEnsino = item.NivelEnsino;
+                    it.UltimoToque = item.UltimoToque;
+                    it.StartSegs = item.StartSegs;
 
-                    file.SaveAs(pathMusica);
-
+                    arquivoId = Convert.ToInt32(it.Arquivo);
+                    toquesE.Add(it);
                 }
+
+                arquivoId += 1;
+
+                ToqueExportModel toque = new ToqueExportModel();
+                toque.Arquivo = arquivoId.ToString();
+                toque.Nome = cadastro.Nome;
+                toque.Hora = cadastro.Hora;
+                toque.IsAtivo = true;
+                toque.NivelEnsino = cadastro.Ensino;
+                toque.IsSegunda = cadastro.IsSegunda;
+                toque.IsTerca = cadastro.IsTerca;
+                toque.IsQuarta = cadastro.IsQuarta;
+                toque.IsQuinta = cadastro.IsQuinta;
+                toque.IsSexta = cadastro.IsSexta;
+                toque.IsSabado = cadastro.IsSabado;
+                toque.IsDomingo = cadastro.IsDomingo;
+                toque.UltimoToque = null;
+                toque.StartSegs = cadastro.StartSegs;
+
+                if (cadastro.Ensino == 2 || cadastro.Ensino == 3)
+                    toque.Canal = 1;
+                else
+                    toque.Canal = 2;
+
+                toquesE.Add(toque);
+
+                string pathMusica = "";
+
+                foreach (var file in cadastro.fileupload)
+                {
+                    if (file != null && file.ContentLength > 0)
+                    {
+                        var nameType = file.FileName.ToString().Split('.');
+                        pathMusica = Path.Combine(Server.MapPath("~/Musicas"), (arquivoId.ToString() + "." + nameType[1]));
+
+                        file.SaveAs(pathMusica);
+
+                    }
+                }
+
+                string dir = Path.Combine(Server.MapPath("~/CSV/toque.csv"));
+                ServiceCSV.WriteCSVFileToque(dir, toquesE);
+
+                await FTPService.UploadFile(dir);
+                await FTPService.UploadFile(pathMusica);
+
+                return RedirectToAction("Toques", true);
             }
-
-            string dir = Path.Combine(Server.MapPath("~/CSV/toque.csv"));
-            ServiceCSV.WriteCSVFileToque(dir, toquesE);
-
-            await FTPService.UploadFile(dir);
-            await FTPService.UploadFile(pathMusica);
-
-            return RedirectToAction("Toques", true);
+            else
+            {
+                return View();
+            }
         }
 
         [HttpGet]
