@@ -258,9 +258,8 @@ namespace SistemaToque.Controllers
             return View(toque);
         }
 
-        public async Task<ActionResult> Login(UserModel user)
+        public ActionResult Login(UserModel user)
         {
-            await SyncRasp();
             ViewBag.UsuarioInvalido = "";
             ViewBag.SenhaInvalido = "";
             ViewBag.Message = "Your contact page.";
@@ -300,11 +299,12 @@ namespace SistemaToque.Controllers
                 return View("Login");
         }
 
-        public ActionResult Toques(bool logado = false)
+        public async Task<ActionResult> Toques(bool logado = false)
         {
             logado = true;
             if (logado)
             {
+                await SyncRasp();
                 List<ToqueModel> model = LerToquesCSV();
 
                 return View(model);
@@ -372,7 +372,20 @@ namespace SistemaToque.Controllers
         private async Task<int> SyncRasp()
         {
             string dir = Path.Combine(Server.MapPath("~/CSV/"));
-            await FTPService.DownloadFile(dir);
+            await FTPService.DownloadFile(dir, "csv");
+            dir = Path.Combine(Server.MapPath("~/Musicas/"));
+
+            DirectoryInfo di = new DirectoryInfo(dir);
+
+            foreach (FileInfo file in di.GetFiles())
+            {
+                file.Delete();
+            }
+            foreach (DirectoryInfo fil in di.GetDirectories())
+            {
+                fil.Delete(true);
+            }
+            await FTPService.DownloadFile(dir, "mp3");
             return 1;
         }
 
