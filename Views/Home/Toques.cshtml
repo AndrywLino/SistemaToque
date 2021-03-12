@@ -205,7 +205,7 @@
                                                             </a>
                                                         </div>
                                                         <div class="col-xl-4 col-lg-4 col-md-12 col-sm-12">
-                                                            <a href="@Url.Action("DeletarToque", "Home", new { arquivo = item.Arquivo })" class="btn btn-danger btn-sm btn-style" title="Excluir toque" alt="Excluir toque" data-toggle="modal" data-target="#modal-lg">
+                                                            <a href="@Url.Action("DeleteToque", "Home", new { arquivo = item.Arquivo })" class="btn btn-danger btn-sm btn-style" title="Excluir toque" alt="Excluir toque">
                                                                 <i class="fas fa-times"></i>
                                                             </a>
                                                         </div>
@@ -215,28 +215,6 @@
                                             </tr>
                                         }
                                     </table>
-
-                                    <div class="modal fade" id="modal-lg">
-                                        <div class="modal-dialog modal-lg">
-                                            <div class="modal-content">
-                                                <div class="modal-header">
-                                                    <h4 class="modal-title">Excluir item</h4>
-                                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                                        <span aria-hidden="true">&times;</span>
-                                                    </button>
-                                                </div>
-                                                <div class="modal-body">
-                                                    <p>Você tem certeza que deseja excluir esse item?</p>
-                                                </div>
-                                                <div class="modal-footer justify-content-between">
-                                                    <button type="button" class="btn btn-default" data-dismiss="modal">Cancelar</button>
-                                                    <button type="button" class="btn btn-danger">Excluir</button>
-                                                </div>
-                                            </div>
-                                            <!-- /.modal-content -->
-                                        </div>
-                                        <!-- /.modal-dialog -->
-                                    </div>
                                     <!-- /.modal -->
                                 </div>
                                 <!-- /.card-body -->
@@ -264,7 +242,6 @@
 
     </div>
     <!-- ./wrapper -->
-
     <!-- REQUIRED SCRIPTS -->
     <!-- jQuery -->
     <script src="~/plugins/jquery/jquery.min.js"></script>

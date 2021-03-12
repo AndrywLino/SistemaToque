@@ -231,6 +231,55 @@ namespace SistemaToque.Controllers
             }
         }
 
+        [HttpPost]
+        public async Task<ActionResult> DeleteToque(ToqueModel toque)
+        {
+            List<ToqueModel> toques = LerToquesCSV();
+            List<ToqueExportModel> toquesE = new List<ToqueExportModel>();
+
+            int i = 0;
+
+            foreach (var item in toques)
+            {
+                ToqueExportModel it = new ToqueExportModel();
+                it.Arquivo = item.Arquivo;
+                it.Nome = item.Nome;
+                it.Hora = item.Hora;
+                it.Canal = item.Canal;
+                it.IsSegunda = item.IsSegunda;
+                it.IsTerca = item.IsTerca;
+                it.IsQuarta = item.IsQuarta;
+                it.IsQuinta = item.IsQuinta;
+                it.IsSexta = item.IsSexta;
+                it.IsSabado = item.IsSabado;
+                it.IsDomingo = item.IsDomingo;
+                it.IsAtivo = item.IsAtivo;
+                it.NivelEnsino = item.NivelEnsino;
+                it.UltimoToque = item.UltimoToque;
+                it.StartSegs = item.StartSegs;
+
+                toquesE.Add(it);
+            }
+
+            foreach (var item in toquesE)
+            {
+                if (toque.Arquivo == item.Arquivo)
+                {
+                    toquesE.Remove(item);
+                    break;
+                }
+            }
+
+            string dir = Path.Combine(Server.MapPath("~/CSV/toque.csv"));
+            ServiceCSV.WriteCSVFileToque(dir, toquesE);
+            await FTPService.UploadFile(dir);
+
+            string dirMusic = toque.Arquivo + ".mp3";
+            await FTPService.DeleteMusic(dirMusic);
+
+            return RedirectToAction("Toques", true);
+        }
+
         [HttpGet]
         public ActionResult RedirectCadastro()
         {
@@ -254,6 +303,24 @@ namespace SistemaToque.Controllers
 
             ViewBag.StartSegs = toque.StartSegs;
             ViewBag.Ensino = toque.NivelEnsino;
+
+            return View(toque);
+        }
+
+        [HttpGet]
+        public ActionResult DeleteToque(string arquivo)
+        {
+            string arq = arquivo;
+            List<ToqueModel> toques = LerToquesCSV();
+            ToqueModel toque = new ToqueModel();
+            foreach (var item in toques)
+            {
+                if (arq == item.Arquivo)
+                {
+                    toque = item;
+                    break;
+                }
+            }
 
             return View(toque);
         }
@@ -384,6 +451,12 @@ namespace SistemaToque.Controllers
             {
                 file.Delete();
             }
+            return 1;
+        }
+
+        private async Task<int> StatusAtivo()
+        {
+
             return 1;
         }
 

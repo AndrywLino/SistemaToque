@@ -1,0 +1,32 @@
+﻿@model SistemaToque.Models.ToqueModel
+
+@{
+    ViewBag.Title = "DeleteToque";
+}
+
+@using (Html.BeginForm("DeleteToque", "Home", FormMethod.Post, new { enctype = "multipart/form-data" }))
+{
+    <div class="" id="modal-lg">
+        <div class="modal-dialog modal-lg">
+            <div class="modal-content">
+                <div class="col-md-3 mb-3">
+                    <label>Segundos para início da música:</label>
+                    <input name="Arquivo" id="Arquivo" type="text" class="form-control" value="@Html.DisplayFor(model => model.Arquivo)" hidden>
+                </div>
+                <div class="modal-header">
+                    <h4 class="modal-title">Excluir item</h4>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <p>Você tem certeza que deseja excluir esse item?</p>
+                </div>
+                <div class="modal-footer justify-content-between">
+                    <button type="button" class="btn btn-default" data-dismiss="modal">Cancelar</button>
+                    <button type="submit" class="btn btn-danger">Excluir</button>
+                </div>
+            </div>
+        </div>
+    </div>
+}

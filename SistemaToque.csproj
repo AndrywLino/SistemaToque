@@ -2322,6 +2322,7 @@
     <Content Include="Views\Home\Toques.cshtml" />
     <Content Include="Views\Home\EditarToque.cshtml" />
     <Content Include="Views\Home\Detalhes.cshtml" />
+    <Content Include="Views\Home\DeleteToque.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Code\" />

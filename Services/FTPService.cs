@@ -13,7 +13,11 @@ namespace SistemaToque.Services
     {
         private static FtpClient CreateFtpClient()
         {
+            /*string para Rasp do ensino medio*/
             return new FtpClient("192.168.2.99", new System.Net.NetworkCredential { UserName = "pi", Password = "RaspToque" });
+
+            /*string para Rasp do fundamental*/
+            //return new FtpClient("192.168.2.98", new System.Net.NetworkCredential { UserName = "pi", Password = "RaspToque" });
         }
 
         public static async Task UploadFile(string dir = "")
@@ -77,5 +81,20 @@ namespace SistemaToque.Services
             }
         }
 
+        public static async Task DeleteMusic(string dir)
+        {
+            using (FtpClient ftp = CreateFtpClient())
+            {
+                try
+                {
+                    await ftp.DeleteFileAsync(dir);
+
+                }
+                catch (Exception e)
+                {
+
+                }
+            }
+        }
     }
 }
