@@ -145,6 +145,9 @@
                                         <div class="col-md-8 mb-3">
                                             <label> &nbsp; </label>
                                             <div class="input-group">
+                                                <div>
+                                                    @Html.DisplayFor(model => model.Arquivo)
+                                                </div>
                                                 <audio controls>
                                                     <source src="~/Musicas/" type="audio/mp3">
                                                     Seu navegador não suporta a tag de áudio
@@ -246,6 +249,12 @@
                 document.getElementById("radioEM").checked = true;
             }
         }
+    </script>
+
+    @*Recebendo valor do Id do arquivo*@
+    <script>
+        var arquivo = document.querySelector('#arquivo');
+        alert(arquivo);
     </script>
 
 </body>
