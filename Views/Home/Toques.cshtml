@@ -134,6 +134,18 @@
                         <a href="@Url.Action("RedirectCadastro", "Home")" class="btn btn-success btn-block">
                             <i class="fa fa-plus"></i> <b> &nbsp; Adicionar um novo toque</b>
                         </a>
+                        @if (ViewBag.ativo)
+                        {
+                            <a href="@Url.Action("RedirectCadastro", "Home")" class="btn btn-danger btn-block">
+                                <i class="fa fa-plus"></i> <b> &nbsp; Parar toques</b>
+                            </a>
+                        }
+                        else
+                        {
+                            <a href="@Url.Action("RedirectCadastro", "Home")" class="btn btn-info btn-block">
+                                <i class="fa fa-plus"></i> <b> &nbsp; Reiniciar toques</b>
+                            </a>
+                        }
                         @*@Html.ActionLink("Adicionar um novo toque", "RedirectCadastro", "Home", null, new { @type = "button", @class = "btn btn-success btn-block" })*@
                     </div>
                 </div>
