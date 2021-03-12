@@ -280,6 +280,11 @@ namespace SistemaToque.Controllers
             return RedirectToAction("Toques", true);
         }
 
+        public ActionResult PararToques()
+        {
+            return View();
+        }
+
         [HttpGet]
         public ActionResult RedirectCadastro()
         {
