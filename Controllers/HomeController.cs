@@ -372,6 +372,13 @@ namespace SistemaToque.Controllers
             if (logado)
             {
                 await SyncRasp();
+
+                bool ativo = VerificarAtivo();
+                if (ativo)
+                    ViewBag.ativo = true;
+                else
+                    ViewBag.ativo = false;
+
                 List<ToqueModel> model = LerToquesCSV();
 
                 return View(model);
@@ -454,10 +461,26 @@ namespace SistemaToque.Controllers
             return 1;
         }
 
-        private async Task<int> StatusAtivo()
+        private bool VerificarAtivo()
         {
+            List<ToqueModel> toques = LerToquesCSV();
+            bool ativos = false;
 
-            return 1;
+            foreach (var item in toques)
+            {
+                if (item.IsAtivo)
+                {
+                    ativos = true;
+                    break;
+                }
+                else
+                {
+                    ativos = false;
+                    break;
+                }
+            }
+
+            return ativos;
         }
 
     }
