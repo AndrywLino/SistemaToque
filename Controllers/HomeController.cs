@@ -10,6 +10,7 @@ using System.Web.Mvc;
 
 namespace SistemaToque.Controllers
 {
+
     public class HomeController : Controller
     {
 
@@ -280,9 +281,48 @@ namespace SistemaToque.Controllers
             return RedirectToAction("Toques", true);
         }
 
-        public ActionResult PararToques()
+        public async Task<ActionResult> PararToques()
         {
-            return View();
+            List<ToqueModel> toques = LerToquesCSV();
+            List<ToqueExportModel> toquesE = new List<ToqueExportModel>();
+
+            bool ativo = VerificarAtivo();
+
+            foreach (var item in toques)
+            {
+                ToqueExportModel it = new ToqueExportModel();
+                if (ativo)
+                {
+                    it.IsAtivo = false;
+                }
+                else
+                {
+                    it.IsAtivo = true;
+                }
+                it.Arquivo = item.Arquivo;
+                it.Nome = item.Nome;
+                it.Hora = item.Hora;
+                it.Canal = item.Canal;
+                it.IsSegunda = item.IsSegunda;
+                it.IsTerca = item.IsTerca;
+                it.IsQuarta = item.IsQuarta;
+                it.IsQuinta = item.IsQuinta;
+                it.IsSexta = item.IsSexta;
+                it.IsSabado = item.IsSabado;
+                it.IsDomingo = item.IsDomingo;
+                it.NivelEnsino = item.NivelEnsino;
+                it.UltimoToque = item.UltimoToque;
+                it.StartSegs = item.StartSegs;
+
+                toquesE.Add(it);
+            }
+
+            string dir = Path.Combine(Server.MapPath("~/CSV/toque.csv"));
+            ServiceCSV.WriteCSVFileToque(dir, toquesE);
+
+            await FTPService.UploadFile(dir);
+
+            return RedirectToAction("Toques", true);
         }
 
         [HttpGet]
@@ -379,6 +419,7 @@ namespace SistemaToque.Controllers
                 await SyncRasp();
 
                 bool ativo = VerificarAtivo();
+
                 if (ativo)
                     ViewBag.ativo = true;
                 else
@@ -469,23 +510,23 @@ namespace SistemaToque.Controllers
         private bool VerificarAtivo()
         {
             List<ToqueModel> toques = LerToquesCSV();
-            bool ativos = false;
+            bool ativo = false;
 
             foreach (var item in toques)
             {
                 if (item.IsAtivo)
                 {
-                    ativos = true;
+                    ativo = true;
                     break;
                 }
                 else
                 {
-                    ativos = false;
+                    ativo = false;
                     break;
                 }
             }
 
-            return ativos;
+            return ativo;
         }
 
     }
