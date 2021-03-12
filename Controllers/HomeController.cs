@@ -372,6 +372,9 @@ namespace SistemaToque.Controllers
         private async Task<int> SyncRasp()
         {
             string dir = Path.Combine(Server.MapPath("~/CSV/"));
+            FileInfo dirCSV = new FileInfo(dir + "toque.csv");
+            dirCSV.Delete();
+
             await FTPService.DownloadFile(dir, "csv");
             dir = Path.Combine(Server.MapPath("~/Musicas/"));
 
@@ -381,11 +384,6 @@ namespace SistemaToque.Controllers
             {
                 file.Delete();
             }
-            foreach (DirectoryInfo fil in di.GetDirectories())
-            {
-                fil.Delete(true);
-            }
-            await FTPService.DownloadFile(dir, "mp3");
             return 1;
         }
 
