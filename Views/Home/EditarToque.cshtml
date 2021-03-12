@@ -48,6 +48,12 @@
                         <i class="fas fa-expand-arrows-alt"></i>
                     </a>
                 </li>
+                <!-- Botão para logout -->
+                <li class="nav-item">
+                    <a class="nav-link" href="#" role="button">
+                        <i class="fa fa-sign-out-alt"></i>
+                    </a>
+                </li>
             </ul>
         </nav>
         <!-- /.navbar -->
@@ -67,7 +73,7 @@
                         <img src="~/dist/img/user.jpg" class="img-circle elevation-2" alt="User Image">
                     </div>
                     <div class="info">
-                        <a href="#" class="d-block">Usuário</a>
+                        <a href="#" class="d-block">Supervisor</a>
                     </div>
                 </div>
 
@@ -105,7 +111,7 @@
                 <div class="container-fluid">
                     <div class="row mb-2">
                         <div class="col-sm-6">
-                            <h1 class="m-0">Editar</h1>
+                            <h1 class="m-0 txt-white">Editar</h1>
                         </div><!-- /.col -->
                         <div class="col-sm-6">
                             <ol class="breadcrumb float-sm-right">
@@ -130,17 +136,22 @@
                                 <!-- /.card-header -->
                                 @using (Html.BeginForm("EditarToque", "Home", FormMethod.Post, new { enctype = "multipart/form-data" }))
                                 {
+                                    <div hidden>
+                                        @Html.TextBoxFor(model => model.Arquivo)
+                                        @Html.TextBoxFor(model => model.IsAtivo)
+                                    </div>
+
                                     <div class="card-body">
                                         <div class="form-row">
                                             <div class="col-md-3 mb-3">
                                                 <label>Descrição:</label>
-                                                <input type="text" class="form-control" id="Nome" name="Nome" placeholder="Informe aqui o nome do toque" required>
+                                                @Html.EditorFor(model => model.Nome, new { htmlAttributes = new { @type = "text", @class = "form-control" } })
                                             </div>
                                             <div class="col-md-5 mb-3">
                                                 <label>Arquivo:</label>
                                                 <div class="input-group">
                                                     <div class="custom-file">
-                                                        <input type="file" class="custom-file-input" id="file" name="fileupload" accept="audio/mp3,audio/*" required>
+                                                        <input type="file" class="custom-file-input" id="file" name="fileupload" accept="audio/mp3,audio/*">
                                                         <label class="custom-file-label" for="file">Escolher arquivo</label>
                                                     </div>
 
@@ -223,202 +234,12 @@
                                             </div>
                                             <div class="col-md-3 mb-3">
                                                 <label>Hora de início do toque:</label>
-                                                <input class="form-control" type="time" value="13:45:00" id="Hora" name="Hora">
+                                                @Html.EditorFor(model => model.Hora, new { htmlAttributes = new { @type = "Time", @class = "form-control" } })
                                             </div>
                                             <div class="col-md-4 mb-3">
                                                 <label>Dias da semana:</label>
                                                 <div class="row">
                                                     <div class="col-6">
-                                                        <div class="form-check">
-                                                            <input class="form-check-input" type="checkbox" value="True" id="IsSegunda" name="IsSegunda" checked>
-                                                            <label class="form-check-label" for="cb_1">
-                                                                Segunda
-                                                            </label>
-                                                        </div>
-                                                        <div class="form-check">
-                                                            <input class="form-check-input" type="checkbox" value="True" id="IsTerca" name="IsTerca" checked>
-                                                            <label class="form-check-label" for="cb_2">
-                                                                Terça
-                                                            </label>
-                                                        </div>
-                                                        <div class="form-check">
-                                                            <input class="form-check-input" type="checkbox" value="True" id="IsQuarta" name="IsQuarta" checked>
-                                                            <label class="form-check-label" for="cb_3">
-                                                                Quarta
-                                                            </label>
-                                                        </div>
-                                                        <div class="form-check">
-                                                            <input class="form-check-input" type="checkbox" value="True" id="IsQuinta" name="IsQuinta" checked>
-                                                            <label class="form-check-label" for="cb_4">
-                                                                Quinta
-                                                            </label>
-                                                        </div>
-                                                    </div>
-                                                    <div class="col-6">
-                                                        <div class="form-check">
-                                                            <input class="form-check-input" type="checkbox" value="True" id="IsSexta" name="IsSexta" checked>
-                                                            <label class="form-check-label" for="cb_5">
-                                                                Sexta
-                                                            </label>
-                                                        </div>
-                                                        <div class="form-check">
-                                                            <input class="form-check-input" type="checkbox" value="True" id="IsSabado" name="IsSabado">
-                                                            <label class="form-check-label" for="cb_6">
-                                                                Sábado
-                                                            </label>
-                                                        </div>
-                                                        <div class="form-check">
-                                                            <input class="form-check-input" type="checkbox" value="True" id="IsDomingo" name="IsDomingo">
-                                                            <label class="form-check-label" for="cb_7">
-                                                                Domingo
-                                                            </label>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                            <div class="col-md-2 mb-3">
-                                                <label>Tipo de ensino selecionado:</label>
-                                                <div class="col-sm-12">
-                                                    <div class="form-check">
-                                                        <input class="form-check-input" type="radio" name="Ensino" id="Ensino" value="3" checked>
-                                                        <label class="form-check-label" for="Ensino"> Médio </label>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <!-- /.form-row -->
-
-                                        <div class="row">
-                                            <div class="col-9">
-                                            </div>
-                                            <!-- /.col -->
-                                            <div class="col-3">
-                                                <button type="submit" class="btn btn-primary btn-block" onclick="validate()">Salvar</button>
-                                            </div>
-                                            <!-- /.col -->
-                                        </div>
-
-                                    </div>
-                                    <!-- ./card-body -->
-
-                                    <div class="card-body">
-                                        <div class="row">
-                                            <div class="col-md-12">
-
-                                                @*@Html.AntiForgeryToken()*@
-
-                                                <div hidden>
-                                                    @Html.TextBoxFor(model => model.Arquivo)
-                                                    @Html.TextBoxFor(model => model.IsAtivo)
-                                                </div>
-
-                                                <div class="form-group row">
-                                                    <label class="col-2 col-form-label">Descrição:</label>
-                                                    <div class="col-10">
-                                                        @Html.EditorFor(model => model.Nome, new { htmlAttributes = new { @type = "text", @class = "form-control" } })
-                                                    </div>
-                                                </div>
-
-                                                <div class="form-group row">
-                                                    <label class="col-3 col-form-label">Arquivo selecionado:</label>
-                                                    <div class="col-9">
-                                                        <div class="input-group">
-                                                            <div class="custom-file">
-                                                                <input type="file" class="custom-file-input" id="file" name="fileupload" accept="audio/mp3,audio/*">
-                                                                <label class="custom-file-label" for="file">Escolher arquivo</label>
-                                                            </div>
-
-                                                            &nbsp;&nbsp;&nbsp;
-
-                                                            <button class="btn btn-primary" onclick="upload()" id="uploadBtn" name="uploadBtn" type="button">Upload</button>
-                                                        </div>
-                                                    </div>
-                                                </div>
-
-                                                <div id="song"></div>
-
-                                                <div class="form-group row">
-                                                    <label for="example-time-input" class="col-4 col-form-label">A partir de quantos segundos você deseja que a música comece?</label>
-                                                    <div class="col-8">
-                                                        <select class="form-control" id="StartSegs" name="StartSegs">
-                                                            <option value="00:00:00">00</option>
-                                                            <option value="00:00:01">01</option>
-                                                            <option value="00:00:02">02</option>
-                                                            <option value="00:00:03">03</option>
-                                                            <option value="00:00:04">04</option>
-                                                            <option value="00:00:05">05</option>
-                                                            <option value="00:00:06">06</option>
-                                                            <option value="00:00:07">07</option>
-                                                            <option value="00:00:08">08</option>
-                                                            <option value="00:00:09">09</option>
-                                                            <option value="00:00:10">10</option>
-                                                            <option value="00:00:11">11</option>
-                                                            <option value="00:00:12">12</option>
-                                                            <option value="00:00:13">13</option>
-                                                            <option value="00:00:14">14</option>
-                                                            <option value="00:00:15">15</option>
-                                                            <option value="00:00:16">16</option>
-                                                            <option value="00:00:17">17</option>
-                                                            <option value="00:00:18">18</option>
-                                                            <option value="00:00:19">19</option>
-                                                            <option value="00:00:20">20</option>
-                                                            <option value="00:00:21">21</option>
-                                                            <option value="00:00:22">22</option>
-                                                            <option value="00:00:23">23</option>
-                                                            <option value="00:00:24">24</option>
-                                                            <option value="00:00:25">25</option>
-                                                            <option value="00:00:26">26</option>
-                                                            <option value="00:00:27">27</option>
-                                                            <option value="00:00:28">28</option>
-                                                            <option value="00:00:29">29</option>
-                                                            <option value="00:00:30">30</option>
-                                                            <option value="00:00:31">31</option>
-                                                            <option value="00:00:32">32</option>
-                                                            <option value="00:00:33">33</option>
-                                                            <option value="00:00:34">34</option>
-                                                            <option value="00:00:35">35</option>
-                                                            <option value="00:00:36">36</option>
-                                                            <option value="00:00:37">37</option>
-                                                            <option value="00:00:38">38</option>
-                                                            <option value="00:00:39">39</option>
-                                                            <option value="00:00:40">40</option>
-                                                            <option value="00:00:41">41</option>
-                                                            <option value="00:00:42">42</option>
-                                                            <option value="00:00:43">43</option>
-                                                            <option value="00:00:44">44</option>
-                                                            <option value="00:00:45">45</option>
-                                                            <option value="00:00:46">46</option>
-                                                            <option value="00:00:47">47</option>
-                                                            <option value="00:00:48">48</option>
-                                                            <option value="00:00:49">49</option>
-                                                            <option value="00:00:50">50</option>
-                                                            <option value="00:00:51">51</option>
-                                                            <option value="00:00:52">52</option>
-                                                            <option value="00:00:53">53</option>
-                                                            <option value="00:00:54">54</option>
-                                                            <option value="00:00:55">55</option>
-                                                            <option value="00:00:56">56</option>
-                                                            <option value="00:00:57">57</option>
-                                                            <option value="00:00:58">58</option>
-                                                            <option value="00:00:59">59</option>
-                                                            <option value="00:00:60">60</option>
-                                                        </select>
-                                                    </div>
-                                                </div>
-
-                                                <div class="form-group row">
-                                                    <label for="example-time-input" class="col-4 col-form-label">Informe a hora que você deseja que iniciar o toque:</label>
-                                                    <div class="col-8">
-                                                        @Html.EditorFor(model => model.Hora, new { htmlAttributes = new { @type = "Time", @class = "form-control" } })
-                                                    </div>
-                                                </div>
-
-                                                <div class="row">
-                                                    <label for="example-time-input" class="col-form-label">Selecione o dia da semana:</label>
-                                                </div>
-
-                                                <div class="row">
-                                                    <div class="col-4">
                                                         <div class="form-check">
                                                             @Html.EditorFor(model => model.IsSegunda, new { htmlAttributes = new { @type = "checkbox", @class = "form-check-input" } })
                                                             <label class="form-check-label" for="cb_1">
@@ -437,24 +258,20 @@
                                                                 Quarta
                                                             </label>
                                                         </div>
-                                                    </div>
-                                                    <!-- /.col -->
-                                                    <div class="col-4">
                                                         <div class="form-check">
                                                             @Html.EditorFor(model => model.IsQuinta, new { htmlAttributes = new { @type = "checkbox", @class = "form-check-input" } })
                                                             <label class="form-check-label" for="cb_4">
                                                                 Quinta
                                                             </label>
                                                         </div>
+                                                    </div>
+                                                    <div class="col-6">
                                                         <div class="form-check">
                                                             @Html.EditorFor(model => model.IsSexta, new { htmlAttributes = new { @type = "checkbox", @class = "form-check-input" } })
                                                             <label class="form-check-label" for="cb_5">
                                                                 Sexta
                                                             </label>
                                                         </div>
-                                                    </div>
-                                                    <!-- /.col -->
-                                                    <div class="col-4">
                                                         <div class="form-check">
                                                             @Html.EditorFor(model => model.IsSabado, new { htmlAttributes = new { @type = "checkbox", @class = "form-check-input" } })
                                                             <label class="form-check-label" for="cb_6">
@@ -468,50 +285,42 @@
                                                             </label>
                                                         </div>
                                                     </div>
-                                                    <!-- /.col -->
-
                                                 </div>
+                                            </div>
+                                            <div class="col-md-2 mb-3">
+                                                <label>Tipo de ensino selecionado:</label>
+                                                <div class="col-sm-12">
 
-                                                <div class="row">
-                                                    <label for="" class="col-form-label">Tipo de ensino:</label>
+                                                    @*<div class="form-check">
+                                <input class="form-check-input" type="radio" name="NivelEnsino" id="radioFund1" value="1" checked>
+                                <label class="form-check-label" for="Ensino"> Fundamental I </label>
+                            </div>
+                            <div class="form-check">
+                                <input class="form-check-input" type="radio" name="NivelEnsino" id="radioFund2" value="2">
+                                <label class="form-check-label" for="Ensino"> Fundamental II </label>
+                            </div>*@
+                                                    <div class="form-check">
+                                                        <input class="form-check-input" type="radio" name="NivelEnsino" id="radioEM" value="3">
+                                                        <label class="form-check-label" for="Ensino"> Médio </label>
+                                                    </div>
                                                 </div>
+                                            </div>
+                                        </div>
+                                        <!-- /.form-row -->
 
-                                                <fieldset class="form-group">
-                                                    <div class="row">
-                                                        <div class="col-sm-12">
-                                                            @*<div class="form-check">
-                                        <input class="form-check-input" type="radio" name="NivelEnsino" id="radioFund1" value="1" checked>
-                                        <label class="form-check-label" for="Ensino"> Fundamental I </label>
-                                    </div>
-                                    <div class="form-check">
-                                        <input class="form-check-input" type="radio" name="NivelEnsino" id="radioFund2" value="2">
-                                        <label class="form-check-label" for="Ensino"> Fundamental II </label>
-                                    </div>*@
-                                                            <div class="form-check">
-                                                                <input class="form-check-input" type="radio" name="NivelEnsino" id="radioEM" value="3">
-                                                                <label class="form-check-label" for="Ensino"> Médio </label>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                </fieldset>
-
-                                                <div class="row">
-                                                    <div class="col-9">
-                                                    </div>
-                                                    <!-- /.col -->
-                                                    <div class="col-3">
-                                                        <button type="submit" value="Save" class="btn btn-primary btn-block" onclick="validate()">Salvar</button>
-                                                    </div>
-                                                    <!-- /.col -->
-                                                </div>
-
+                                        <div class="row">
+                                            <div class="col-9">
+                                            </div>
+                                            <!-- /.col -->
+                                            <div class="col-3">
+                                                <button type="submit" class="btn btn-primary btn-block" onclick="validate()">Salvar</button>
                                             </div>
                                             <!-- /.col -->
                                         </div>
-                                        <!-- /.row -->
+
                                     </div>
+                                    <!-- /.card-body -->
                                 }
-                                <!-- /.card-body -->
                             </div>
                             <!-- /.card -->
                         </div>

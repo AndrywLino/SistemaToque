@@ -11487,14 +11487,19 @@ html.scroll-smooth {
     scroll-behavior: smooth
 }
 
-.wrapper,
 body,
 html {
-    min-height: 100%
+    min-height: 100%;
+    /*background-color: #f4f6f9*/
+    background-image: url('../../img/login.png');
+    background-position: center; /* Center the image */
+    background-repeat: no-repeat; /* Do not repeat the image */
+    background-size: cover; /* Resize the background image to cover the entire container */
 }
 
 .wrapper {
-    position: relative
+    position: relative;
+    min-height: 100%
 }
 
     .wrapper .content-wrapper {
@@ -12792,7 +12797,7 @@ body.sidebar-collapse:not(.sidebar-mini-md):not(.sidebar-mini) .main-header::bef
 }
 
 .content-wrapper {
-    background-color: #fff
+    background-color: none
     /*background-color: #f4f6f9*/
 }
 
@@ -23777,7 +23782,7 @@ body.iframe-mode-fullscreen {
         left: 0;
         width: 100%;
         display: none;
-        background-color: #fff
+        background-color: none
         /*background-color: #f4f6f9*/
     }
 
@@ -34938,6 +34943,15 @@ a.text-muted:hover {
 
 /*# sourceMappingURL=adminlte.min.css.map */
 
-textarea{
+/*----------------  CSS PERSONALIZADO   ------------------*/
+textarea {
     resize: none
 }
+
+.txt-white {
+    color: white;
+    font-weight: bold;
+    font-weight: 800
+}
+
+/*----------------  ./CSS PERSONALIZADO   ----------------*/

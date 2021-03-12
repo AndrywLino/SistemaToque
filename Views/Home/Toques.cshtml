@@ -27,6 +27,7 @@
             width: 33px;
             margin: 2px
         }
+
     </style>
 
 </head>
@@ -56,6 +57,12 @@
                         <i class="fas fa-expand-arrows-alt"></i>
                     </a>
                 </li>
+                <!-- Botão para logout -->
+                <li class="nav-item">
+                    <a class="nav-link" href="#" role="button">
+                        <i class="fa fa-sign-out-alt"></i>
+                    </a>
+                </li>
             </ul>
         </nav>
         <!-- /.navbar -->
@@ -75,7 +82,7 @@
                         <img src="~/dist/img/user.jpg" class="img-circle elevation-2" alt="User Image">
                     </div>
                     <div class="info">
-                        <a href="#" class="d-block">Usuário</a>
+                        <a href="#" class="d-block">Supervisor</a>
                     </div>
                 </div>
 
@@ -113,7 +120,7 @@
                 <div class="container-fluid">
                     <div class="row mb-2">
                         <div class="col-sm-6">
-                            <h1 class="m-0">Toques</h1>
+                            <h1 class="m-0 txt-white">Toques</h1>
                         </div><!-- /.col -->
                         <div class="col-sm-6">
                             <ol class="breadcrumb float-sm-right">
@@ -127,20 +134,20 @@
             <!-- /.content-header -->
 
             <div class="row">
-                <div class="col-lg-8">
+                <div class="col-xl-8 col-lg-8 col-md-6 col-sm-6">
                 </div>
-                <div class="col-lg-4">
+                <div class="col-xl-4 col-lg-4 col-md-6 col-sm-6">
                     <div>
                         <a href="@Url.Action("RedirectCadastro", "Home")" class="btn btn-success btn-block">
                             <i class="fa fa-plus"></i> <b> &nbsp; Adicionar um novo toque</b>
                         </a>
                         @if (ViewBag.ativo)
                         {
-                            @Html.ActionLink("Parar todos os toques", "PararToques", "Home", null, new { @type = "button", @class = "btn btn-danger btn-block" })
+                            @Html.ActionLink("Parar todos os toques", "PararToques", "Home", null, new { @type = "button", @class = "btn btn-danger btn-block", @style= "font-weight: bold;" })
                         }
                         else
                         {
-                            @Html.ActionLink("Reiniciar todos os toques", "PararToques", "Home", null, new { @type = "button", @class = "btn btn-info btn-block" })
+                            @Html.ActionLink("Reiniciar todos os toques", "PararToques", "Home", null, new { @type = "button", @class = "btn btn-info btn-block", @style = "font-weight: bold;" })
                         }
                     </div>
                 </div>
