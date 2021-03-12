@@ -146,61 +146,63 @@ namespace SistemaToque.Controllers
         {
             List<ToqueModel> toques = LerToquesCSV();
             List<ToqueExportModel> toquesE = new List<ToqueExportModel>();
-            if ((cadastro.IsSegunda) ||
-                (cadastro.IsTerca) ||
-                (cadastro.IsQuarta) ||
-                (cadastro.IsQuinta) ||
-                (cadastro.IsSexta) ||
-                (cadastro.IsSabado) ||
+
+            int arquivoId = 0;
+
+            foreach (var item in toques)
+            {
+                ToqueExportModel it = new ToqueExportModel();
+                it.Arquivo = item.Arquivo;
+                it.Nome = item.Nome;
+                it.Hora = item.Hora;
+                it.Canal = item.Canal;
+                it.IsSegunda = item.IsSegunda;
+                it.IsTerca = item.IsTerca;
+                it.IsQuarta = item.IsQuarta;
+                it.IsQuinta = item.IsQuinta;
+                it.IsSexta = item.IsSexta;
+                it.IsSabado = item.IsSabado;
+                it.IsDomingo = item.IsDomingo;
+                it.IsAtivo = item.IsAtivo;
+                it.NivelEnsino = item.NivelEnsino;
+                it.UltimoToque = item.UltimoToque;
+                it.StartSegs = item.StartSegs;
+
+                arquivoId = Convert.ToInt32(it.Arquivo);
+                toquesE.Add(it);
+            }
+
+            arquivoId += 1;
+
+            ToqueExportModel toque = new ToqueExportModel();
+            toque.Arquivo = arquivoId.ToString();
+            toque.Nome = cadastro.Nome;
+            toque.Hora = cadastro.Hora;
+            toque.IsAtivo = true;
+            toque.NivelEnsino = cadastro.Ensino;
+            toque.IsSegunda = cadastro.IsSegunda;
+            toque.IsTerca = cadastro.IsTerca;
+            toque.IsQuarta = cadastro.IsQuarta;
+            toque.IsQuinta = cadastro.IsQuinta;
+            toque.IsSexta = cadastro.IsSexta;
+            toque.IsSabado = cadastro.IsSabado;
+            toque.IsDomingo = cadastro.IsDomingo;
+            toque.UltimoToque = null;
+            toque.StartSegs = cadastro.StartSegs;
+
+            if (cadastro.Ensino == 2 || cadastro.Ensino == 3)
+                toque.Canal = 1;
+            else
+                toque.Canal = 2;
+
+            if ((cadastro.IsSegunda)    ||
+                (cadastro.IsTerca)      ||
+                (cadastro.IsQuarta)     ||
+                (cadastro.IsQuinta)     ||
+                (cadastro.IsSexta)      ||
+                (cadastro.IsSabado)     ||
                 (cadastro.IsDomingo))
             {
-                int arquivoId = 0;
-
-                foreach (var item in toques)
-                {
-                    ToqueExportModel it = new ToqueExportModel();
-                    it.Arquivo = item.Arquivo;
-                    it.Nome = item.Nome;
-                    it.Hora = item.Hora;
-                    it.Canal = item.Canal;
-                    it.IsSegunda = item.IsSegunda;
-                    it.IsTerca = item.IsTerca;
-                    it.IsQuarta = item.IsQuarta;
-                    it.IsQuinta = item.IsQuinta;
-                    it.IsSexta = item.IsSexta;
-                    it.IsSabado = item.IsSabado;
-                    it.IsDomingo = item.IsDomingo;
-                    it.IsAtivo = item.IsAtivo;
-                    it.NivelEnsino = item.NivelEnsino;
-                    it.UltimoToque = item.UltimoToque;
-                    it.StartSegs = item.StartSegs;
-
-                    arquivoId = Convert.ToInt32(it.Arquivo);
-                    toquesE.Add(it);
-                }
-
-                arquivoId += 1;
-
-                ToqueExportModel toque = new ToqueExportModel();
-                toque.Arquivo = arquivoId.ToString();
-                toque.Nome = cadastro.Nome;
-                toque.Hora = cadastro.Hora;
-                toque.IsAtivo = true;
-                toque.NivelEnsino = cadastro.Ensino;
-                toque.IsSegunda = cadastro.IsSegunda;
-                toque.IsTerca = cadastro.IsTerca;
-                toque.IsQuarta = cadastro.IsQuarta;
-                toque.IsQuinta = cadastro.IsQuinta;
-                toque.IsSexta = cadastro.IsSexta;
-                toque.IsSabado = cadastro.IsSabado;
-                toque.IsDomingo = cadastro.IsDomingo;
-                toque.UltimoToque = null;
-                toque.StartSegs = cadastro.StartSegs;
-
-                if (cadastro.Ensino == 2 || cadastro.Ensino == 3)
-                    toque.Canal = 1;
-                else
-                    toque.Canal = 2;
 
                 toquesE.Add(toque);
 
@@ -228,7 +230,7 @@ namespace SistemaToque.Controllers
             }
             else
             {
-                return View();
+                return View(cadastro);
             }
         }
 
@@ -403,7 +405,6 @@ namespace SistemaToque.Controllers
             logado = true;
             if (logado)
             {
-                ViewBag.Message = "Your contact page.";
 
                 return View();
             }
