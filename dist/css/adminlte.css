@@ -34936,5 +34936,8 @@ a.text-muted:hover {
     color: #ced4da
 }
 
-
 /*# sourceMappingURL=adminlte.min.css.map */
+
+textarea{
+    resize: none
+}
