@@ -359,7 +359,15 @@ namespace SistemaToque.Controllers
 
         public ActionResult Logout()
         {
-            return RedirectToAction("Login");
+            if (VerificarLogin())
+            {
+                AlterarStatusLogin();
+                return RedirectToAction("Login");
+            }
+            else
+            {
+                return RedirectToAction("Toques");
+            }
         }
 
         [HttpGet]
@@ -437,21 +445,25 @@ namespace SistemaToque.Controllers
             return View();
         }
 
-        public ActionResult Detalhes(string arquivo)
+        public async Task<ActionResult> Detalhes(string arquivo)
         {
             if (VerificarLogin())
             {
-                string arq = arquivo;
                 List<ToqueModel> toques = LerToquesCSV();
                 ToqueModel toque = new ToqueModel();
                 foreach (var item in toques)
                 {
-                    if (arq == item.Arquivo)
+                    if (arquivo == item.Arquivo)
                     {
                         toque = item;
                         break;
                     }
                 }
+
+                string file = arquivo + ".mp3";
+                string dir = Path.Combine(Server.MapPath("~/Musicas/"));
+
+                await FTPService.DownloadFileSpec(dir, file);
 
                 return View(toque);
             }

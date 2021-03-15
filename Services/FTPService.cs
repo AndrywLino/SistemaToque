@@ -81,6 +81,48 @@ namespace SistemaToque.Services
             }
         }
 
+        public static async Task DownloadFileSpec(string dir, string file)
+        {
+            try
+            {
+                using (FtpClient ftp = CreateFtpClient())
+                {
+                    FtpListItem[] listing = await ftp.GetListingAsync();
+                    foreach (FtpListItem ftpItem in listing)
+                    {
+                        if (ftpItem.Type != FtpFileSystemObjectType.File)
+                            continue;
+
+                        using (MemoryStream ms = new MemoryStream())
+                        {
+                            string fileName = ftpItem.Name;
+                            if (file == fileName)
+                            {
+                                await ftp.DownloadAsync(ms, ftpItem.Name);
+
+                                ms.Position = 0;
+
+                                using (StreamReader sr = new StreamReader(ms))
+                                {
+                                    string fileContents = await sr.ReadToEndAsync();
+
+                                    if (String.IsNullOrEmpty(fileContents))
+                                        throw new Exception("Arquivo Vazio");
+                                }
+
+                                await ftp.DownloadFileAsync(Path.Combine(dir, ftpItem.Name), ftpItem.Name);
+                            }
+
+                        }
+                    }
+                }
+            }
+            catch (Exception e)
+            {
+
+            }
+        }
+
         public static async Task DeleteMusic(string dir)
         {
             using (FtpClient ftp = CreateFtpClient())
