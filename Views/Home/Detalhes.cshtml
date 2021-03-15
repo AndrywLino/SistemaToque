@@ -145,6 +145,7 @@
                                         <div class="col-md-8 mb-3">
                                             <label></label>
                                             <div class="input-group">
+                                                <div id="segs"></div>
                                                 <audio id="player">O seu browser não suporta a tag de audio!</audio>
                                             </div>
                                         </div>
@@ -243,6 +244,21 @@
                 document.getElementById("radioEM").checked = true;
             }
         }
+    </script>
+
+    <script>
+        var hms = '00:01:00';   // string de entrada
+        @*//var hms = @Html.DisplayFor(model => model.StartSegs);*@
+        var a = hms.split(':'); // Substitui os 2 pontos por vírgulas
+
+        // minutos valem 60 segundos. As horas valem 60 minutos.
+        var seconds = (+a[0]) * 60 * 60 + (+a[1]) * 60 + (+a[2]);
+
+        var div = document.getElementById("segs");
+
+        div.innerHTML = seconds;
+
+        alert(hms);
     </script>
 
     @* Configuração do audio *@
