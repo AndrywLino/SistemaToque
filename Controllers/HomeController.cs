@@ -357,6 +357,11 @@ namespace SistemaToque.Controllers
             }
         }
 
+        public ActionResult Logout()
+        {
+            return RedirectToAction("Login");
+        }
+
         [HttpGet]
         public ActionResult RedirectCadastro()
         {
