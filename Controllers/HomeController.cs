@@ -34,7 +34,7 @@ namespace SistemaToque.Controllers
                     user.Status = false;
                     ViewBag.UsuarioInvalido = "";
                     ViewBag.SenhaInvalido = "Senha Inválida";
-                    return View("Login", user);
+                    return View("Login");
                 }
             }
             else
@@ -42,7 +42,7 @@ namespace SistemaToque.Controllers
                 user.Status = false;
                 ViewBag.UsuarioInvalido = "Usuário Inválido";
                 ViewBag.SenhaInvalido = "";
-                return View("Login", user);
+                return View("Login");
             }
         }
 
@@ -421,7 +421,7 @@ namespace SistemaToque.Controllers
             }
         }
 
-        public ActionResult Login(UserModel user)
+        public ActionResult Login()
         {
             if (VerificarLogin())
                 AlterarStatusLogin();
