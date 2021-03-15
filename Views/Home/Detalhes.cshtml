@@ -143,22 +143,16 @@
                                             <input type="text" class="form-control" value="@Html.DisplayFor(model => model.Nome)" disabled>
                                         </div>
                                         <div class="col-md-8 mb-3">
-                                            <label> &nbsp; </label>
+                                            <label></label>
                                             <div class="input-group">
-                                                <div>
-                                                    @Html.DisplayFor(model => model.Arquivo)
-                                                </div>
-                                                <audio controls>
-                                                    <source src="~/Musicas/" type="audio/mp3">
-                                                    Seu navegador não suporta a tag de áudio
-                                                </audio>
+                                                <audio id="player">O seu browser não suporta a tag de audio!</audio>
                                             </div>
                                         </div>
                                     </div>
                                     <div class="form-row">
                                         <div class="col-md-3 mb-3">
                                             <label>Segundos para início da música:</label>
-                                            <input type="text" class="form-control" value="@Html.DisplayFor(model => model.StartSegs)" disabled>
+                                            <input id="segundos" type="text" class="form-control" value="@Html.DisplayFor(model => model.StartSegs)" disabled>
                                         </div>
                                         <div class="col-md-3 mb-3">
                                             <label>Hora de início do toque:</label>
@@ -251,11 +245,18 @@
         }
     </script>
 
-    @*Recebendo valor do Id do arquivo*@
+    @* Configuração do audio *@
     <script>
-        var arquivo = document.querySelector('#arquivo');
-        alert(arquivo);
+        var arquivo = @Html.DisplayFor(model => model.Arquivo);
+        var player = document.getElementById('player');
+            player.src = '/Musicas/' + arquivo + '.mp3';            // Pasta do arquivo + nome do arquivo + tipo do arquivo
+            player.loop = false;                                    // Loop = True (Ligado), false (Desligado)
+            player.currentTime = 0;                                 // Tempo de início da música
+            player.volume = 0.5;                                    // Volume - Ex.: 0.1 , 0.25, 0.5, 0.9, 1
+            player.controls = true;                                 // Controles de play, pause, volume e download
+            player.load();                                          // Carregar música ao abrir a página
+            //alert(arquivo);                                       // Teste nome do arquivo
     </script>
 
-</body>
-</html>
+</body >
+</html >
