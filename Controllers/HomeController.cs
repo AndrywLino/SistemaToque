@@ -25,7 +25,9 @@ namespace SistemaToque.Controllers
                 if (password == "ceinet123")
                 {
                     user.Status = true;
-                    return RedirectToAction("Toques", user.Status);
+                    if (!VerificarLogin())
+                        AlterarStatusLogin();
+                    return RedirectToAction("Toques");
                 }
                 else
                 {
@@ -47,13 +49,211 @@ namespace SistemaToque.Controllers
         [HttpPost]
         public async Task<ActionResult> EditarToque(ToqueModel toque)
         {
-            if ((toque.IsSegunda) ||
-                (toque.IsTerca) ||
-                (toque.IsQuarta) ||
-                (toque.IsQuinta) ||
-                (toque.IsSexta) ||
-                (toque.IsSabado) ||
-                (toque.IsDomingo))
+            if (VerificarLogin())
+            {
+                if ((toque.IsSegunda) ||
+                    (toque.IsTerca) ||
+                    (toque.IsQuarta) ||
+                    (toque.IsQuinta) ||
+                    (toque.IsSexta) ||
+                    (toque.IsSabado) ||
+                    (toque.IsDomingo))
+                {
+                    List<ToqueModel> toques = LerToquesCSV();
+                    List<ToqueExportModel> toquesE = new List<ToqueExportModel>();
+
+                    int i = 0;
+
+                    foreach (var item in toques)
+                    {
+                        ToqueExportModel it = new ToqueExportModel();
+                        it.Arquivo = item.Arquivo;
+                        it.Nome = item.Nome;
+                        it.Hora = item.Hora;
+                        it.Canal = item.Canal;
+                        it.IsSegunda = item.IsSegunda;
+                        it.IsTerca = item.IsTerca;
+                        it.IsQuarta = item.IsQuarta;
+                        it.IsQuinta = item.IsQuinta;
+                        it.IsSexta = item.IsSexta;
+                        it.IsSabado = item.IsSabado;
+                        it.IsDomingo = item.IsDomingo;
+                        it.IsAtivo = item.IsAtivo;
+                        it.NivelEnsino = item.NivelEnsino;
+                        it.UltimoToque = item.UltimoToque;
+                        it.StartSegs = item.StartSegs;
+
+                        toquesE.Add(it);
+                    }
+                    string arquivoId = "";
+                    foreach (var item in toques)
+                    {
+                        if (item.Arquivo == toque.Arquivo)
+                        {
+                            toquesE[i].Arquivo = toque.Arquivo;
+                            toquesE[i].Nome = toque.Nome;
+                            toquesE[i].Hora = toque.Hora;
+                            toquesE[i].IsSegunda = toque.IsSegunda;
+                            toquesE[i].IsTerca = toque.IsTerca;
+                            toquesE[i].IsQuarta = toque.IsQuarta;
+                            toquesE[i].IsQuinta = toque.IsQuinta;
+                            toquesE[i].IsSexta = toque.IsSexta;
+                            toquesE[i].IsSabado = toque.IsSabado;
+                            toquesE[i].IsDomingo = toque.IsDomingo;
+                            toquesE[i].IsAtivo = toque.IsAtivo;
+                            toquesE[i].NivelEnsino = toque.NivelEnsino;
+                            toquesE[i].StartSegs = toque.StartSegs;
+                            toquesE[i].UltimoToque = toque.UltimoToque;
+
+                            arquivoId = toque.Arquivo;
+
+                            if (toque.NivelEnsino == 2 || toque.NivelEnsino == 3)
+                                toquesE[i].Canal = 1;
+                            else
+                                toquesE[i].Canal = 2;
+
+                            break;
+                        }
+                        i++;
+                    }
+
+                    string pathMusica = "";
+
+                    foreach (var file in toque.fileupload)
+                    {
+                        if (file != null && file.ContentLength > 0)
+                        {
+                            var nameType = file.FileName.ToString().Split('.');
+                            pathMusica = Path.Combine(Server.MapPath("~/Musicas"), (arquivoId.ToString() + "." + nameType[1]));
+
+                            file.SaveAs(pathMusica);
+
+                        }
+                    }
+
+                    string dir = Path.Combine(Server.MapPath("~/CSV/toque.csv"));
+                    ServiceCSV.WriteCSVFileToque(dir, toquesE);
+
+                    await FTPService.UploadFile(dir);
+                    await FTPService.UploadFile(pathMusica);
+
+                    return RedirectToAction("Toques", true);
+                }
+                else
+                {
+                    return RedirectToAction("EditarToque", toque);
+                }
+            }
+            else
+            {
+                return RedirectToAction("Login");
+            }
+        }
+
+        [HttpPost]
+        public async Task<ActionResult> Toque(CadastroModel cadastro)
+        {
+            if (VerificarLogin())
+            {
+                List<ToqueModel> toques = LerToquesCSV();
+                List<ToqueExportModel> toquesE = new List<ToqueExportModel>();
+
+                int arquivoId = 0;
+
+                foreach (var item in toques)
+                {
+                    ToqueExportModel it = new ToqueExportModel();
+                    it.Arquivo = item.Arquivo;
+                    it.Nome = item.Nome;
+                    it.Hora = item.Hora;
+                    it.Canal = item.Canal;
+                    it.IsSegunda = item.IsSegunda;
+                    it.IsTerca = item.IsTerca;
+                    it.IsQuarta = item.IsQuarta;
+                    it.IsQuinta = item.IsQuinta;
+                    it.IsSexta = item.IsSexta;
+                    it.IsSabado = item.IsSabado;
+                    it.IsDomingo = item.IsDomingo;
+                    it.IsAtivo = item.IsAtivo;
+                    it.NivelEnsino = item.NivelEnsino;
+                    it.UltimoToque = item.UltimoToque;
+                    it.StartSegs = item.StartSegs;
+
+                    arquivoId = Convert.ToInt32(it.Arquivo);
+                    toquesE.Add(it);
+                }
+
+                arquivoId += 1;
+
+                ToqueExportModel toque = new ToqueExportModel();
+                toque.Arquivo = arquivoId.ToString();
+                toque.Nome = cadastro.Nome;
+                toque.Hora = cadastro.Hora;
+                toque.IsAtivo = true;
+                toque.NivelEnsino = cadastro.Ensino;
+                toque.IsSegunda = cadastro.IsSegunda;
+                toque.IsTerca = cadastro.IsTerca;
+                toque.IsQuarta = cadastro.IsQuarta;
+                toque.IsQuinta = cadastro.IsQuinta;
+                toque.IsSexta = cadastro.IsSexta;
+                toque.IsSabado = cadastro.IsSabado;
+                toque.IsDomingo = cadastro.IsDomingo;
+                toque.UltimoToque = null;
+                toque.StartSegs = cadastro.StartSegs;
+
+                if (cadastro.Ensino == 2 || cadastro.Ensino == 3)
+                    toque.Canal = 1;
+                else
+                    toque.Canal = 2;
+
+                if ((cadastro.IsSegunda) ||
+                    (cadastro.IsTerca) ||
+                    (cadastro.IsQuarta) ||
+                    (cadastro.IsQuinta) ||
+                    (cadastro.IsSexta) ||
+                    (cadastro.IsSabado) ||
+                    (cadastro.IsDomingo))
+                {
+
+                    toquesE.Add(toque);
+
+                    string pathMusica = "";
+
+                    foreach (var file in cadastro.fileupload)
+                    {
+                        if (file != null && file.ContentLength > 0)
+                        {
+                            var nameType = file.FileName.ToString().Split('.');
+                            pathMusica = Path.Combine(Server.MapPath("~/Musicas"), (arquivoId.ToString() + "." + nameType[1]));
+
+                            file.SaveAs(pathMusica);
+
+                        }
+                    }
+
+                    string dir = Path.Combine(Server.MapPath("~/CSV/toque.csv"));
+                    ServiceCSV.WriteCSVFileToque(dir, toquesE);
+
+                    await FTPService.UploadFile(dir);
+                    await FTPService.UploadFile(pathMusica);
+
+                    return RedirectToAction("Toques", true);
+                }
+                else
+                {
+                    return View(cadastro);
+                }
+            }
+            else
+            {
+                return RedirectToAction("Login");
+            }
+        }
+
+        [HttpPost]
+        public async Task<ActionResult> DeleteToque(ToqueModel toque)
+        {
+            if (VerificarLogin())
             {
                 List<ToqueModel> toques = LerToquesCSV();
                 List<ToqueExportModel> toquesE = new List<ToqueExportModel>();
@@ -81,341 +281,195 @@ namespace SistemaToque.Controllers
 
                     toquesE.Add(it);
                 }
-                string arquivoId = "";
-                foreach (var item in toques)
+
+                foreach (var item in toquesE)
                 {
-                    if (item.Arquivo == toque.Arquivo)
+                    if (toque.Arquivo == item.Arquivo)
                     {
-                        toquesE[i].Arquivo = toque.Arquivo;
-                        toquesE[i].Nome = toque.Nome;
-                        toquesE[i].Hora = toque.Hora;
-                        toquesE[i].IsSegunda = toque.IsSegunda;
-                        toquesE[i].IsTerca = toque.IsTerca;
-                        toquesE[i].IsQuarta = toque.IsQuarta;
-                        toquesE[i].IsQuinta = toque.IsQuinta;
-                        toquesE[i].IsSexta = toque.IsSexta;
-                        toquesE[i].IsSabado = toque.IsSabado;
-                        toquesE[i].IsDomingo = toque.IsDomingo;
-                        toquesE[i].IsAtivo = toque.IsAtivo;
-                        toquesE[i].NivelEnsino = toque.NivelEnsino;
-                        toquesE[i].StartSegs = toque.StartSegs;
-                        toquesE[i].UltimoToque = toque.UltimoToque;
-
-                        arquivoId = toque.Arquivo;
-
-                        if (toque.NivelEnsino == 2 || toque.NivelEnsino == 3)
-                            toquesE[i].Canal = 1;
-                        else
-                            toquesE[i].Canal = 2;
-
+                        toquesE.Remove(item);
                         break;
                     }
-                    i++;
-                }
-
-                string pathMusica = "";
-
-                foreach (var file in toque.fileupload)
-                {
-                    if (file != null && file.ContentLength > 0)
-                    {
-                        var nameType = file.FileName.ToString().Split('.');
-                        pathMusica = Path.Combine(Server.MapPath("~/Musicas"), (arquivoId.ToString() + "." + nameType[1]));
-
-                        file.SaveAs(pathMusica);
-
-                    }
                 }
 
                 string dir = Path.Combine(Server.MapPath("~/CSV/toque.csv"));
                 ServiceCSV.WriteCSVFileToque(dir, toquesE);
-
                 await FTPService.UploadFile(dir);
-                await FTPService.UploadFile(pathMusica);
+
+                string dirMusic = toque.Arquivo + ".mp3";
+                await FTPService.DeleteMusic(dirMusic);
 
                 return RedirectToAction("Toques", true);
             }
             else
             {
-                return RedirectToAction("EditarToque", toque);
+                return RedirectToAction("Login");
             }
-        }
-
-        [HttpPost]
-        public async Task<ActionResult> Toque(CadastroModel cadastro)
-        {
-            List<ToqueModel> toques = LerToquesCSV();
-            List<ToqueExportModel> toquesE = new List<ToqueExportModel>();
-
-            int arquivoId = 0;
-
-            foreach (var item in toques)
-            {
-                ToqueExportModel it = new ToqueExportModel();
-                it.Arquivo = item.Arquivo;
-                it.Nome = item.Nome;
-                it.Hora = item.Hora;
-                it.Canal = item.Canal;
-                it.IsSegunda = item.IsSegunda;
-                it.IsTerca = item.IsTerca;
-                it.IsQuarta = item.IsQuarta;
-                it.IsQuinta = item.IsQuinta;
-                it.IsSexta = item.IsSexta;
-                it.IsSabado = item.IsSabado;
-                it.IsDomingo = item.IsDomingo;
-                it.IsAtivo = item.IsAtivo;
-                it.NivelEnsino = item.NivelEnsino;
-                it.UltimoToque = item.UltimoToque;
-                it.StartSegs = item.StartSegs;
-
-                arquivoId = Convert.ToInt32(it.Arquivo);
-                toquesE.Add(it);
-            }
-
-            arquivoId += 1;
-
-            ToqueExportModel toque = new ToqueExportModel();
-            toque.Arquivo = arquivoId.ToString();
-            toque.Nome = cadastro.Nome;
-            toque.Hora = cadastro.Hora;
-            toque.IsAtivo = true;
-            toque.NivelEnsino = cadastro.Ensino;
-            toque.IsSegunda = cadastro.IsSegunda;
-            toque.IsTerca = cadastro.IsTerca;
-            toque.IsQuarta = cadastro.IsQuarta;
-            toque.IsQuinta = cadastro.IsQuinta;
-            toque.IsSexta = cadastro.IsSexta;
-            toque.IsSabado = cadastro.IsSabado;
-            toque.IsDomingo = cadastro.IsDomingo;
-            toque.UltimoToque = null;
-            toque.StartSegs = cadastro.StartSegs;
-
-            if (cadastro.Ensino == 2 || cadastro.Ensino == 3)
-                toque.Canal = 1;
-            else
-                toque.Canal = 2;
-
-            if ((cadastro.IsSegunda)    ||
-                (cadastro.IsTerca)      ||
-                (cadastro.IsQuarta)     ||
-                (cadastro.IsQuinta)     ||
-                (cadastro.IsSexta)      ||
-                (cadastro.IsSabado)     ||
-                (cadastro.IsDomingo))
-            {
-
-                toquesE.Add(toque);
-
-                string pathMusica = "";
-
-                foreach (var file in cadastro.fileupload)
-                {
-                    if (file != null && file.ContentLength > 0)
-                    {
-                        var nameType = file.FileName.ToString().Split('.');
-                        pathMusica = Path.Combine(Server.MapPath("~/Musicas"), (arquivoId.ToString() + "." + nameType[1]));
-
-                        file.SaveAs(pathMusica);
-
-                    }
-                }
-
-                string dir = Path.Combine(Server.MapPath("~/CSV/toque.csv"));
-                ServiceCSV.WriteCSVFileToque(dir, toquesE);
-
-                await FTPService.UploadFile(dir);
-                await FTPService.UploadFile(pathMusica);
-
-                return RedirectToAction("Toques", true);
-            }
-            else
-            {
-                return View(cadastro);
-            }
-        }
-
-        [HttpPost]
-        public async Task<ActionResult> DeleteToque(ToqueModel toque)
-        {
-            List<ToqueModel> toques = LerToquesCSV();
-            List<ToqueExportModel> toquesE = new List<ToqueExportModel>();
-
-            int i = 0;
-
-            foreach (var item in toques)
-            {
-                ToqueExportModel it = new ToqueExportModel();
-                it.Arquivo = item.Arquivo;
-                it.Nome = item.Nome;
-                it.Hora = item.Hora;
-                it.Canal = item.Canal;
-                it.IsSegunda = item.IsSegunda;
-                it.IsTerca = item.IsTerca;
-                it.IsQuarta = item.IsQuarta;
-                it.IsQuinta = item.IsQuinta;
-                it.IsSexta = item.IsSexta;
-                it.IsSabado = item.IsSabado;
-                it.IsDomingo = item.IsDomingo;
-                it.IsAtivo = item.IsAtivo;
-                it.NivelEnsino = item.NivelEnsino;
-                it.UltimoToque = item.UltimoToque;
-                it.StartSegs = item.StartSegs;
-
-                toquesE.Add(it);
-            }
-
-            foreach (var item in toquesE)
-            {
-                if (toque.Arquivo == item.Arquivo)
-                {
-                    toquesE.Remove(item);
-                    break;
-                }
-            }
-
-            string dir = Path.Combine(Server.MapPath("~/CSV/toque.csv"));
-            ServiceCSV.WriteCSVFileToque(dir, toquesE);
-            await FTPService.UploadFile(dir);
-
-            string dirMusic = toque.Arquivo + ".mp3";
-            await FTPService.DeleteMusic(dirMusic);
-
-            return RedirectToAction("Toques", true);
         }
 
         public async Task<ActionResult> PararToques()
         {
-            List<ToqueModel> toques = LerToquesCSV();
-            List<ToqueExportModel> toquesE = new List<ToqueExportModel>();
-
-            bool ativo = VerificarAtivo();
-
-            foreach (var item in toques)
+            if (VerificarLogin())
             {
-                ToqueExportModel it = new ToqueExportModel();
-                if (ativo)
-                {
-                    it.IsAtivo = false;
-                }
-                else
-                {
-                    it.IsAtivo = true;
-                }
-                it.Arquivo = item.Arquivo;
-                it.Nome = item.Nome;
-                it.Hora = item.Hora;
-                it.Canal = item.Canal;
-                it.IsSegunda = item.IsSegunda;
-                it.IsTerca = item.IsTerca;
-                it.IsQuarta = item.IsQuarta;
-                it.IsQuinta = item.IsQuinta;
-                it.IsSexta = item.IsSexta;
-                it.IsSabado = item.IsSabado;
-                it.IsDomingo = item.IsDomingo;
-                it.NivelEnsino = item.NivelEnsino;
-                it.UltimoToque = item.UltimoToque;
-                it.StartSegs = item.StartSegs;
+                List<ToqueModel> toques = LerToquesCSV();
+                List<ToqueExportModel> toquesE = new List<ToqueExportModel>();
 
-                toquesE.Add(it);
+                bool ativo = VerificarAtivo();
+
+                foreach (var item in toques)
+                {
+                    ToqueExportModel it = new ToqueExportModel();
+                    if (ativo)
+                    {
+                        it.IsAtivo = false;
+                    }
+                    else
+                    {
+                        it.IsAtivo = true;
+                    }
+                    it.Arquivo = item.Arquivo;
+                    it.Nome = item.Nome;
+                    it.Hora = item.Hora;
+                    it.Canal = item.Canal;
+                    it.IsSegunda = item.IsSegunda;
+                    it.IsTerca = item.IsTerca;
+                    it.IsQuarta = item.IsQuarta;
+                    it.IsQuinta = item.IsQuinta;
+                    it.IsSexta = item.IsSexta;
+                    it.IsSabado = item.IsSabado;
+                    it.IsDomingo = item.IsDomingo;
+                    it.NivelEnsino = item.NivelEnsino;
+                    it.UltimoToque = item.UltimoToque;
+                    it.StartSegs = item.StartSegs;
+
+                    toquesE.Add(it);
+                }
+
+                string dir = Path.Combine(Server.MapPath("~/CSV/toque.csv"));
+                ServiceCSV.WriteCSVFileToque(dir, toquesE);
+
+                await FTPService.UploadFile(dir);
+
+                return RedirectToAction("Toques", true);
             }
-
-            string dir = Path.Combine(Server.MapPath("~/CSV/toque.csv"));
-            ServiceCSV.WriteCSVFileToque(dir, toquesE);
-
-            await FTPService.UploadFile(dir);
-
-            return RedirectToAction("Toques", true);
+            else
+            {
+                return RedirectToAction("Login");
+            }
         }
 
         [HttpGet]
         public ActionResult RedirectCadastro()
         {
-            return RedirectToAction("Toque", true);
+            if (VerificarLogin())
+                return RedirectToAction("Toque", true);
+            else
+            {
+                return RedirectToAction("Login");
+            }
         }
 
         [HttpGet]
         public ActionResult EditarToque(string arquivo)
         {
-            string arq = arquivo;
-            List<ToqueModel> toques = LerToquesCSV();
-            ToqueModel toque = new ToqueModel();
-            foreach (var item in toques)
+            if (VerificarLogin())
             {
-                if (arq == item.Arquivo)
+                string arq = arquivo;
+                List<ToqueModel> toques = LerToquesCSV();
+                ToqueModel toque = new ToqueModel();
+                foreach (var item in toques)
                 {
-                    toque = item;
-                    break;
+                    if (arq == item.Arquivo)
+                    {
+                        toque = item;
+                        break;
+                    }
                 }
+
+                ViewBag.StartSegs = toque.StartSegs;
+                ViewBag.Ensino = toque.NivelEnsino;
+
+                return View(toque);
             }
-
-            ViewBag.StartSegs = toque.StartSegs;
-            ViewBag.Ensino = toque.NivelEnsino;
-
-            return View(toque);
+            else
+            {
+                return RedirectToAction("Login");
+            }
         }
 
         [HttpGet]
         public ActionResult DeleteToque(string arquivo)
         {
-            string arq = arquivo;
-            List<ToqueModel> toques = LerToquesCSV();
-            ToqueModel toque = new ToqueModel();
-            foreach (var item in toques)
+            if (VerificarLogin())
             {
-                if (arq == item.Arquivo)
+                string arq = arquivo;
+                List<ToqueModel> toques = LerToquesCSV();
+                ToqueModel toque = new ToqueModel();
+                foreach (var item in toques)
                 {
-                    toque = item;
-                    break;
+                    if (arq == item.Arquivo)
+                    {
+                        toque = item;
+                        break;
+                    }
                 }
-            }
 
-            return View(toque);
+                return View(toque);
+            }
+            else
+            {
+                return RedirectToAction("Login");
+            }
         }
 
         public ActionResult Login(UserModel user)
         {
+            if (VerificarLogin())
+                AlterarStatusLogin();
             ViewBag.UsuarioInvalido = "";
             ViewBag.SenhaInvalido = "";
             ViewBag.Message = "Your contact page.";
 
             return View();
-
         }
 
         public ActionResult Detalhes(string arquivo)
         {
-            string arq = arquivo;
-            List<ToqueModel> toques = LerToquesCSV();
-            ToqueModel toque = new ToqueModel();
-            foreach (var item in toques)
+            if (VerificarLogin())
             {
-                if (arq == item.Arquivo)
+                string arq = arquivo;
+                List<ToqueModel> toques = LerToquesCSV();
+                ToqueModel toque = new ToqueModel();
+                foreach (var item in toques)
                 {
-                    toque = item;
-                    break;
+                    if (arq == item.Arquivo)
+                    {
+                        toque = item;
+                        break;
+                    }
                 }
-            }
 
-            return View(toque);
+                return View(toque);
+            }
+            else
+            {
+                return RedirectToAction("Login");
+            }
 
         }
 
-        public ActionResult Toque(bool logado = false)
+        public ActionResult Toque()
         {
-            logado = true;
-            if (logado)
+            if (VerificarLogin())
             {
-
                 return View();
             }
             else
                 return View("Login");
         }
 
-        public async Task<ActionResult> Toques(bool logado = false)
+        public async Task<ActionResult> Toques()
         {
-            logado = true;
-            if (logado)
+            if (VerificarLogin())
             {
                 await SyncRasp();
 
@@ -528,6 +582,41 @@ namespace SistemaToque.Controllers
             }
 
             return ativo;
+        }
+
+        private bool VerificarLogin()
+        {
+            string path = Path.Combine(Server.MapPath("~/CSV/users.csv"));
+            List<UserModel> users = ServiceCSV.ReadCSVFileLogin(path);
+
+            foreach (UserModel user in users)
+            {
+                if (user.UserName == "SUPERVISOR")
+                    if (user.Status)
+                        return true;
+            }
+
+            return false;
+        }
+
+        private int AlterarStatusLogin()
+        {
+            UserModel user = new UserModel();
+            user.UserName = "SUPERVISOR";
+            user.Password = "ceinet123";
+
+            if (VerificarLogin())
+                user.Status = false;
+            else
+                user.Status = true;
+
+            List<UserModel> users = new List<UserModel>();
+            users.Add(user);
+
+            string path = Path.Combine(Server.MapPath("~/CSV/users.csv"));
+
+            ServiceCSV.WriteCSVFileLogin(path, users);
+            return 0;
         }
 
     }
