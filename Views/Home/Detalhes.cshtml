@@ -45,13 +45,13 @@
             <ul class="navbar-nav ml-auto">
                 <!-- Botão para expandir a tela -->
                 <li class="nav-item">
-                    <a class="nav-link" data-widget="fullscreen" href="#" role="button">
+                    <a class="nav-link" data-widget="fullscreen" href="#" role="button" title="Expandir" alt="Expandir">
                         <i class="fas fa-expand-arrows-alt"></i>
                     </a>
                 </li>
-                <!-- Botão para logout -->
+                <!-- Botão para logoff -->
                 <li class="nav-item">
-                    <a class="nav-link" href="#" role="button">
+                    <a class="nav-link" href="" role="button" title="Sair" alt="Sair">
                         <i class="fa fa-sign-out-alt"></i>
                     </a>
                 </li>
@@ -246,9 +246,10 @@
         }
     </script>
 
+    @* Convertendo Horas em segundos *@
     <script>
-        var hms = '00:01:00';   // string de entrada
-        @*//var hms = @Html.DisplayFor(model => model.StartSegs);*@
+        //var hms = '00:01:00';   // string de entrada
+        var hms = @Html.LabelFor(model => model.StartSegs);
         var a = hms.split(':'); // Substitui os 2 pontos por vírgulas
 
         // minutos valem 60 segundos. As horas valem 60 minutos.
@@ -256,23 +257,23 @@
 
         var div = document.getElementById("segs");
 
-        div.innerHTML = seconds;
+        //div.innerHTML = seconds;
 
-        alert(hms);
+        //alert(hms);
     </script>
 
     @* Configuração do audio *@
-    <script>
+<script>
         var arquivo = @Html.DisplayFor(model => model.Arquivo);
         var player = document.getElementById('player');
-            player.src = '/Musicas/' + arquivo + '.mp3';            // Pasta do arquivo + nome do arquivo + tipo do arquivo
-            player.loop = false;                                    // Loop = True (Ligado), false (Desligado)
-            player.currentTime = 0;                                 // Tempo de início da música
-            player.volume = 0.5;                                    // Volume - Ex.: 0.1 , 0.25, 0.5, 0.9, 1
-            player.controls = true;                                 // Controles de play, pause, volume e download
-            player.load();                                          // Carregar música ao abrir a página
-            //alert(arquivo);                                       // Teste nome do arquivo
-    </script>
+            player.src = '/Musicas/' + arquivo + '.mp3';     // Pasta do arquivo + nome do arquivo + tipo do arquivo
+            player.loop = false;                             // Loop = True (Ligado), false (Desligado)
+            player.currentTime = 0;                          // Tempo de início da música
+            player.volume = 0.7;                             // Volume - Ex.: 0.1 , 0.25, 0.5, 0.9, 1
+            player.controls = true;                          // Controles de play, pause, volume e download
+            player.load();                                   // Carregar música ao abrir a página
+            //alert(arquivo);                                // Teste nome do arquivo
+</script>
 
 </body >
 </html >
