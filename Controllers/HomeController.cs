@@ -505,6 +505,16 @@ namespace SistemaToque.Controllers
                 return View("Login");
         }
 
+        public ActionResult Logoff()
+        {
+            if (VerificarLogin())
+            {
+                return View();
+            }
+            else
+                return View("Login");
+        }
+
         private List<ToqueModel> LerToquesCSV()
         {
             string path = Path.Combine(Server.MapPath("~/CSV/toque.csv"));

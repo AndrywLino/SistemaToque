@@ -2324,6 +2324,7 @@
     <Content Include="Views\Home\EditarToque.cshtml" />
     <Content Include="Views\Home\Detalhes.cshtml" />
     <Content Include="Views\Home\DeleteToque.cshtml" />
+    <Content Include="Views\Home\Logoff.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Code\" />
