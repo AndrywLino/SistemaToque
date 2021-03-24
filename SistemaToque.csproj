@@ -26,7 +26,7 @@
     <UseGlobalApplicationHostFile />
     <NuGetPackageImportStamp>
     </NuGetPackageImportStamp>
-    <TypeScriptToolsVersion>4.0</TypeScriptToolsVersion>
+    <TypeScriptToolsVersion>4.1</TypeScriptToolsVersion>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
@@ -197,6 +197,31 @@
     <Content Include="Global.asax" />
     <Content Include="Content\Site.css" />
     <Content Include="img\logo.png" />
+    <Content Include="plugins\audio-cutter\.gitignore" />
+    <Content Include="plugins\audio-cutter\dist\index.js" />
+    <Content Include="plugins\audio-cutter\dist\worker.js" />
+    <Content Include="plugins\audio-cutter\src\audio-helper.js" />
+    <Content Include="plugins\audio-cutter\src\dragger.jsx" />
+    <Content Include="plugins\audio-cutter\src\encoder\lame.js" />
+    <Content Include="plugins\audio-cutter\src\encoder\wav.js" />
+    <Content Include="plugins\audio-cutter\src\file.jsx" />
+    <Content Include="plugins\audio-cutter\src\icon.jsx" />
+    <Content Include="plugins\audio-cutter\src\icons\download.svg" />
+    <Content Include="plugins\audio-cutter\src\icons\music.svg" />
+    <Content Include="plugins\audio-cutter\src\icons\pause.svg" />
+    <Content Include="plugins\audio-cutter\src\icons\play.svg" />
+    <Content Include="plugins\audio-cutter\src\icons\replay.svg" />
+    <Content Include="plugins\audio-cutter\src\icons\spin.svg" />
+    <Content Include="plugins\audio-cutter\src\index.jsx" />
+    <Content Include="plugins\audio-cutter\src\peaks.js" />
+    <Content Include="plugins\audio-cutter\src\player.jsx" />
+    <Content Include="plugins\audio-cutter\src\utils.js" />
+    <Content Include="plugins\audio-cutter\src\waver.jsx" />
+    <Content Include="plugins\audio-cutter\src\webaudio.js" />
+    <Content Include="plugins\audio-cutter\src\worker-client.js" />
+    <Content Include="plugins\audio-cutter\src\worker.js" />
+    <Content Include="plugins\audio-cutter\vendor\Mp3LameEncoder.min.js" />
+    <Content Include="plugins\audio-cutter\webpack.config.js" />
     <Content Include="plugins\bootstrap-colorpicker\css\bootstrap-colorpicker.css" />
     <Content Include="plugins\bootstrap-colorpicker\css\bootstrap-colorpicker.min.css" />
     <Content Include="plugins\bootstrap-colorpicker\js\bootstrap-colorpicker.js" />
@@ -2215,6 +2240,14 @@
     <Content Include="plugins\summernote\summernote.min.js.map" />
     <Content Include="plugins\toastr\toastr.js.map" />
     <Content Include="CSV\toque.csv" />
+    <Content Include="plugins\audio-cutter\.babelrc" />
+    <Content Include="plugins\audio-cutter\.eslintrc" />
+    <Content Include="plugins\audio-cutter\jsconfig.json" />
+    <Content Include="plugins\audio-cutter\package.json" />
+    <Content Include="plugins\audio-cutter\README.md" />
+    <Content Include="plugins\audio-cutter\src\index.less" />
+    <Content Include="plugins\audio-cutter\typings.json" />
+    <Content Include="plugins\audio-cutter\vendor\Mp3LameEncoder.min.js.mem" />
     <None Include="Scripts\jquery-3.4.1.intellisense.js" />
     <Content Include="Scripts\jquery-3.4.1.js" />
     <Content Include="Scripts\jquery-3.4.1.min.js" />
@@ -2325,6 +2358,7 @@
     <Content Include="Views\Home\Detalhes.cshtml" />
     <Content Include="Views\Home\DeleteToque.cshtml" />
     <Content Include="Views\Home\Logoff.cshtml" />
+    <Content Include="Views\Home\CortarAudio.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Code\" />

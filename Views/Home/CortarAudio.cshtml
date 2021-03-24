@@ -1,7 +1,6 @@
-﻿@model SistemaToque.Models.ToqueModel
-
+﻿
 @{
-    ViewBag.Title = "Detalhes";
+    ViewBag.Title = "CortarAudio";
 }
 
 <!DOCTYPE html>
@@ -21,10 +20,25 @@
     <!-- Theme style -->
     <link rel="stylesheet" href="~/dist/css/adminlte.css">
     <link href="~/dist/css/personalizado.css" rel="stylesheet" />
+
+    <style>
+        .wave-canvas {
+            width: 100% !important
+        }
+
+        .player {
+            width: 100% !important
+        }
+
+        .clipper {
+            width: 100% !important
+        }
+
+    </style>
+
 </head>
 
 <body class="hold-transition sidebar-mini layout-fixed layout-navbar-fixed layout-footer-fixed sidebar-collapse">
-
     <div class="wrapper">
         <!-- Navbar -->
         <nav class="main-header navbar navbar-expand navbar-white navbar-light">
@@ -37,14 +51,13 @@
                     <a href="~/Home/Toques" class="nav-link">Home</a>
                 </li>
                 <li class="nav-item d-none d-sm-inline-block">
-                    <a href="~/Home/CortarAudio" class="nav-link">Cortar Áudio</a>
+                    <a href="~/Home/CortarAudio" class="nav-link active">Cortar Áudio</a>
                 </li>
                 <li class="nav-item d-none d-sm-inline-block">
                     <a href="~/Home/Toque" class="nav-link">Add um novo toque</a>
                 </li>
             </ul>
 
-            <!-- Right navbar links -->
             <ul class="navbar-nav ml-auto">
                 <!-- Botão para expandir a tela -->
                 <li class="nav-item">
@@ -93,7 +106,7 @@
                             </a>
                         </li>
                         <li class="nav-item">
-                            <a href="~/Home/CortarAudio" class="nav-link">
+                            <a href="~/Home/CortarAudio" class="nav-link active">
                                 <i class="nav-icon fa fa-cut"></i>
                                 <p>
                                     Cortar Áudio
@@ -117,18 +130,17 @@
 
         <!-- Content Wrapper. Contains page content -->
         <div class="content-wrapper">
-
             <!-- Content Header (Page header) -->
             <div class="content-header">
                 <div class="container-fluid">
                     <div class="row mb-2">
                         <div class="col-sm-6">
-                            <h1 class="m-0 txt-white">Detalhes</h1>
+                            <h1 class="m-0 txt-white">Cortar áudio</h1>
                         </div><!-- /.col -->
                         <div class="col-sm-6">
                             <ol class="breadcrumb float-sm-right">
                                 <li class="breadcrumb-item"><a href="~/Home/Toques">Home</a></li>
-                                <li class="breadcrumb-item active">Detalhes</li>
+                                <li class="breadcrumb-item active">Cortar música</li>
                             </ol>
                         </div><!-- /.col -->
                     </div><!-- /.row -->
@@ -138,61 +150,31 @@
             <!-- Main content -->
             <section class="content">
                 <div class="container-fluid">
-
                     <div class="row">
-                        <div class="col-md-12">
+                        <div class="col-12">
                             <div class="card">
                                 <div class="card-header">
-                                    <h5 class="card-title"><b>Detalhes do toque</b></h5>
+                                    <h5 class="card-title"><b>Configurações do áudio</b></h5>
                                 </div>
                                 <!-- /.card-header -->
-
                                 <div class="card-body">
                                     <div class="form-row">
-                                        <div class="col-md-4 mb-3">
-                                            <label>Descrição:</label>
-                                            <input type="text" class="form-control" value="@Html.DisplayFor(model => model.Nome)" disabled>
-                                        </div>
-                                        <div class="col-md-8 mb-3">
-                                            <label></label>
-                                            <div class="input-group">
-                                                <audio id="player">O seu browser não suporta a tag de audio!</audio>
-                                            </div>
+                                        <div class="col-md-12 mb-12">
+                                            <div id="main" ></div>
                                         </div>
                                     </div>
-                                    <div class="form-row">
-                                        <div class="col-md-4 mb-4">
-                                            <label>Hora de início do toque:</label>
-                                            <input type="text" class="form-control" value="@Html.DisplayFor(model => model.Hora)" disabled>
-                                        </div>
-                                        <div class="col-md-4 mb-4">
-                                            <label>Dias da semana:</label>
-                                            <textarea class="form-control" id="text-content" rows="1" disabled>@Html.DisplayFor(model => model.DiaSemana)</textarea>
-                                        </div>
-                                        <div class="col-md-4 mb-4">
-                                            <label>Tipo de ensino selecionado:</label>
-                                            <input type="text" class="form-control" value="@Html.DisplayFor(model => model.TxEnsino)" disabled>
-                                        </div>
-                                    </div>
-                                    <!-- /.form-row -->
                                 </div>
                                 <!-- ./card-body -->
                             </div>
                             <!-- /.card -->
                         </div>
-                        <!-- /.col -->
+                        <!-- /.container-fluid -->
                     </div>
-                    <!-- /.row -->
-                </div><!--/. container-fluid -->
+                </div>
             </section>
             <!-- /.content -->
         </div>
         <!-- /.content-wrapper -->
-        <!-- Control Sidebar -->
-        <aside class="control-sidebar control-sidebar-dark">
-            <!-- Control sidebar content goes here -->
-        </aside>
-        <!-- /.control-sidebar -->
         <!-- Main Footer -->
         <footer class="main-footer">
             <strong>Copyright &copy; 1972 - 2021 <a href="https://ceinet.com.br">CEI</a>.</strong>
@@ -202,8 +184,8 @@
             </div>
         </footer>
         <!-- /.Main Footer -->
-
     </div>
+
     <!-- ./wrapper -->
     <!-- REQUIRED SCRIPTS -->
     <!-- jQuery -->
@@ -216,6 +198,11 @@
     <script src="~/dist/js/adminlte.js"></script>
 
     <!-- PAGE ~/plugins -->
+    <!-- audio-cutter -->
+    <script src="https://unpkg.com/react@15.3.1/dist/react.min.js"></script>
+    <script src="https://unpkg.com/react-dom@15.3.1/dist/react-dom.min.js"></script>
+    <script src="~/plugins/audio-cutter/dist/worker.js" type="text/js-worker" x-audio-encode></script>
+    <script src="~/plugins/audio-cutter/dist/index.js"></script>
     <!-- jQuery Mapael -->
     <script src="~/plugins/jquery-mousewheel/jquery.mousewheel.js"></script>
     <script src="~/plugins/raphael/raphael.min.js"></script>
@@ -223,47 +210,9 @@
     <script src="~/plugins/jquery-mapael/maps/usa_states.min.js"></script>
     <!-- ChartJS -->
     <script src="~/plugins/chart.js/Chart.min.js"></script>
-
     <!-- AdminLTE for demo purposes -->
     <script src="~/dist/js/demo.js"></script>
     <!-- AdminLTE dashboard demo (This is only for demo purposes) -->
     <script src="~/dist/js/pages/dashboard2.js"></script>
-
-    @*Selecionar valor atual no select e radioButton*@
-    <script>
-        selectElement('StartSegs', '@ViewBag.StartSegs')
-        checkRadio()
-
-        function selectElement(id, valueToSelect) {
-            let element = document.getElementById(id);
-            element.value = valueToSelect;
-        }
-
-        function checkRadio() {
-            if (@ViewBag.Ensino == 1) {
-                document.getElementById("radioFund1").checked = true;
-            }
-            if (@ViewBag.Ensino == 2) {
-                document.getElementById("radioFund2").checked = true;
-            }
-            if (@ViewBag.Ensino == 3) {
-                document.getElementById("radioEM").checked = true;
-            }
-        }
-    </script>
-
-    @* Configuração do audio *@
-    <script>
-        var arquivo = @Html.DisplayFor(model => model.Arquivo);
-        var player = document.getElementById('player');
-            player.src = '/Musicas/' + arquivo + '.wav';     // Pasta do arquivo + nome do arquivo + tipo do arquivo
-            player.loop = false;                             // Loop = True (Ligado), false (Desligado)
-            player.currentTime = 0;                          // Tempo de início da música
-            player.volume = 0.7;                             // Volume - Ex.: 0.1 , 0.25, 0.5, 0.9, 1
-            player.controls = true;                          // Controles de play, pause, volume e download
-            player.load();                                   // Carregar música ao abrir a página
-            //alert(arquivo);                                // Teste nome do arquivo
-    </script>
-
 </body>
 </html>

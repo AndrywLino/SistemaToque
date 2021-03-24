@@ -36,7 +36,10 @@
                     <a href="~/Home/Toques" class="nav-link">Home</a>
                 </li>
                 <li class="nav-item d-none d-sm-inline-block">
-                    <a href="~/Home/Toque" class="nav-link">Add um novo toque</a>
+                    <a href="~/Home/CortarAudio" class="nav-link">Cortar Áudio</a>
+                </li>
+                <li class="nav-item d-none d-sm-inline-block">
+                    <a href="~/Home/Toque" class="nav-link active">Add um novo toque</a>
                 </li>
             </ul>
 
@@ -84,6 +87,14 @@
                                 <i class="nav-icon fas fa-music"></i>
                                 <p>
                                     Toques
+                                </p>
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="~/Home/CortarAudio" class="nav-link">
+                                <i class="nav-icon fa fa-cut"></i>
+                                <p>
+                                    Cortar Áudio
                                 </p>
                             </a>
                         </li>
@@ -152,7 +163,7 @@
                                                 <label>Arquivo:</label>
                                                 <div class="input-group">
                                                     <div class="custom-file">
-                                                        <input type="file" class="custom-file-input" id="file" name="fileupload" accept="audio/mp3,audio/*" required>
+                                                        <input type="file" class="custom-file-input" id="file" name="fileupload" accept="audio/wav" required>
                                                         <label class="custom-file-label" for="file">Escolher arquivo</label>
                                                     </div>
 

@@ -295,7 +295,7 @@ namespace SistemaToque.Controllers
                 ServiceCSV.WriteCSVFileToque(dir, toquesE);
                 await FTPService.UploadFile(dir);
 
-                string dirMusic = toque.Arquivo + ".mp3";
+                string dirMusic = toque.Arquivo + ".wav";
                 await FTPService.DeleteMusic(dirMusic);
 
                 return RedirectToAction("Toques", true);
@@ -460,7 +460,7 @@ namespace SistemaToque.Controllers
                     }
                 }
 
-                string file = arquivo + ".mp3";
+                string file = arquivo + ".wav";
                 string dir = Path.Combine(Server.MapPath("~/Musicas/"));
 
                 await FTPService.DownloadFileSpec(dir, file);
@@ -506,6 +506,16 @@ namespace SistemaToque.Controllers
         }
 
         public ActionResult Logoff()
+        {
+            if (VerificarLogin())
+            {
+                return View();
+            }
+            else
+                return View("Login");
+        }
+
+        public ActionResult CortarAudio()
         {
             if (VerificarLogin())
             {
