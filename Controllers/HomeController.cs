@@ -531,18 +531,18 @@ namespace SistemaToque.Controllers
             }
         }
 
-        public ActionResult Logout()
-        {
-            if (VerificarLogin())
-            {
-                AlterarStatusLogin();
-                return RedirectToAction("Login");
-            }
-            else
-            {
-                return RedirectToAction("Toques");
-            }
-        }
+        //public ActionResult Logout()
+        //{
+        //    if (VerificarLogin())
+        //    {
+        //        AlterarStatusLogin();
+        //        return RedirectToAction("Login");
+        //    }
+        //    else
+        //    {
+        //        return RedirectToAction("Toques");
+        //    }
+        //}
 
         [HttpGet]
         public ActionResult RedirectCadastro()
@@ -683,10 +683,13 @@ namespace SistemaToque.Controllers
         {
             if (VerificarLogin())
             {
+                AlterarStatusLogin();
                 return View();
             }
             else
-                return View("Login");
+            {
+                return RedirectToAction("Toques");
+            }
         }
 
         public ActionResult CortarAudio()
