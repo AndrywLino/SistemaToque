@@ -71,13 +71,42 @@ namespace SistemaToque.Controllers
                         it.Nome = item.Nome;
                         it.Hora = item.Hora;
                         it.Canal = item.Canal;
-                        it.IsSegunda = item.IsSegunda;
-                        it.IsTerca = item.IsTerca;
-                        it.IsQuarta = item.IsQuarta;
-                        it.IsQuinta = item.IsQuinta;
-                        it.IsSexta = item.IsSexta;
-                        it.IsSabado = item.IsSabado;
-                        it.IsDomingo = item.IsDomingo;
+                        //it.IsSegunda = item.IsSegunda;
+                        //it.IsTerca = item.IsTerca;
+                        //it.IsQuarta = item.IsQuarta;
+                        //it.IsQuinta = item.IsQuinta;
+                        //it.IsSexta = item.IsSexta;
+                        //it.IsSabado = item.IsSabado;
+                        //it.IsDomingo = item.IsDomingo;
+                        if (item.IsDomingo)
+                        {
+                            it.DiasSemana += ",0";
+                        }
+                        if (item.IsSegunda)
+                        {
+                            it.DiasSemana += ",1";
+                        }
+                        if (item.IsTerca)
+                        {
+                            it.DiasSemana += ",2";
+                        }
+                        if (item.IsQuarta)
+                        {
+                            it.DiasSemana += ",3";
+                        }
+                        if (item.IsQuinta)
+                        {
+                            it.DiasSemana += ",4";
+                        }
+                        if (item.IsSexta)
+                        {
+                            it.DiasSemana += ",5";
+                        }
+                        if (item.IsSabado)
+                        {
+                            it.DiasSemana += ",6";
+                        }
+                        it.DiasSemana = it.DiasSemana.Substring(1);
                         it.IsAtivo = item.IsAtivo;
                         it.NivelEnsino = item.NivelEnsino;
                         it.UltimoToque = item.UltimoToque;
@@ -93,13 +122,42 @@ namespace SistemaToque.Controllers
                             toquesE[i].Arquivo = toque.Arquivo;
                             toquesE[i].Nome = toque.Nome;
                             toquesE[i].Hora = toque.Hora;
-                            toquesE[i].IsSegunda = toque.IsSegunda;
-                            toquesE[i].IsTerca = toque.IsTerca;
-                            toquesE[i].IsQuarta = toque.IsQuarta;
-                            toquesE[i].IsQuinta = toque.IsQuinta;
-                            toquesE[i].IsSexta = toque.IsSexta;
-                            toquesE[i].IsSabado = toque.IsSabado;
-                            toquesE[i].IsDomingo = toque.IsDomingo;
+                            //toquesE[i].IsSegunda = toque.IsSegunda;
+                            //toquesE[i].IsTerca = toque.IsTerca;
+                            //toquesE[i].IsQuarta = toque.IsQuarta;
+                            //toquesE[i].IsQuinta = toque.IsQuinta;
+                            //toquesE[i].IsSexta = toque.IsSexta;
+                            //toquesE[i].IsSabado = toque.IsSabado;
+                            //toquesE[i].IsDomingo = toque.IsDomingo;
+                            if (toque.IsDomingo)
+                            {
+                                toquesE[i].DiasSemana += ",0";
+                            }
+                            if (toque.IsSegunda)
+                            {
+                                toquesE[i].DiasSemana += ",1";
+                            }
+                            if (toque.IsTerca)
+                            {
+                                toquesE[i].DiasSemana += ",2";
+                            }
+                            if (toque.IsQuarta)
+                            {
+                                toquesE[i].DiasSemana += ",3";
+                            }
+                            if (toque.IsQuinta)
+                            {
+                                toquesE[i].DiasSemana += ",4";
+                            }
+                            if (toque.IsSexta)
+                            {
+                                toquesE[i].DiasSemana += ",5";
+                            }
+                            if (toque.IsSabado)
+                            {
+                                toquesE[i].DiasSemana += ",6";
+                            }
+                            toquesE[i].DiasSemana = toquesE[i].DiasSemana.Substring(1);
                             toquesE[i].IsAtivo = toque.IsAtivo;
                             toquesE[i].NivelEnsino = toque.NivelEnsino;
                             toquesE[i].StartSegs = toque.StartSegs;
@@ -167,13 +225,42 @@ namespace SistemaToque.Controllers
                     it.Nome = item.Nome;
                     it.Hora = item.Hora;
                     it.Canal = item.Canal;
-                    it.IsSegunda = item.IsSegunda;
-                    it.IsTerca = item.IsTerca;
-                    it.IsQuarta = item.IsQuarta;
-                    it.IsQuinta = item.IsQuinta;
-                    it.IsSexta = item.IsSexta;
-                    it.IsSabado = item.IsSabado;
-                    it.IsDomingo = item.IsDomingo;
+                    //it.IsSegunda = item.IsSegunda;
+                    //it.IsTerca = item.IsTerca;
+                    //it.IsQuarta = item.IsQuarta;
+                    //it.IsQuinta = item.IsQuinta;
+                    //it.IsSexta = item.IsSexta;
+                    //it.IsSabado = item.IsSabado;
+                    //it.IsDomingo = item.IsDomingo;
+                    if (item.IsDomingo)
+                    {
+                        it.DiasSemana += ",0";
+                    }
+                    if (item.IsSegunda)
+                    {
+                        it.DiasSemana += ",1";
+                    }
+                    if (item.IsTerca)
+                    {
+                        it.DiasSemana += ",2";
+                    }
+                    if (item.IsQuarta)
+                    {
+                        it.DiasSemana += ",3";
+                    }
+                    if (item.IsQuinta)
+                    {
+                        it.DiasSemana += ",4";
+                    }
+                    if (item.IsSexta)
+                    {
+                        it.DiasSemana += ",5";
+                    }
+                    if (item.IsSabado)
+                    {
+                        it.DiasSemana += ",6";
+                    }
+                    it.DiasSemana = it.DiasSemana.Substring(1);
                     it.IsAtivo = item.IsAtivo;
                     it.NivelEnsino = item.NivelEnsino;
                     it.UltimoToque = item.UltimoToque;
@@ -191,13 +278,42 @@ namespace SistemaToque.Controllers
                 toque.Hora = cadastro.Hora;
                 toque.IsAtivo = true;
                 toque.NivelEnsino = cadastro.Ensino;
-                toque.IsSegunda = cadastro.IsSegunda;
-                toque.IsTerca = cadastro.IsTerca;
-                toque.IsQuarta = cadastro.IsQuarta;
-                toque.IsQuinta = cadastro.IsQuinta;
-                toque.IsSexta = cadastro.IsSexta;
-                toque.IsSabado = cadastro.IsSabado;
-                toque.IsDomingo = cadastro.IsDomingo;
+                //toque.IsSegunda = cadastro.IsSegunda;
+                //toque.IsTerca = cadastro.IsTerca;
+                //toque.IsQuarta = cadastro.IsQuarta;
+                //toque.IsQuinta = cadastro.IsQuinta;
+                //toque.IsSexta = cadastro.IsSexta;
+                //toque.IsSabado = cadastro.IsSabado;
+                //toque.IsDomingo = cadastro.IsDomingo;
+                if (cadastro.IsDomingo)
+                {
+                    toque.DiasSemana += ",0";
+                }
+                if (cadastro.IsSegunda)
+                {
+                    toque.DiasSemana += ",1";
+                }
+                if (cadastro.IsTerca)
+                {
+                    toque.DiasSemana += ",2";
+                }
+                if (cadastro.IsQuarta)
+                {
+                    toque.DiasSemana += ",3";
+                }
+                if (cadastro.IsQuinta)
+                {
+                    toque.DiasSemana += ",4";
+                }
+                if (cadastro.IsSexta)
+                {
+                    toque.DiasSemana += ",5";
+                }
+                if (cadastro.IsSabado)
+                {
+                    toque.DiasSemana += ",6";
+                }
+                toque.DiasSemana = toque.DiasSemana.Substring(1);
                 toque.UltimoToque = null;
                 toque.StartSegs = cadastro.StartSegs;
 
@@ -267,13 +383,42 @@ namespace SistemaToque.Controllers
                     it.Nome = item.Nome;
                     it.Hora = item.Hora;
                     it.Canal = item.Canal;
-                    it.IsSegunda = item.IsSegunda;
-                    it.IsTerca = item.IsTerca;
-                    it.IsQuarta = item.IsQuarta;
-                    it.IsQuinta = item.IsQuinta;
-                    it.IsSexta = item.IsSexta;
-                    it.IsSabado = item.IsSabado;
-                    it.IsDomingo = item.IsDomingo;
+                    //it.IsSegunda = item.IsSegunda;
+                    //it.IsTerca = item.IsTerca;
+                    //it.IsQuarta = item.IsQuarta;
+                    //it.IsQuinta = item.IsQuinta;
+                    //it.IsSexta = item.IsSexta;
+                    //it.IsSabado = item.IsSabado;
+                    //it.IsDomingo = item.IsDomingo;
+                    if (item.IsDomingo)
+                    {
+                        it.DiasSemana += ",0";
+                    }
+                    if (item.IsSegunda)
+                    {
+                        it.DiasSemana += ",1";
+                    }
+                    if (item.IsTerca)
+                    {
+                        it.DiasSemana += ",2";
+                    }
+                    if (item.IsQuarta)
+                    {
+                        it.DiasSemana += ",3";
+                    }
+                    if (item.IsQuinta)
+                    {
+                        it.DiasSemana += ",4";
+                    }
+                    if (item.IsSexta)
+                    {
+                        it.DiasSemana += ",5";
+                    }
+                    if (item.IsSabado)
+                    {
+                        it.DiasSemana += ",6";
+                    }
+                    it.DiasSemana = it.DiasSemana.Substring(1);
                     it.IsAtivo = item.IsAtivo;
                     it.NivelEnsino = item.NivelEnsino;
                     it.UltimoToque = item.UltimoToque;
@@ -330,13 +475,42 @@ namespace SistemaToque.Controllers
                     it.Nome = item.Nome;
                     it.Hora = item.Hora;
                     it.Canal = item.Canal;
-                    it.IsSegunda = item.IsSegunda;
-                    it.IsTerca = item.IsTerca;
-                    it.IsQuarta = item.IsQuarta;
-                    it.IsQuinta = item.IsQuinta;
-                    it.IsSexta = item.IsSexta;
-                    it.IsSabado = item.IsSabado;
-                    it.IsDomingo = item.IsDomingo;
+                    //it.IsSegunda = item.IsSegunda;
+                    //it.IsTerca = item.IsTerca;
+                    //it.IsQuarta = item.IsQuarta;
+                    //it.IsQuinta = item.IsQuinta;
+                    //it.IsSexta = item.IsSexta;
+                    //it.IsSabado = item.IsSabado;
+                    //it.IsDomingo = item.IsDomingo;
+                    if (item.IsDomingo)
+                    {
+                        it.DiasSemana += ",0";
+                    }
+                    if (item.IsSegunda)
+                    {
+                        it.DiasSemana += ",1";
+                    }
+                    if (item.IsTerca)
+                    {
+                        it.DiasSemana += ",2";
+                    }
+                    if (item.IsQuarta)
+                    {
+                        it.DiasSemana += ",3";
+                    }
+                    if (item.IsQuinta)
+                    {
+                        it.DiasSemana += ",4";
+                    }
+                    if (item.IsSexta)
+                    {
+                        it.DiasSemana += ",5";
+                    }
+                    if (item.IsSabado)
+                    {
+                        it.DiasSemana += ",6";
+                    }
+                    it.DiasSemana = it.DiasSemana.Substring(1);
                     it.NivelEnsino = item.NivelEnsino;
                     it.UltimoToque = item.UltimoToque;
                     it.StartSegs = item.StartSegs;

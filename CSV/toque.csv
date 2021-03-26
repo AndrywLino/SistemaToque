@@ -1,3 +1,5 @@
-﻿Arquivo;Nome;Hora;Canal;IsAtivo;NivelEnsino;IsSegunda;IsTerca;IsQuarta;IsQuinta;IsSexta;IsSabado;IsDomingo;UltimoToque;StartSegs
-1;Toque 1º horário;12:00;1;True;3;True;True;True;True;True;False;False;;00:00:00
-2;Toque 2º horário;13:45:00;1;True;3;True;True;True;True;True;False;False;;00:00:00
+﻿Arquivo;Nome;Hora;Canal;IsAtivo;NivelEnsino;DiasSemana;UltimoToque;StartSegs
+1;Toque 1º horário;12:00;1;True;3;1,2,3,4,5;;00:00:00
+2;Toque 2º horário;13:45:00;1;True;3;1,2,3,4,5;;00:00:00
+3;dasfads1;13:45:00;1;True;3;1,2,3,4;;00:00:00
+4;teste023;07:48;1;True;3;2,3,5,6;;00:00:00

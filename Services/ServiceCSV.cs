@@ -20,8 +20,44 @@ namespace SistemaToque.Services
                 using (var csv = new CsvReader(reader))
                 {
                     csv.Configuration.RegisterClassMap<ToqueMap>();
-                    var records = csv.GetRecords<ToqueModel>().ToList();
-                    return records;
+                    var records = csv.GetRecords<ToqueExportModel>().ToList();
+                    List<ToqueModel> retorno = new List<ToqueModel>();
+
+                    foreach (ToqueExportModel item in records)
+                    {
+                        ToqueModel it = new ToqueModel();
+
+                        it.Arquivo = item.Arquivo;
+                        it.Nome = item.Nome;
+                        it.Hora = item.Hora;
+                        it.Canal = item.Canal;
+                        it.IsAtivo = item.IsAtivo;
+                        it.UltimoToque = item.UltimoToque;
+                        //continuar com concatenação do diasemana em records
+                        string[] diasSemana = item.DiasSemana.Split(',');
+                        foreach (string dia in diasSemana)
+                        {
+                            if (dia == "0")
+                                it.IsDomingo = true;
+                            if (dia == "1")
+                                it.IsSegunda = true;
+                            if (dia == "2")
+                                it.IsTerca = true;
+                            if (dia == "3")
+                                it.IsQuarta = true;
+                            if (dia == "4")
+                                it.IsQuinta = true;
+                            if (dia == "5")
+                                it.IsSexta = true;
+                            if (dia == "6")
+                                it.IsSabado = true;
+                        }
+                        it.NivelEnsino = item.NivelEnsino;
+                        it.StartSegs = item.StartSegs;
+                        retorno.Add(it);
+
+                    }
+                    return retorno;
                 }
 
             }

@@ -13,13 +13,14 @@ namespace SistemaToque.Models
         public int Canal { get; set; }
         public bool IsAtivo { get; set; }
         public int NivelEnsino { get; set; }
-        public bool IsSegunda { get; set; }
-        public bool IsTerca { get; set; }
-        public bool IsQuarta { get; set; }
-        public bool IsQuinta { get; set; }
-        public bool IsSexta { get; set; }
-        public bool IsSabado { get; set; }
-        public bool IsDomingo { get; set; }
+        //public bool IsSegunda { get; set; }
+        //public bool IsTerca { get; set; }
+        //public bool IsQuarta { get; set; }
+        //public bool IsQuinta { get; set; }
+        //public bool IsSexta { get; set; }
+        //public bool IsSabado { get; set; }
+        //public bool IsDomingo { get; set; }
+        public string DiasSemana { get; set; }
         public string UltimoToque { get; set; }
         public string StartSegs { get; set; }
 
