@@ -103,7 +103,6 @@ namespace SistemaToque.Controllers
                         it.IsAtivo = item.IsAtivo;
                         it.NivelEnsino = item.NivelEnsino;
                         it.UltimoToque = item.UltimoToque;
-                        it.StartSegs = item.StartSegs;
 
                         toquesE.Add(it);
                     }
@@ -147,7 +146,6 @@ namespace SistemaToque.Controllers
                             toquesE[i].DiasSemana = toquesE[i].DiasSemana.Substring(1);
                             toquesE[i].IsAtivo = toque.IsAtivo;
                             toquesE[i].NivelEnsino = toque.NivelEnsino;
-                            toquesE[i].StartSegs = "00:00";
                             toquesE[i].UltimoToque = toquesE[i].UltimoToque;
 
                             arquivoId = toque.Arquivo;
@@ -251,7 +249,6 @@ namespace SistemaToque.Controllers
                     it.IsAtivo = item.IsAtivo;
                     it.NivelEnsino = item.NivelEnsino;
                     it.UltimoToque = item.UltimoToque;
-                    it.StartSegs = item.StartSegs;
 
                     arquivoId = Convert.ToInt32(it.Arquivo);
                     toquesE.Add(it);
@@ -302,7 +299,6 @@ namespace SistemaToque.Controllers
                 }
                 toque.DiasSemana = toque.DiasSemana.Substring(1);
                 toque.UltimoToque = null;
-                toque.StartSegs = cadastro.StartSegs;
 
                 if (cadastro.Ensino == 2 || cadastro.Ensino == 3)
                     toque.Canal = 1;
@@ -409,7 +405,6 @@ namespace SistemaToque.Controllers
                     it.IsAtivo = item.IsAtivo;
                     it.NivelEnsino = item.NivelEnsino;
                     it.UltimoToque = item.UltimoToque;
-                    it.StartSegs = item.StartSegs;
 
                     toquesE.Add(it);
                 }
@@ -500,7 +495,6 @@ namespace SistemaToque.Controllers
                     it.DiasSemana = it.DiasSemana.Substring(1);
                     it.NivelEnsino = item.NivelEnsino;
                     it.UltimoToque = item.UltimoToque;
-                    it.StartSegs = item.StartSegs;
 
                     toquesE.Add(it);
                 }
@@ -559,7 +553,6 @@ namespace SistemaToque.Controllers
                     }
                 }
 
-                ViewBag.StartSegs = toque.StartSegs;
                 ViewBag.Ensino = toque.NivelEnsino;
 
                 return View(toque);
