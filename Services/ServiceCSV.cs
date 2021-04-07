@@ -53,7 +53,6 @@ namespace SistemaToque.Services
                                 it.IsSabado = true;
                         }
                         it.NivelEnsino = item.NivelEnsino;
-                        it.StartSegs = item.StartSegs;
                         retorno.Add(it);
 
                     }

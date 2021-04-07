@@ -18,7 +18,6 @@ namespace SistemaToque.Mappers
             Map(x => x.IsAtivo).Name("IsAtivo");
             Map(x => x.NivelEnsino).Name("NivelEnsino");
             Map(x => x.UltimoToque).Name("UltimoToque");
-            Map(x => x.StartSegs).Name("StartSegs");
         }
     }
 }
