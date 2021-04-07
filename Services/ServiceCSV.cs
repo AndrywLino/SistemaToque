@@ -16,7 +16,7 @@ namespace SistemaToque.Services
         {
             try
             {
-                using (var reader = new StreamReader(path, Encoding.Default))
+                using (var reader = new StreamReader(path, Encoding.UTF8))
                 using (var csv = new CsvReader(reader))
                 {
                     csv.Configuration.RegisterClassMap<ToqueMap>();

@@ -71,13 +71,6 @@ namespace SistemaToque.Controllers
                         it.Nome = item.Nome;
                         it.Hora = item.Hora;
                         it.Canal = item.Canal;
-                        //it.IsSegunda = item.IsSegunda;
-                        //it.IsTerca = item.IsTerca;
-                        //it.IsQuarta = item.IsQuarta;
-                        //it.IsQuinta = item.IsQuinta;
-                        //it.IsSexta = item.IsSexta;
-                        //it.IsSabado = item.IsSabado;
-                        //it.IsDomingo = item.IsDomingo;
                         if (item.IsDomingo)
                         {
                             it.DiasSemana += ",0";
@@ -119,16 +112,10 @@ namespace SistemaToque.Controllers
                     {
                         if (item.Arquivo == toque.Arquivo)
                         {
+                            toquesE[i].DiasSemana = "";
                             toquesE[i].Arquivo = toque.Arquivo;
                             toquesE[i].Nome = toque.Nome;
                             toquesE[i].Hora = toque.Hora;
-                            //toquesE[i].IsSegunda = toque.IsSegunda;
-                            //toquesE[i].IsTerca = toque.IsTerca;
-                            //toquesE[i].IsQuarta = toque.IsQuarta;
-                            //toquesE[i].IsQuinta = toque.IsQuinta;
-                            //toquesE[i].IsSexta = toque.IsSexta;
-                            //toquesE[i].IsSabado = toque.IsSabado;
-                            //toquesE[i].IsDomingo = toque.IsDomingo;
                             if (toque.IsDomingo)
                             {
                                 toquesE[i].DiasSemana += ",0";
@@ -160,8 +147,8 @@ namespace SistemaToque.Controllers
                             toquesE[i].DiasSemana = toquesE[i].DiasSemana.Substring(1);
                             toquesE[i].IsAtivo = toque.IsAtivo;
                             toquesE[i].NivelEnsino = toque.NivelEnsino;
-                            toquesE[i].StartSegs = toque.StartSegs;
-                            toquesE[i].UltimoToque = toque.UltimoToque;
+                            toquesE[i].StartSegs = "00:00";
+                            toquesE[i].UltimoToque = toquesE[i].UltimoToque;
 
                             arquivoId = toque.Arquivo;
 
