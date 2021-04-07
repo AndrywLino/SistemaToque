@@ -147,7 +147,7 @@ namespace SistemaToque.Controllers
                             toquesE[i].DiasSemana = toquesE[i].DiasSemana.Substring(1);
                             toquesE[i].IsAtivo = toque.IsAtivo;
                             toquesE[i].NivelEnsino = toque.NivelEnsino;
-                            toquesE[i].StartSegs = toque.StartSegs;
+                            toquesE[i].StartSegs = "00:00";
                             toquesE[i].UltimoToque = toquesE[i].UltimoToque;
 
                             arquivoId = toque.Arquivo;
